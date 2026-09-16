@@ -303,7 +303,7 @@ export function Home() {
       {/* ---- join the Bungalo -------------------------------------------- */}
       <section className={styles.cta}>
         <div className={styles.ctaBg}>
-          <img src={asset('assets/heroes/partysnax.webp')} alt="" className={styles.ctaImg} />
+          <img src={asset('assets/heroes/whiterun-guards.webp')} alt="" className={styles.ctaImg} />
         </div>
         <div className={styles.ctaScrim} />
         <div data-reveal className={styles.ctaInner}>

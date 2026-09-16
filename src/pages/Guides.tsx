@@ -96,7 +96,7 @@ export function Guides() {
     <>
       <section className={styles.hero}>
         <div className={styles.heroMedia}>
-          <img src={asset('assets/heroes/csvp-talos.webp')} alt="" />
+          <img src={asset('assets/heroes/partysnax.webp')} alt="" />
         </div>
         <div className={styles.heroScrim} />
         <div className={`container ${styles.heroInner}`}>
