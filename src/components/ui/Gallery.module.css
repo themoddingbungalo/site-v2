@@ -10,7 +10,33 @@
 @media (max-width: 1180px) { .feature { grid-column: auto; grid-row: auto; } }
 @media (max-width: 620px) { .wide { grid-column: auto; } .grid { grid-template-columns: minmax(0, 1fr); } }
 
-.lightbox { position: fixed; inset: 0; z-index: 300; background: rgba(9, 11, 12, .95); display: grid; place-items: center; padding: clamp(20px, 5vw, 60px); cursor: zoom-out; }
-.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 90px rgba(0, 0, 0, .7); }
-.close { position: fixed; top: 24px; right: 26px; width: 44px; height: 44px; display: grid; place-items: center; background: var(--hair-10); border: 1px solid var(--hair-24); border-radius: 9px; color: var(--ink); font-size: 22px; cursor: pointer; }
-.close:hover { background: var(--gold-24); }
+/* Above the sticky header (60), the section nav (50) and the search overlay (200).
+   The padding reserves room for the controls sitting around the image. */
+.lightbox { position: fixed; inset: 0; z-index: 400; background: rgba(9, 11, 12, .96); display: flex; align-items: center; justify-content: center; padding: clamp(58px, 8vh, 84px) clamp(58px, 6vw, 96px); cursor: zoom-out; }
+/* min-width/min-height 0 let the frame shrink below the image's intrinsic size, so a
+   large screenshot is always bounded by the viewport rather than overflowing it. */
+/* align-items must not be the flex default of stretch: that would pull the image to
+   the frame's full height and leave its box wider than the picture, so the rounded
+   corners and shadow would sit away from the visible edges. */
+.frame { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 0; max-width: 100%; max-height: 100%; cursor: default; }
+.frame img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 90px rgba(0, 0, 0, .7); }
+
+/* Opaque, and above the image, so a bright screenshot never swallows them. */
+.close, .nav { position: absolute; z-index: 2; display: grid; place-items: center; padding: 0; background: var(--bg-card); border: 1px solid var(--hair-24); border-radius: 10px; color: var(--ink); line-height: 1; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+.close:hover, .nav:hover { background: var(--gold-24); border-color: var(--gold-60); }
+.close:focus-visible, .nav:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.close { top: 18px; right: 18px; width: 46px; height: 46px; font-size: 26px; }
+.nav { top: 50%; transform: translateY(-50%); width: 46px; height: 68px; font-size: 30px; }
+.prev { left: 14px; }
+.next { right: 14px; }
+
+.caption { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 2; margin: 0; display: flex; align-items: baseline; justify-content: center; gap: 14px; max-width: min(92vw, 780px); font-size: 14px; line-height: 1.5; color: var(--text-muted); text-align: center; pointer-events: none; }
+.count { color: var(--gold-dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@media (max-width: 620px) {
+  .lightbox { padding: 60px 12px 64px; }
+  .nav { width: 40px; height: 54px; font-size: 26px; }
+  .prev { left: 6px; }
+  .next { right: 6px; }
+  .caption span:first-child { display: none; }
+}
