@@ -89,7 +89,7 @@ export function LoreRim() {
   return (
     <>
       <ModlistHero
-        image="assets/heroes/lorerim-gate.webp"
+        image="assets/heroes/lorerim-cover.webp"
         position="center 42%"
         logo="assets/logos/LoreRim.webp"
         logoAlt="LoreRim"
