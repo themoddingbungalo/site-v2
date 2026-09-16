@@ -36,10 +36,11 @@ const shot = (name: string, alt: string): Shot => ({
   alt,
 })
 
-// The video and the first shot are both 2x2, so they fill the top two rows of the
-// four-column grid and the remaining eight shots land in two complete rows.
+// The video and the first two shots are 2x2, which packs the ten shots plus the video
+// into five complete rows of the four-column grid.
 const SHOTS: Shot[] = [
   { ...shot('riverwood', 'Riverwood at sunrise, outside the Sleeping Giant Inn'), feature: true },
+  { ...shot('dragon', 'A dragon perched on a snowbound crag'), feature: true },
   shot('whiterun-night', 'Whiterun under the aurora at night'),
   shot('magnus-snow', 'Sunrise through pines on a snowbound mountain pass'),
   shot('solitude', "Katla's farm outside Solitude"),
