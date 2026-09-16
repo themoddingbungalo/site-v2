@@ -7,7 +7,7 @@ interface Props {
   title?: string
   text?: ReactNode
   primaryLabel?: string
-  /** Optional second, outlined button (e.g. a list's own Discord). */
+  /** Optional second, outlined button (e.g. a list's Nexus page). */
   secondary?: { href: string; label: string }
   /** Small credits line under the buttons. */
   credits?: ReactNode

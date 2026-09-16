@@ -25,7 +25,6 @@ const NAV = [
   { id: 'gallery', label: 'Showcase' },
 ]
 
-const NGVO_DISCORD = 'https://discord.gg/Tb5ETzBYjd'
 const LOAD_ORDER = 'https://loadorderlibrary.com/lists/next-generation-visual-overhaul-NGVO'
 
 const ext = { target: '_blank', rel: 'noopener' } as const
@@ -311,7 +310,6 @@ export function Ngvo() {
         </section>
 
         <DiscordBand
-          secondary={{ href: NGVO_DISCORD, label: 'NGVO Discord' }}
           credits="Credits — Althro & Ylikollikas for answering every question, ShadowSorcery for the NGVO logo, Halgari and the Wabbajack team, and every mod author whose work made this list possible."
         />
       </div>
