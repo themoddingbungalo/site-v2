@@ -12,7 +12,7 @@
 
 /* Above the sticky header (60), the section nav (50) and the search overlay (200).
    The padding reserves room for the controls sitting around the image. */
-.lightbox { position: fixed; inset: 0; z-index: 400; background: rgba(9, 11, 12, .96); display: flex; align-items: center; justify-content: center; padding: clamp(58px, 8vh, 84px) clamp(58px, 6vw, 96px); cursor: zoom-out; }
+.lightbox { position: fixed; inset: 0; z-index: 400; background: rgba(9, 11, 12, .985); display: flex; align-items: center; justify-content: center; padding: clamp(58px, 8vh, 84px) clamp(58px, 6vw, 96px); cursor: zoom-out; }
 /* min-width/min-height 0 let the frame shrink below the image's intrinsic size, so a
    large screenshot is always bounded by the viewport rather than overflowing it. */
 /* align-items must not be the flex default of stretch: that would pull the image to
@@ -30,8 +30,10 @@
 .prev { left: 14px; }
 .next { right: 14px; }
 
-.caption { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 2; margin: 0; display: flex; align-items: baseline; justify-content: center; gap: 14px; max-width: min(92vw, 780px); font-size: 14px; line-height: 1.5; color: var(--text-muted); text-align: center; pointer-events: none; }
-.count { color: var(--gold-dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* Its own opaque pill: beside a large bright screenshot, muted text on the backdrop
+   alone is hard to read however dark that backdrop is. */
+.caption { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 2; margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 14px; max-width: min(92vw, 780px); padding: 8px 18px; background: var(--bg-card); border: 1px solid var(--hair-14); border-radius: 999px; box-shadow: 0 6px 24px rgba(0, 0, 0, .55); font-size: 14px; line-height: 1.5; color: var(--text); text-align: center; pointer-events: none; }
+.count { color: var(--gold-light); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 @media (max-width: 620px) {
   .lightbox { padding: 60px 12px 64px; }
