@@ -1,8 +1,9 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
 import { Callout } from '../../components/ui/Callout'
 import { DiscordBand } from '../../components/ui/DiscordBand'
+import { Gallery, type Shot } from '../../components/ui/Gallery'
 import { BookIcon, DownloadIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
 import { SectionNav } from '../../components/ui/SectionNav'
@@ -10,7 +11,7 @@ import { SpecCards, SpecToggle } from '../../components/ui/Specs'
 import { StepList, StuckTile, TroubleTile } from '../../components/ui/Steps'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import { readmePath } from '../../data/modlists'
-import { asset, pageTitle, site } from '../../data/site'
+import { pageTitle, site } from '../../data/site'
 import styles from './Ghoulified.module.css'
 
 const NAV = [
@@ -29,10 +30,26 @@ const WULF_BUILDS = 'https://docs.google.com/document/d/1cNxdbVA-1_Zdtsb1Bmxv1ff
 
 const ext = { target: '_blank', rel: 'noopener' } as const
 
-interface Shot { src: string; alt: string }
+// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
+const shot = (name: string, alt: string): Shot => ({
+  src: `assets/shots/ghoulified/${name}.webp`,
+  thumb: `assets/shots/ghoulified/${name}-thumb.webp`,
+  alt,
+})
+
+// The video and the first two shots are 2x2, which packs the ten shots plus the video
+// into five complete rows of the four-column grid.
 const SHOTS: Shot[] = [
-  { src: 'assets/heroes/ghoulified-stones.webp', alt: 'Standing stones' },
-  { src: 'assets/logos/Ghoulified-cover.webp', alt: 'Ghoulified cover art' },
+  { ...shot('solstheim', 'Red Mountain erupting over the Solstheim ashlands'), feature: true },
+  { ...shot('sovngarde', 'The Hall of Valor in Sovngarde'), feature: true },
+  shot('whiterun', 'Whiterun and the mountains beyond'),
+  shot('markarth', "Markarth's Dwemer stonework by torchlight"),
+  shot('riverwood-trader', 'Firelight inside the Riverwood Trader'),
+  shot('the-rift', 'Autumn birches in the Rift'),
+  shot('jarl-ballin', "An audience in the Jarl's hall"),
+  shot('tundra-sunset', 'Sunset over the tundra'),
+  shot('woods-rain', 'Rain through the pines'),
+  shot('molag-bal-vyrthur', 'Vyrthur in the Forgotten Vale'),
 ]
 
 /** Pre-installation steps; `hot` rows get the gold highlight (Rare Curios). */
@@ -54,14 +71,6 @@ export function Ghoulified() {
   useTitle(pageTitle('Ghoulified Reality'))
   const [res, setRes] = useState<'1080' | '1440'>('1080')
   const hi = res === '1440'
-  const [lightbox, setLightbox] = useState<Shot | null>(null)
-
-  useEffect(() => {
-    if (!lightbox) return
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null) }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [lightbox])
 
   return (
     <>
@@ -265,23 +274,12 @@ export function Ghoulified() {
         </section>
 
         <section id="showcase" className="section">
-          <h2 className={`h2 ${styles.showTitle}`}>Showcase</h2>
-          <div className={styles.showGrid}>
-            <YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified showcase" radius={12} className={styles.showVideo} />
-            {SHOTS.map((s) => (
-              <button key={s.src} type="button" className={styles.showTile} onClick={() => setLightbox(s)} aria-label={`View ${s.alt} full size`}>
-                <img src={asset(s.src)} alt={s.alt} loading="lazy" />
-              </button>
-            ))}
-          </div>
+          <Gallery
+            shots={SHOTS}
+            extraFirst
+            extra={<YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified showcase" radius={12} className={styles.showVideo} />}
+          />
         </section>
-
-        {lightbox && (
-          <div className={styles.lightbox} onClick={() => setLightbox(null)} role="dialog" aria-label={lightbox.alt}>
-            <img src={asset(lightbox.src)} alt={lightbox.alt} />
-            <button type="button" className={styles.lightboxClose} aria-label="Close" onClick={() => setLightbox(null)}>×</button>
-          </div>
-        )}
 
         <DiscordBand
           title="Support and updates in Discord"

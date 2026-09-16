@@ -59,11 +59,16 @@ entry plus (for lists) a page component and a route in `src/App.tsx`.
 
 ## Screenshots
 
-Raw captures go in `content/screenshots/<LIST>/` (gitignored — they are 3-8 MB PNGs and
+Raw captures go in `content/screenshots/<LIST>/` (gitignored — they are 3-9 MB PNGs and
 must never be committed). `npm run shots -- content/screenshots/<LIST> <slug>` writes two
 WebP sizes per shot into `public/assets/shots/<slug>/`: `<name>.webp` at 2560px for the
 lightbox and `<name>-thumb.webp` at 1280px for the grid tile. Reference both in the
 page's `SHOTS` array (`src` and `thumb` on each `Shot`). Expect roughly a 90% saving.
+
+The script also slugifies output names (`the rift.png` becomes `the-rift.webp`) and crops
+black letterbox bars off captures taken on an ultrawide display. The bar detection only
+fires on an obvious symmetric pair, so genuinely dark screenshots are left alone; it
+reports every crop it makes, so check that output when adding a list.
 
 The grid is four columns at desktop. A `Shot` marked `feature` (and the `extra` video
 tile, via a page-level class) spans two columns and two rows, which keeps the 16/9

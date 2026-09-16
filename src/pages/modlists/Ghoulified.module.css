@@ -71,20 +71,10 @@
 .tileGreenTitle { margin: 0 0 10px; font-family: var(--font-mono); font-size: 14px; color: var(--green-ink); }
 .tileGreenBody { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
 
-/* Showcase: video first and wide, no eyebrow/hint, so the shared Gallery does
-   not fit. Mirrors Gallery.module.css. */
-.showTitle { margin-bottom: clamp(24px, 3vw, 32px); }
-.showGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(12px, 1.4vw, 16px); }
-.showVideo { grid-column: span 2; border-color: var(--hair-10); }
-.showTile { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--hair-10); border-radius: 12px; overflow: hidden; padding: 0; background: var(--bg-thumb); cursor: pointer; transition: border-color .15s ease; }
-.showTile:hover { border-color: var(--gold-60); }
-.showTile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-@media (max-width: 620px) { .showVideo { grid-column: auto; } .showGrid { grid-template-columns: minmax(0, 1fr); } }
-
-.lightbox { position: fixed; inset: 0; z-index: 300; background: rgba(9, 11, 12, .95); display: grid; place-items: center; padding: clamp(20px, 5vw, 60px); cursor: zoom-out; }
-.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 90px rgba(0, 0, 0, .7); }
-.lightboxClose { position: fixed; top: 24px; right: 26px; width: 44px; height: 44px; display: grid; place-items: center; background: var(--hair-10); border: 1px solid var(--hair-24); border-radius: 9px; color: var(--ink); font-size: 22px; cursor: pointer; }
-.lightboxClose:hover { background: var(--gold-24); }
+/* Showcase video: a two-by-two block leading the shared Gallery grid, matching NGVO.
+   Reverts to a normal tile once the grid drops below four columns. */
+.showVideo { grid-column: span 2; grid-row: span 2; border-color: var(--hair-10); }
+@media (max-width: 1180px) { .showVideo { grid-column: auto; grid-row: auto; } }
 
 /* Discord band credits */
 .creditsYou { color: var(--text-2); }
