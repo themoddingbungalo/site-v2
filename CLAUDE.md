@@ -65,8 +65,12 @@ WebP sizes per shot into `public/assets/shots/<slug>/`: `<name>.webp` at 2560px 
 lightbox and `<name>-thumb.webp` at 1280px for the grid tile. Reference both in the
 page's `SHOTS` array (`src` and `thumb` on each `Shot`). Expect roughly a 90% saving.
 
-Aim for a shot count that fills the grid: it is four columns at desktop, and modlist
-pages pass a YouTube tile as `extra`, so 7 shots plus the video make two full rows.
+The grid is four columns at desktop. A `Shot` marked `feature` (and the `extra` video
+tile, via a page-level class) spans two columns and two rows, which keeps the 16/9
+shape without making its row taller. NGVO uses that for the video plus one shot, so
+the two of them fill the top two rows and the remaining eight shots fill two more:
+aim for a count that packs, and remember `extraFirst` puts the video before the shots.
+Below four columns the 2x2 spans are disabled, since they cannot pack without holes.
 
 ## Styling
 

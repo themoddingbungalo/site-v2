@@ -3,6 +3,11 @@
 .tile:hover { border-color: var(--gold-60); }
 .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .wide { grid-column: span 2; }
+/* Double-size tile. Spanning two rows as well as two columns keeps the 16/9 shape,
+   so the row it sits in stays the same height as the rest of the grid. */
+.feature { grid-column: span 2; grid-row: span 2; }
+/* Below four columns a 2x2 tile can no longer be packed without leaving holes. */
+@media (max-width: 1180px) { .feature { grid-column: auto; grid-row: auto; } }
 @media (max-width: 620px) { .wide { grid-column: auto; } .grid { grid-template-columns: minmax(0, 1fr); } }
 
 .lightbox { position: fixed; inset: 0; z-index: 300; background: rgba(9, 11, 12, .95); display: grid; place-items: center; padding: clamp(20px, 5vw, 60px); cursor: zoom-out; }

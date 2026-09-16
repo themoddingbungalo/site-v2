@@ -34,3 +34,9 @@
 
 /* Troubleshooting */
 .troubleTitle { margin-bottom: clamp(26px, 3.4vw, 36px); }
+
+/* Showcase video: a two-by-two block so it leads the grid rather than sitting in
+   a single thumbnail slot. Reverts to a normal tile once the grid drops below
+   four columns and a 2x2 span would leave holes. */
+.videoFeature { grid-column: span 2; grid-row: span 2; }
+@media (max-width: 1180px) { .videoFeature { grid-column: auto; grid-row: auto; } }

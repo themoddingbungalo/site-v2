@@ -37,11 +37,15 @@ const shot = (name: string, alt: string): Shot => ({
   alt,
 })
 
+// The video and the first shot are both 2x2, so they fill the top two rows of the
+// four-column grid and the remaining eight shots land in two complete rows.
 const SHOTS: Shot[] = [
-  shot('riverwood', 'Riverwood at sunrise, outside the Sleeping Giant Inn'),
+  { ...shot('riverwood', 'Riverwood at sunrise, outside the Sleeping Giant Inn'), feature: true },
   shot('whiterun-night', 'Whiterun under the aurora at night'),
   shot('magnus-snow', 'Sunrise through pines on a snowbound mountain pass'),
+  shot('solitude', 'Timber-framed houses along a lane below the pines'),
   shot('tundra', 'Mist over the Whiterun tundra at dawn'),
+  shot('bloodmoon', 'A silhouette on the rocks beneath a blood moon'),
   shot('mer-overlook', 'A character in Elven armour on a cliff above snowy peaks'),
   shot('magine-moonlight', 'A traveller on a moonlit mountain path'),
   shot('dungeon-interior', 'Carved stonework inside a Nordic ruin'),
@@ -299,7 +303,11 @@ export function Ngvo() {
         </section>
 
         <section id="gallery" className="section">
-          <Gallery shots={SHOTS} extra={<YouTubeEmbed id="nKkY0H4R3oU" title="NGVO second showcase" radius={12} />} />
+          <Gallery
+            shots={SHOTS}
+            extraFirst
+            extra={<YouTubeEmbed id="nKkY0H4R3oU" title="NGVO second showcase" radius={12} className={styles.videoFeature} />}
+          />
         </section>
 
         <DiscordBand
