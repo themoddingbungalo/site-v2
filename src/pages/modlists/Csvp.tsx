@@ -131,10 +131,26 @@ const faqs: FaqItem[] = [
   },
 ]
 
+// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
+const shot = (name: string, alt: string): Shot => ({
+  src: `assets/shots/csvp/${name}.webp`,
+  thumb: `assets/shots/csvp/${name}-thumb.webp`,
+  alt,
+})
+
+// The wide video is 2x2, so it plus the second video and the ten shots fill five
+// complete rows of this page's three-column grid.
 const shots: Shot[] = [
-  { src: 'assets/heroes/csvp-talos.webp', alt: 'Whiterun market' },
-  { src: 'assets/logos/CSVP-cover.webp', alt: 'CSVP cover art' },
-  { src: 'assets/heroes/partysnax.webp', alt: 'Landscape vista' },
+  shot('markarth-entrance', 'The Dwemer gates of Markarth'),
+  shot('dragonbridge-sawmill', 'The sawmill at Dragon Bridge'),
+  shot('tundra-sunset', 'Sunset over the tundra'),
+  shot('morthal-swamp', 'Mist over the Morthal marshes'),
+  shot('whiterun-night', 'Whiterun by firelight at night'),
+  shot('aetherium-forge', 'The Aetherium Forge'),
+  shot('khajiit-under-moon', 'A Khajiit caravan camped beneath Masser'),
+  shot('dead-dragon', "A dragon's bones still burning"),
+  shot('mage-snow', 'A mage on a snowbound ridge'),
+  shot('icy-lake', 'Moonlight on a frozen lake'),
 ]
 
 const ext = { target: '_blank', rel: 'noopener' } as const
@@ -428,6 +444,7 @@ export function Csvp() {
           <Gallery
             shots={shots}
             title="See it in motion"
+            extraFirst
             extra={
               <>
                 <YouTubeEmbed id="CClrbI8RK7k" title="CSVP showcase" radius={12} className={`${s.videoTile} ${s.videoWide}`} />

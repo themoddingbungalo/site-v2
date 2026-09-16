@@ -86,12 +86,15 @@
 .keycap { flex: 0 0 auto; font-family: var(--font-mono); font-size: 13.5px; background: var(--gold-14); border: 1px solid var(--gold-30); border-radius: 6px; padding: 5px 10px; color: var(--gold-light); }
 
 /* ---- gallery: video tiles ------------------------------------------------- */
-/* Five tiles (3 shots + a wide video + a video) only pack cleanly in three
-   columns, so the shared grid's minimum tile width is widened here. */
+/* This page shows two videos, so its grid runs at three wider columns rather than the
+   shared four. The showcase video takes a 2x2 block; with the second video and the ten
+   shots as single tiles that fills five complete rows. Spanning two rows as well as two
+   columns keeps the video's 16/9 shape without making its row taller than the others. */
 .galleryWrap > div:nth-of-type(2) { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
 .videoTile { border-color: var(--hair-10); }
-.videoWide { grid-column: span 2; }
+.videoWide { grid-column: span 2; grid-row: span 2; }
+/* Below three columns a 2x2 tile cannot be packed without leaving holes. */
+@media (max-width: 1140px) { .videoWide { grid-column: auto; grid-row: auto; } }
 @media (max-width: 620px) {
-  .videoWide { grid-column: auto; }
   .galleryWrap > div:nth-of-type(2) { grid-template-columns: minmax(0, 1fr); }
 }
