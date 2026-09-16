@@ -1,0 +1,9 @@
+.bandInner { padding-top: clamp(34px, 5vw, 56px); padding-bottom: clamp(26px, 3.4vw, 34px); }
+.blurb { margin: 0; max-width: 720px; font-size: 17.5px; line-height: 1.7; color: var(--text-2); text-wrap: pretty; }
+.switcher { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(24px, 3vw, 32px); }
+
+.layout { display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; padding: clamp(32px, 4.4vw, 56px) 0 clamp(60px, 8vw, 96px); }
+.article { max-width: var(--article); min-width: 0; }
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}

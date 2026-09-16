@@ -1,0 +1,15 @@
+.toggle { display: flex; gap: 4px; background: var(--bg-card); border: 1px solid var(--hair-12); border-radius: 9px; padding: 4px; }
+.toggleBtn { border: 0; cursor: pointer; font-size: 13.5px; font-weight: 700; letter-spacing: .06em; padding: 9px 18px; border-radius: 6px; background: transparent; color: var(--text-4); transition: background .15s ease, color .15s ease; }
+.toggleBtn:hover { color: var(--ink); }
+.toggleBtn[data-on] { background: var(--gold); color: var(--on-gold); }
+
+.cards { margin-bottom: clamp(18px, 2vw, 24px); }
+.card { background: var(--bg-card); border: 1px solid var(--hair-09); border-radius: 12px; padding: 22px 24px; }
+.cardGold { background: linear-gradient(150deg, var(--gold-14), rgba(217, 160, 60, .04)); border-color: var(--gold-34); }
+.labelGold { color: var(--gold-dim); }
+.value { margin: 0; font-size: 17px; line-height: 1.5; color: var(--ink); font-weight: 600; }
+
+.sizes { margin-bottom: clamp(20px, 2.4vw, 28px); }
+.size { background: var(--bg-band); border: 1px solid var(--hair-07); border-radius: 11px; padding: 20px 22px; }
+.sizeLabel { margin: 0 0 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+.sizeValue { margin: 0; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--gold); }

@@ -1,0 +1,6 @@
+.section { padding: clamp(40px, 5vw, 60px) 0 clamp(70px, 9vw, 110px); }
+.panel { position: relative; overflow: hidden; background: linear-gradient(140deg, #22272B 0%, #1A1E21 100%); border: 1px solid var(--gold-24); border-radius: var(--r-panel, 18px); padding: clamp(36px, 5vw, 64px); text-align: center; }
+.title { margin: 0 0 16px; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.14; color: var(--ink); }
+.text { margin: 0 auto 30px; max-width: 560px; font-size: 17.5px; line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.credits { margin: 34px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted-2); }

@@ -1,0 +1,83 @@
+/* Design tokens lifted from the Claude Design export. Every literal colour in the
+   artboards maps to one of these. */
+:root {
+  --bg: #15181A;
+  --bg-band: #181C1E;
+  --bg-card: #1B1F22;
+  --bg-card-2: #1E2225;
+  --bg-drawer: #1A1E20;
+  --bg-footer: #131617;
+  --bg-code: #101314;
+  --bg-video: #0F1213;
+  --bg-thumb: #14171A;
+
+  --gold: #D9A03C;
+  --gold-light: #F0C070;
+  --gold-2: #E8B85C;
+  --gold-dim: #C9A45C;
+  --gold-dark: #A8813A;
+  --gold-text-soft: #C9B48A;
+
+  --ink: #F5ECD6;
+  --text: #DED9CE;
+  --text-2: #C4BFB4;
+  --text-3: #B5B0A6;
+  --text-4: #A8A49B;
+  --text-muted: #8E8A80;
+  --text-muted-2: #9A958B;
+  --text-hero: #E4E0D6;
+  --text-callout: #E0D8C6;
+  --on-gold: #16191B;
+
+  --red: #C25A3E;
+  --red-ink: #E08A6E;
+  --red-bg: rgba(194, 90, 62, .1);
+  --red-bd: rgba(194, 90, 62, .36);
+  --green: #5E8A7A;
+  --green-ink: #8FC0AE;
+  --green-bg: rgba(94, 138, 122, .1);
+  --green-bd: rgba(94, 138, 122, .34);
+  --green-link: #6FC08E;
+  --green-link-hover: #9AD9B1;
+
+  --hair-04: rgba(245, 236, 214, .04);
+  --hair-06: rgba(245, 236, 214, .06);
+  --hair-07: rgba(245, 236, 214, .07);
+  --hair-08: rgba(245, 236, 214, .08);
+  --hair-09: rgba(245, 236, 214, .09);
+  --hair-10: rgba(245, 236, 214, .1);
+  --hair-12: rgba(245, 236, 214, .12);
+  --hair-14: rgba(245, 236, 214, .14);
+  --hair-16: rgba(245, 236, 214, .16);
+  --hair-18: rgba(245, 236, 214, .18);
+  --hair-20: rgba(245, 236, 214, .2);
+  --hair-24: rgba(245, 236, 214, .24);
+  --hair-28: rgba(245, 236, 214, .28);
+
+  --gold-09: rgba(217, 160, 60, .09);
+  --gold-10: rgba(217, 160, 60, .1);
+  --gold-12: rgba(217, 160, 60, .12);
+  --gold-14: rgba(217, 160, 60, .14);
+  --gold-16: rgba(217, 160, 60, .16);
+  --gold-20: rgba(217, 160, 60, .2);
+  --gold-24: rgba(217, 160, 60, .24);
+  --gold-30: rgba(217, 160, 60, .3);
+  --gold-34: rgba(217, 160, 60, .34);
+  --gold-42: rgba(217, 160, 60, .42);
+  --gold-45: rgba(217, 160, 60, .45);
+  --gold-50: rgba(217, 160, 60, .5);
+  --gold-60: rgba(217, 160, 60, .6);
+
+  --header-bg: rgba(21, 24, 26, .9);
+  --subnav-bg: rgba(24, 28, 30, .94);
+  --scrim: rgba(21, 24, 26, .72);
+
+  --font-display: Cinzel, Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --container: 1360px;
+  --gutter: clamp(20px, 4vw, 40px);
+  --header-h: 74px;
+  --article: 860px;
+}

@@ -1,0 +1,25 @@
+.head { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
+.badge { width: 30px; height: 30px; display: grid; place-items: center; background: var(--gold); color: var(--on-gold); border-radius: 8px; font-family: var(--font-display); font-weight: 700; font-size: 15px; flex: 0 0 auto; }
+.title { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; color: var(--ink); }
+.list { margin: 0 0 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.list:last-child { margin-bottom: 0; }
+.row { display: flex; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--hair-07); font-size: 16.5px; line-height: 1.62; color: var(--text-2); }
+.row:last-child { border-bottom: 0; }
+.row :global(strong) { color: var(--ink); }
+.num { flex: 0 0 auto; font-family: var(--font-mono); font-size: 13px; color: var(--gold); padding-top: 3px; }
+
+.tile { background: var(--bg-card); border: 1px solid var(--hair-09); border-left-width: 3px; border-radius: 11px; padding: 24px; }
+.tileRed { border-left-color: var(--red); }
+.tileGold { border-left-color: var(--gold); }
+.tileTitle { margin: 0 0 10px; font-family: var(--font-mono); font-size: 14px; }
+.tileTitleRed { color: var(--red-ink); }
+.tileTitleGold { color: var(--gold-2); }
+.tileBody { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
+.tileBody :global(strong) { color: var(--ink); }
+
+.stuck { background: linear-gradient(150deg, var(--gold-12), rgba(217, 160, 60, .03)); border: 1px solid rgba(217, 160, 60, .32); border-radius: 11px; padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+.stuckTitle { margin: 0 0 12px; font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--ink); }
+.stuckText { margin: 0 0 18px; font-size: 16px; line-height: 1.64; color: var(--gold-text-soft); }
+
+.featureTitle { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+.featureText { margin: 0; font-size: 16px; line-height: 1.66; color: var(--text-3); }
