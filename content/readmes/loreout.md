@@ -64,7 +64,7 @@ Linux is not officially supported by LoreOut staff.
 ### Pre-Installation
 
 {: .warning}
-You **MUST** use a **FULL (ALL DLC, WITHOUT high-res textures) LATEST** Steam version of Fallout 4. If you have the AE update, **DO NOT** manually downgrade - Wabbajack will do it for you. LoreOut downgrades, and therefore does **NOT** use Creation Club content.
+You **MUST** use a **FULL (ALL DLC, WITHOUT high-res textures) LATEST** Steam version of Fallout 4. **DO NOT** manually downgrade the game - LoreOut runs on the **LATEST** version.
 
 Your Fallout 4 Steam install must be set to the English language or the Wabbajack install will fail.
 

@@ -78,7 +78,7 @@ export function LoreOut() {
         title="The Modern Roleplaying Modlist"
         blurb="A modern, immersive, lore-focused reimagining of Fallout 4 with over 800 mods. From the maker of Wasteland Reborn, in collaboration with the author of LoreRim. Dive in and don't give up."
         chips={[
-          { label: 'Fallout 4' },
+          { label: 'Latest Fallout 4' },
           { label: 'by Camora0' },
           { label: '800+ mods', gold: true },
           { label: 'Survival difficulty' },
@@ -151,7 +151,7 @@ export function LoreOut() {
           />
           <Callout kind="warning" title="An SSD is absolutely required">
             <p>Hard drives are too slow for stable performance and can cause install and general issues. The instance <strong>must</strong> be on an SSD — the downloads folder can live elsewhere.</p>
-            <p>You must use a <strong>full, latest, English Steam</strong> Fallout 4 with all DLC and <em>without</em> high-res textures. If you have the AE update, do not downgrade manually — Wabbajack does it for you, so LoreOut does not use Creation Club content. Linux is not officially supported.</p>
+            <p>You must use a <strong>full, latest, English Steam</strong> Fallout 4 with all DLC and <em>without</em> high-res textures. Do not downgrade the game — LoreOut runs on the <strong>latest version</strong>. Linux is not officially supported.</p>
           </Callout>
         </section>
 

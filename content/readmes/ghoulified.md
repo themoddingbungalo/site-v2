@@ -40,7 +40,7 @@ Ghoulified Reality is a hardcore (optionally) perma-death focused modlist for Th
 Owing to the need to clean master files and certain errors with Wabbajack, Ghoulified Reality only supports **English Steam** versions of Skyrim Special Edition. **GOG and other Languages are not supported**.
 
 {: .warning}
-**Ghoulified Reality REQUIRES YOUR SKYRIM VERSION TO BE UPDATED TO 1.6.1170 AND REQUIRES THE AE DLC**
+**Ghoulified Reality REQUIRES YOUR SKYRIM TO BE UPDATED TO THE LATEST VERSION AND REQUIRES THE AE DLC**
 
 ***
 

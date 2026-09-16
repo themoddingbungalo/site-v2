@@ -49,7 +49,7 @@ Put a kramdown attribute line *above* a paragraph or blockquote:
 
 ```
 {: .important}
-NGVO requires Skyrim 1.6.1170 and the full AE upgrade.
+NGVO requires the latest version of Skyrim and the full AE upgrade.
 
 {: .warning}
 An SSD is absolutely required.

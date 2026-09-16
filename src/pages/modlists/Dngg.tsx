@@ -94,7 +94,7 @@ export function Dngg() {
         title="Do Not Go Gentle"
         blurb="A Requiem list with Bruma, Wyrmstooth, VIGILANT and plenty more to extend the life of a playthrough. Not built to be painful — Requiem just asks you to plan your actions. A reasonable compromise between difficulty and enjoyment."
         chips={[
-          { label: 'Skyrim AE required' },
+          { label: 'Latest Skyrim AE' },
           { label: 'by Abandoned_By_Arkay' },
           { label: '~400 GB total', gold: true },
           { label: 'CC BY-NC-SA 4.0' },

@@ -74,7 +74,7 @@ export function Ghoulified() {
         title="Ghoulified Reality"
         blurb="A hardcore, optionally perma-death Requiem list built on NGVO's visuals. 3BFTweaks and its addons make the world genuinely dangerous — while keeping it fair."
         chips={[
-          { label: 'Skyrim SE 1.6.1170' },
+          { label: 'Latest Skyrim AE' },
           { label: 'by Ghoulified' },
           { label: '~300 GB total', gold: true },
           { label: 'CC BY-NC-SA 4.0' },
@@ -125,7 +125,7 @@ export function Ghoulified() {
             ]}
           />
           <Callout title="Read this before you start">
-            <p>Requires Skyrim updated to <strong>1.6.1170</strong> and the <strong>AE DLC</strong>. Only English Steam versions are supported — GOG and other languages are not. Around <strong>300 GB</strong> total space.</p>
+            <p>Requires Skyrim updated to the <strong>latest version</strong> and the <strong>AE DLC</strong>. Only English Steam versions are supported — GOG and other languages are not. Around <strong>300 GB</strong> total space.</p>
             <p>Windows 10 or 11, 21H2 or newer. LTSC and modified variants will not work. AMD RX 580 and older cards are not supported. HDDs and external drives are strongly advised against.</p>
           </Callout>
         </section>

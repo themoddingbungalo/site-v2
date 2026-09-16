@@ -34,7 +34,7 @@ Colloquy's Skyrim Vanilla Plus is a modlist based on the visuals offered by 'Nex
 Owing to the need to clean master files and certain errors with Wabbajack, CSVP only supports **English Steam** versions of Skyrim Special Edition. **GOG and other Languages are not supported**.
 
 {: .warning}
-**CSVP REQUIRES YOUR SKYRIM VERSION TO BE UPDATED TO 1.6.1170 AND THIS IS THE GAME VERSION THAT THE MODLIST RUNS ON** 
+**CSVP REQUIRES YOUR SKYRIM TO BE UPDATED TO THE LATEST VERSION, AND THIS IS THE GAME VERSION THAT THE MODLIST RUNS ON** 
 
 ### Recommended System Requirements
 

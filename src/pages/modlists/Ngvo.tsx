@@ -43,7 +43,7 @@ const FAQS: FaqItem[] = [
     a: (
       <>
         <p>A visual, bugfix and tooling modlist. Either play vanilla Skyrim with the best possible visuals, or expand it by adding your own gameplay changes on top.</p>
-        <p>Skyrim Anniversary Edition with the full $20 upgrade is required and NGVO runs on 1.6.1170. You also need the free Creation Kit for Skyrim SE on Steam.</p>
+        <p>Skyrim Anniversary Edition with the full $20 upgrade is required and NGVO runs on the latest version of Skyrim. You also need the free Creation Kit for Skyrim SE on Steam.</p>
       </>
     ),
   },
@@ -112,7 +112,7 @@ export function Ngvo() {
         title="Next Gen Visual Overhaul"
         blurb="The best visuals you can find on a deliberately moddable base. Under 300 plugins and fewer than 40 ESP/ESMs — leaving you over 210 slots to build on top of."
         chips={[
-          { label: 'Skyrim AE 1.6.1170' },
+          { label: 'Latest Skyrim AE' },
           { label: 'by ghoulified & not_docs' },
           { label: '~250 GB total', gold: true },
           { label: 'CC BY-NC-SA 4.0' },
@@ -199,7 +199,7 @@ export function Ngvo() {
             ]}
           />
           <Callout title="Read this before you start">
-            <p>NGVO requires Skyrim updated to <strong>1.6.1170</strong> and the full $20 Anniversary Edition upgrade. Only <strong>English Steam</strong> versions are supported — GOG and other languages are not.</p>
+            <p>NGVO requires Skyrim updated to the <strong>latest version</strong> and the full $20 Anniversary Edition upgrade. Only <strong>English Steam</strong> versions are supported — GOG and other languages are not.</p>
             <p>Windows 10 or 11, version 21H2 or newer. LTSC and modified variants will not work. AMD RX 580 and older cards are not supported. Running from an HDD or external drive is strongly advised against.</p>
           </Callout>
         </section>

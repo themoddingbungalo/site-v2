@@ -96,7 +96,7 @@ export function LoreRim() {
         title="This is Skyrim in 2026"
         blurb="A modern action game that also puts roleplaying back in — EnaiRim, Requiem and hundreds of custom addons and patches, so every single aspect of the game has been overhauled. Cities are bigger. Forests are lush. Enemies and areas from previous games return."
         chips={[
-          { label: 'Skyrim SE' },
+          { label: 'Latest Skyrim SE' },
           { label: 'by biggie_boss' },
           { label: 'Flagship list', gold: true },
           { label: 'EnaiRim + Requiem' },

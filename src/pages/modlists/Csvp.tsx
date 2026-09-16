@@ -82,7 +82,7 @@ const faqs: FaqItem[] = [
     a: (
       <>
         <p>An immersive, vanilla-focused modlist built on the visuals in Next Generation Visual Overhaul. It is a packaged experience you can play immediately after download, but sparing enough in sweeping overhauls to allow customisation.</p>
-        <p>Skyrim Anniversary Edition with the full $20 upgrade is required, and CSVP runs on 1.6.1170.</p>
+        <p>Skyrim Anniversary Edition with the full $20 upgrade is required, and CSVP runs on the latest version of Skyrim.</p>
       </>
     ),
   },
@@ -155,7 +155,7 @@ export function Csvp() {
         title="Colloquy's Skyrim Vanilla Plus"
         blurb="NGVO's visuals with hundreds of gameplay mods layered on — a packaged Vanilla Plus experience you can play immediately, sparing enough in sweeping overhauls that you can still make it yours."
         chips={[
-          { label: 'Skyrim AE 1.6.1170' },
+          { label: 'Latest Skyrim AE' },
           { label: 'by TheConversation' },
           { label: '1881 mods', gold: true },
           { label: 'An NGVO fork' },
@@ -262,7 +262,7 @@ export function Csvp() {
           />
 
           <Callout title="Read this before you start">
-            <p>CSVP requires Skyrim updated to <strong>1.6.1170</strong> with the full Anniversary Edition upgrade. Only <strong>English Steam</strong> versions are supported — GOG and other languages are not.</p>
+            <p>CSVP requires Skyrim updated to the <strong>latest version</strong> with the full Anniversary Edition upgrade. Only <strong>English Steam</strong> versions are supported — GOG and other languages are not.</p>
             <p>Windows 10 or 11, version 21H2 or newer. LTSC and modified variants will not work. Running from an HDD or external drive is strongly advised against — though you can move or delete the Downloads folder after install if space is tight.</p>
           </Callout>
         </section>
