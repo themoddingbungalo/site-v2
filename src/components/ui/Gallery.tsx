@@ -3,9 +3,11 @@ import { asset } from '../../data/site'
 import styles from './Gallery.module.css'
 
 export interface Shot {
-  /** Path under public/, e.g. "assets/heroes/lorerim-gate.webp". */
+  /** Full-size image under public/, shown in the lightbox. */
   src: string
   alt: string
+  /** Smaller variant for the grid tile. Falls back to `src` when absent. */
+  thumb?: string
   /** Span two columns in the grid. */
   wide?: boolean
 }
@@ -42,7 +44,7 @@ export function Gallery({ shots, extra, eyebrow = 'Showcase', title = 'In-game s
       <div className={styles.grid}>
         {shots.map((s) => (
           <button key={s.src} type="button" className={`${styles.tile} ${s.wide ? styles.wide : ''}`} onClick={() => setOpen(s)} aria-label={`View ${s.alt} full size`}>
-            <img src={asset(s.src)} alt={s.alt} loading="lazy" />
+            <img src={asset(s.thumb ?? s.src)} alt={s.alt} loading="lazy" />
           </button>
         ))}
         {extra}

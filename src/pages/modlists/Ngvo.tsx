@@ -30,11 +30,21 @@ const LOAD_ORDER = 'https://loadorderlibrary.com/lists/next-generation-visual-ov
 
 const ext = { target: '_blank', rel: 'noopener' } as const
 
+// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
+const shot = (name: string, alt: string): Shot => ({
+  src: `assets/shots/ngvo/${name}.webp`,
+  thumb: `assets/shots/ngvo/${name}-thumb.webp`,
+  alt,
+})
+
 const SHOTS: Shot[] = [
-  { src: 'assets/heroes/lorerim-gate.webp', alt: 'Oblivion gate at night', wide: true },
-  { src: 'assets/heroes/csvp-talos.webp', alt: 'Whiterun market' },
-  { src: 'assets/heroes/ghoulified-stones.webp', alt: 'Standing stones' },
-  { src: 'assets/heroes/partysnax.webp', alt: 'Landscape vista' },
+  shot('riverwood', 'Riverwood at sunrise, outside the Sleeping Giant Inn'),
+  shot('whiterun-night', 'Whiterun under the aurora at night'),
+  shot('magnus-snow', 'Sunrise through pines on a snowbound mountain pass'),
+  shot('tundra', 'Mist over the Whiterun tundra at dawn'),
+  shot('mer-overlook', 'A character in Elven armour on a cliff above snowy peaks'),
+  shot('magine-moonlight', 'A traveller on a moonlit mountain path'),
+  shot('dungeon-interior', 'Carved stonework inside a Nordic ruin'),
 ]
 
 const FAQS: FaqItem[] = [

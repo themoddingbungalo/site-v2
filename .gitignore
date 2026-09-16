@@ -25,3 +25,6 @@ dist-ssr
 
 # local scratch
 .tmp
+
+# raw screenshot captures — run scripts/optimise-shots.mjs to produce public/assets/shots
+content/screenshots/

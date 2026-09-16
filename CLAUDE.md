@@ -22,6 +22,7 @@ npm run build      # tsc -b && vite build && scripts/postbuild.mjs (copies index
 npm run typecheck  # tsc -b only
 npm run preview    # serve dist/
 node scripts/shot.mjs <url> <out.png> --width=400 --full   # headless Chrome screenshot via CDP (dev only)
+npm run shots -- content/screenshots/NGVO ngvo             # optimise in-game screenshots (see below)
 ```
 
 There is no test suite. `npm run build` must pass; the deploy workflow runs it.
@@ -55,6 +56,17 @@ internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.B
 `src/data/modlists.ts` and `src/data/guides.ts` drive the header menus, search index,
 home cards, footer, read me routes and guide routes. Adding a list or guide is a data
 entry plus (for lists) a page component and a route in `src/App.tsx`.
+
+## Screenshots
+
+Raw captures go in `content/screenshots/<LIST>/` (gitignored — they are 3-8 MB PNGs and
+must never be committed). `npm run shots -- content/screenshots/<LIST> <slug>` writes two
+WebP sizes per shot into `public/assets/shots/<slug>/`: `<name>.webp` at 2560px for the
+lightbox and `<name>-thumb.webp` at 1280px for the grid tile. Reference both in the
+page's `SHOTS` array (`src` and `thumb` on each `Shot`). Expect roughly a 90% saving.
+
+Aim for a shot count that fills the grid: it is four columns at desktop, and modlist
+pages pass a YouTube tile as `extra`, so 7 shots plus the video make two full rows.
 
 ## Styling
 

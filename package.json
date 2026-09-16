@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build && node scripts/postbuild.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "shots": "node scripts/optimise-shots.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.3.0",
@@ -35,6 +36,7 @@
     "@types/unist": "^3.0.3",
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
+    "sharp": "^0.35.4",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   },
