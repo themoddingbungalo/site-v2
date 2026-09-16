@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
 import { Callout } from '../../components/ui/Callout'
 import { DiscordBand } from '../../components/ui/DiscordBand'
+import { Gallery, type Shot } from '../../components/ui/Gallery'
 import { BookIcon, DownloadIcon, StrokeIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
 import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
@@ -19,9 +20,32 @@ const NAV: SectionNavItem[] = [
   { id: 'install', label: 'Installation' },
   { id: 'setup', label: 'Post-install' },
   { id: 'mods', label: 'Key mods' },
+  { id: 'showcase', label: 'Showcase' },
 ]
 
 const ext = { target: '_blank', rel: 'noopener' } as const
+
+// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
+const shot = (name: string, alt: string): Shot => ({
+  src: `assets/shots/loreout/${name}.webp`,
+  thumb: `assets/shots/loreout/${name}-thumb.webp`,
+  alt,
+})
+
+// The first two shots are 2x2, which packs the ten into four complete rows of the
+// four-column grid. There is no video tile here; the trailer sits in the overview.
+const SHOTS: Shot[] = [
+  { ...shot('immense', 'A long walk through overgrown woodland'), feature: true },
+  { ...shot('aura-farming-nuke', 'Watching a distant blast from the treeline'), feature: true },
+  shot('city', 'A ruined main street, still standing'),
+  shot('what-remains', "What's left of the suburbs"),
+  shot('stop-for-fuel', 'An old filling station at dusk'),
+  shot('city-in-distance', 'A skyline through the haze'),
+  shot('interior-ruins', 'Light through a gutted building'),
+  shot('fresh-kill', 'Standing over a fresh kill'),
+  shot('nuke', 'A detonation lights up the horizon'),
+  shot('dog-cave', 'A dog waiting in the dark'),
+]
 
 const nexus = (id: number) => `https://www.nexusmods.com/fallout4/mods/${id}`
 
@@ -241,6 +265,10 @@ export function LoreOut() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section id="showcase" className="section">
+          <Gallery shots={SHOTS} />
         </section>
 
         <DiscordBand
