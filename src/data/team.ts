@@ -1,0 +1,119 @@
+// The people behind the Bungalo, driving the team grid on /community.
+//
+// Everything below the name is a placeholder until each member sends their own copy.
+// To fill one in: rewrite `blurb`, drop a square image in `public/assets/team/` and
+// point `avatar` at it, and add only the `links` that person actually has — the card
+// renders the ones present and nothing else.
+import type { ModlistSlug } from './modlists'
+
+/** The profiles a member can be linked to. Nobody is expected to have all five. */
+export type TeamLinkKind = 'youtube' | 'nexus' | 'patreon' | 'kofi' | 'github'
+
+/** Button order and labels on a member card. */
+export const teamLinkOrder: TeamLinkKind[] = ['youtube', 'nexus', 'patreon', 'kofi', 'github']
+export const teamLinkLabels: Record<TeamLinkKind, string> = {
+  youtube: 'YouTube',
+  nexus: 'Nexus',
+  patreon: 'Patreon',
+  kofi: 'Ko-fi',
+  github: 'GitHub',
+}
+
+export interface TeamMember {
+  name: string
+  /** Line under the name — what they do here. */
+  role: string
+  /** One or two sentences. */
+  blurb: string
+  /** Lists they author, rendered as chips linking to the list page. */
+  lists?: ModlistSlug[]
+  /** Square image under `public/assets/team/`. Without one the card draws initials. */
+  avatar?: string
+  /** Only the profiles that exist. An empty object shows the "links coming soon" note. */
+  links: Partial<Record<TeamLinkKind, string>>
+}
+
+export const team: TeamMember[] = [
+  {
+    name: 'WhisperDealer',
+    role: 'Site and wiki',
+    blurb: 'Builds and maintains this site, and keeps the read mes and guides in one piece.',
+    links: {
+      nexus: 'https://www.nexusmods.com/profile/whisperdealer',
+      kofi: 'https://ko-fi.com/whisperdealer',
+      github: 'https://github.com/WhisperDealer',
+    },
+  },
+  {
+    name: 'Abandoned_By_Arkay',
+    role: 'Modlist author',
+    blurb: 'Author of Do Not Go Gentle — Requiem with Bruma, Wyrmstooth and VIGILANT, tuned to be demanding rather than punishing.',
+    lists: ['dngg'],
+    links: {
+      nexus: 'https://www.nexusmods.com/profile/AbandonedByArkay/mods?gameId=1704',
+      github: 'https://github.com/Arkay-1248',
+    },
+  },
+  {
+    name: 'Shazdeh',
+    role: 'Bungalo team',
+    blurb: 'Bio coming soon.',
+    links: {
+      nexus: 'https://www.nexusmods.com/profile/shazdeh2/mods',
+      github: 'https://github.com/shazdeh',
+    },
+  },
+  {
+    name: 'Patman',
+    role: 'Bungalo team',
+    blurb: 'Bio coming soon.',
+    links: {
+      nexus: 'https://www.nexusmods.com/profile/patman023',
+    },
+  },
+  {
+    name: 'Ghoulified',
+    role: 'Modlist author',
+    blurb: 'Author of Ghoulified Reality and co-author of NGVO, the visual baseline most of the other lists build on.',
+    lists: ['ghoulified', 'ngvo'],
+    links: {
+      nexus: 'https://www.nexusmods.com/profile/Ghoulified/mods',
+    },
+  },
+  {
+    name: 'not_docs',
+    role: 'Modlist author',
+    blurb: 'Co-author of NGVO, keeping it under 300 plugins so there is room left for your own build.',
+    lists: ['ngvo'],
+    links: {},
+  },
+  {
+    name: 'Camora0',
+    role: 'Modlist author',
+    blurb: 'Author of LoreOut, the 800-mod rebuild of the Commonwealth over on Fallout 4.',
+    lists: ['loreout'],
+    links: {
+      youtube: 'https://www.youtube.com/channel/UCObLMGjcje-VaMC1xzd4FMg',
+      nexus: 'https://www.nexusmods.com/profile/Camora1',
+      patreon: 'https://www.patreon.com/wastelandreborn',
+      kofi: 'https://ko-fi.com/imcamora',
+    },
+  },
+  {
+    name: 'Colloquy',
+    role: 'Modlist author',
+    blurb: "Author of CSVP — Colloquy's Skyrim Vanilla Plus, vanilla Skyrim with a fresh coat of paint and no MCM fiddling.",
+    lists: ['csvp'],
+    links: {
+      youtube: 'https://www.youtube.com/channel/UCLUFzI4w26Yl5LHtd5b7ecA',
+      nexus: 'https://www.nexusmods.com/profile/Colloquy',
+    },
+  },
+]
+
+/** Up to two letters for the fallback monogram on a member without an avatar. */
+export function initials(name: string): string {
+  const parts = name.split(/[\s_.-]+/).filter(Boolean)
+  const letters = parts.length > 1 ? parts[0][0] + parts[1][0] : name.slice(0, 2)
+  return letters.toUpperCase()
+}

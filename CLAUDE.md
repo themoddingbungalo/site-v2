@@ -57,6 +57,11 @@ internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.B
 home cards, footer, read me routes and guide routes. Adding a list or guide is a data
 entry plus (for lists) a page component and a route in `src/App.tsx`.
 
+`src/data/team.ts` drives the roster on `/community` and the team entries in the search
+index. Each member carries only the links they have — the card renders those and falls
+back to an initials monogram when there is no `avatar`. Most bios and links are still
+placeholders waiting on the people themselves.
+
 ## Screenshots
 
 Raw captures go in `content/screenshots/<LIST>/` (gitignored — they are 3-9 MB PNGs and

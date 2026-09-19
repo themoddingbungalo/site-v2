@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router'
 import { guidePath, guideSections, guides } from '../../data/guides'
 import { modlistPath, modlists } from '../../data/modlists'
 import { asset, site } from '../../data/site'
+import { team } from '../../data/team'
 import { DiscordIcon, MenuIcon, SearchIcon } from '../ui/Icons'
 import styles from './SiteHeader.module.css'
 
@@ -18,8 +19,10 @@ function buildIndex(): SearchEntry[] {
   }
   for (const g of guideSections) out.push({ label: g.label, tag: 'Guide', to: `/guides#${g.id}` })
   for (const g of guides) out.push({ label: `${g.title} (${g.listName})`, tag: 'Guide', to: guidePath(g.slug) })
-  out.push({ label: 'Biggie Boss', tag: 'Community', to: '/#biggie' })
-  out.push({ label: 'The Modding Bordello', tag: 'Community', to: '/#bordello' })
+  out.push({ label: 'The Bungalo team', tag: 'Community', to: '/community#team' })
+  out.push({ label: 'Biggie Boss', tag: 'Community', to: '/community#biggie' })
+  out.push({ label: 'The Modding Bordello', tag: 'Community', to: '/community#bordello' })
+  for (const m of team) out.push({ label: m.name, tag: 'Team', to: '/community#team' })
   out.push({ label: 'Contribute to the Wiki', tag: 'GitHub', to: site.repo, external: true })
   out.push({ label: 'Join the Discord', tag: 'Discord', to: site.discord, external: true })
   return out
@@ -127,8 +130,9 @@ export function SiteHeader() {
               </button>
               {menu === 'community' && (
                 <div className={styles.dropdown} style={{ minWidth: 232 }}>
-                  <Link to="/#biggie" className={styles.plainItem}>Biggie Boss</Link>
-                  <Link to="/#bordello" className={styles.plainItem}>The Modding Bordello</Link>
+                  <Link to="/community" className={styles.plainItem}>The Bungalo team</Link>
+                  <Link to="/community#biggie" className={styles.plainItem}>Biggie Boss</Link>
+                  <Link to="/community#bordello" className={styles.plainItem}>The Modding Bordello</Link>
                   <a href={site.repo} target="_blank" rel="noopener" className={styles.plainItem}>Contribute to the Wiki</a>
                 </div>
               )}
@@ -169,8 +173,9 @@ export function SiteHeader() {
             <p className={styles.drawerTitle}>Community</p>
             <div className={styles.drawerGroup}>
               <Link to="/" className={styles.drawerLink}>Home</Link>
-              <Link to="/#biggie" className={styles.drawerLink}>Biggie Boss</Link>
-              <Link to="/#bordello" className={styles.drawerLink}>The Modding Bordello</Link>
+              <Link to="/community" className={styles.drawerLink}>The Bungalo team</Link>
+              <Link to="/community#biggie" className={styles.drawerLink}>Biggie Boss</Link>
+              <Link to="/community#bordello" className={styles.drawerLink}>The Modding Bordello</Link>
               <a href={site.repo} target="_blank" rel="noopener" className={styles.drawerLink}>Contribute to the Wiki</a>
             </div>
           </div>

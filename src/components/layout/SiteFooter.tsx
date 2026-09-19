@@ -38,6 +38,7 @@ export function SiteFooter() {
           <Link to="/">Home</Link>
           <Link to="/#modlists">Modlists</Link>
           <Link to="/guides">Guides</Link>
+          <Link to="/community">Community</Link>
           <a href={site.discord} target="_blank" rel="noopener">Discord</a>
         </div>
         <ContributeButton />
@@ -77,8 +78,9 @@ export function SiteFooterWide() {
           <p className={styles.colTitle}>Community</p>
           <div className={styles.col}>
             <a href={site.discord} target="_blank" rel="noopener">Discord</a>
-            <Link to="/#biggie">Biggie Boss</Link>
-            <Link to="/#bordello">The Modding Bordello</Link>
+            <Link to="/community">The Bungalo team</Link>
+            <Link to="/community#biggie">Biggie Boss</Link>
+            <Link to="/community#bordello">The Modding Bordello</Link>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router'
 import { SiteFooterWide } from '../components/layout/SiteFooter'
 import { useTitle } from '../components/layout/ScrollManager'
-import { DiscordIcon, DownloadIcon, KofiIcon, StrokeIcon, YouTubeIcon } from '../components/ui/Icons'
+import { DiscordIcon, DownloadIcon, StrokeIcon } from '../components/ui/Icons'
 import { useParallax, useReveal } from '../components/ui/useReveal'
 import { guideSections, type GuideSectionId } from '../data/guides'
 import { modlistPath, modlists } from '../data/modlists'
@@ -254,49 +254,35 @@ export function Home() {
         </div>
       </section>
 
-      {/* ---- Biggie Boss ------------------------------------------------- */}
-      <section id="biggie" className={`container ${styles.biggieSection}`}>
-        <div data-reveal className={`${styles.split} ${styles.biggie}`}>
-          <div className={styles.media}>
-            <img src={asset('assets/biggie-boss.png')} alt="Biggie Boss" className={styles.mediaImg} />
-            <div className={`${styles.mediaScrim} ${styles.biggieScrim}`} />
-          </div>
-          <div className={styles.panelBody}>
-            <p className={`${styles.panelEyebrow} ${styles.biggieEyebrow}`}>Founder</p>
-            <h2 className={styles.panelTitle}>Biggie Boss</h2>
-            <p className={`${styles.panelText} ${styles.biggieText}`}>
-              Modder, YouTuber and streamer. &ldquo;The #1 Modlist Enthusiast. I hate vanilla.&rdquo; Released LoreRim in early 2024 after building it live on stream.
+      {/* ---- the community ----------------------------------------------- */}
+      <section id="community" className={`container ${styles.communitySection}`}>
+        <div data-reveal className={styles.startHead}>
+          <div className={styles.startHeadText}>
+            <p className="eyebrow">Community</p>
+            <h2 className="h2 h2--lg">The people behind the lists</h2>
+            <p className={styles.headText}>
+              Every list here is made and supported by someone in the Discord. Meet the team, the founder and the
+              server next door.
             </p>
-            <div className={styles.panelActions}>
-              <a href={site.biggie.youtube} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.ytBtn}`}>
-                <YouTubeIcon size={17} />YouTube
-              </a>
-              <a href={site.biggie.kofi} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.kofiBtn}`}>
-                <KofiIcon size={17} />Ko-fi
-              </a>
-            </div>
           </div>
+          <Link to="/community" className="btn btn--gold-line">Meet the community →</Link>
         </div>
-      </section>
-
-      {/* ---- The Modding Bordello ---------------------------------------- */}
-      <section id="bordello" className={`container ${styles.bordelloSection}`}>
-        <div data-reveal className={`${styles.split} ${styles.bordello}`}>
-          <div className={`${styles.panelBody} ${styles.bordelloBody}`}>
-            <p className={`${styles.panelEyebrow} ${styles.bordelloEyebrow}`}>Sister server</p>
-            <h2 className={styles.panelTitle}>The Modding Bordello</h2>
-            <p className={`${styles.panelText} ${styles.bordelloText}`}>
-              The Bungalo is rated R, not XXX. Schtevie&rsquo;s server hosts the NSFW modlists so this one stays safe for work &mdash; head there for adult content and support.
-            </p>
-            <div className={styles.panelActions}>
-              <a href={site.bordello.discord} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.bordelloBtn}`}>Join the Bordello</a>
-              <a href={site.bordello.site} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.bordelloOutline}`}>Visit their site</a>
-            </div>
-          </div>
-          <div className={`${styles.media} ${styles.bordelloMedia}`}>
-            <img src={asset('assets/themoddingbordello.webp')} alt="The Modding Bordello" className={styles.mediaImg} />
-            <div className={`${styles.mediaScrim} ${styles.bordelloScrim}`} />
-          </div>
+        <div className={styles.communityGrid}>
+          <Link data-reveal to="/community#team" className={styles.communityCard}>
+            <p className={styles.communityEyebrow}>The roster</p>
+            <h3 className={styles.communityTitle}>The Bungalo team</h3>
+            <p className={styles.communityText}>List authors, patchers and the people keeping the wiki upright.</p>
+          </Link>
+          <Link data-reveal to="/community#biggie" className={`${styles.communityCard} ${styles.communityBiggie}`}>
+            <p className={`${styles.communityEyebrow} ${styles.biggieEyebrow}`}>Founder</p>
+            <h3 className={styles.communityTitle}>Biggie Boss</h3>
+            <p className={styles.communityText}>Modder, YouTuber and streamer. Released LoreRim after building it live on stream.</p>
+          </Link>
+          <Link data-reveal to="/community#bordello" className={`${styles.communityCard} ${styles.communityBordello}`}>
+            <p className={`${styles.communityEyebrow} ${styles.bordelloEyebrow}`}>Sister server</p>
+            <h3 className={styles.communityTitle}>The Modding Bordello</h3>
+            <p className={styles.communityText}>The Bungalo is rated R, not XXX. The NSFW lists live over there.</p>
+          </Link>
         </div>
       </section>
 

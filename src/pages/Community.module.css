@@ -1,0 +1,98 @@
+/* ---- hero band ------------------------------------------------------------ */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--hair-08); }
+.heroMedia { position: absolute; inset: 0; z-index: 0; }
+.heroMedia img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
+/* Lighter than the guides hero so the guards stay readable behind the copy. */
+.heroScrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(21, 24, 26, .82) 0%, rgba(21, 24, 26, .66) 40%, rgba(21, 24, 26, .92) 86%, var(--bg) 100%); }
+.heroInner { position: relative; z-index: 2; padding-top: clamp(46px, 7vw, 82px); padding-bottom: clamp(38px, 5vw, 54px); }
+.heroCopy { max-width: 760px; }
+.heroEyebrow { margin: 0 0 16px; font-size: clamp(11px, 1.5vw, 13px); letter-spacing: .3em; }
+.heroTitle { margin: 0 0 18px; font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.07; text-shadow: 0 3px 30px rgba(0, 0, 0, .6); text-wrap: balance; }
+.heroLead { margin: 0 0 clamp(24px, 3vw, 30px); max-width: 660px; font-size: clamp(16.5px, 2vw, 19px); line-height: 1.68; color: var(--text-hero); text-shadow: 0 2px 16px rgba(0, 0, 0, .7); text-wrap: pretty; }
+.stats { display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 44px); }
+.statValue { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 27px); font-weight: 700; color: var(--gold); }
+.statLabel { margin-top: 3px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); }
+
+/* ---- shared section bits -------------------------------------------------- */
+.sectionHead { margin-bottom: clamp(30px, 4vw, 46px); }
+.headText { margin: 16px 0 0; max-width: 680px; font-size: 17.5px; line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
+
+/* ---- the team ------------------------------------------------------------- */
+.teamSection { padding-top: clamp(50px, 6.5vw, 84px); padding-bottom: clamp(30px, 4vw, 44px); }
+.teamGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(14px, 1.8vw, 20px); }
+
+.member { display: flex; flex-direction: column; background: linear-gradient(165deg, #21262A 0%, var(--bg-card) 100%); border: 1px solid var(--hair-09); border-radius: 14px; padding: clamp(22px, 2.4vw, 28px); transition: border-color .22s ease, transform .22s ease; }
+.member:hover { border-color: var(--gold-30); transform: translateY(-2px); }
+
+.memberHead { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.avatar { width: 54px; height: 54px; flex: none; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold-30); }
+.monogram { width: 54px; height: 54px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--gold-14); border: 1px solid rgba(217, 160, 60, .32); font-family: var(--font-display); font-size: 19px; font-weight: 700; letter-spacing: .02em; color: var(--gold-light); }
+.memberIdent { min-width: 0; }
+/* Handles run-together handles like Abandoned_By_Arkay without breaking mid-word. */
+.memberName { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.04rem; line-height: 1.28; letter-spacing: -.005em; color: var(--ink); overflow-wrap: anywhere; }
+.memberRole { margin: 4px 0 0; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-dim); }
+
+.memberBlurb { margin: 0 0 18px; font-size: 15.5px; line-height: 1.64; color: var(--text-3); text-wrap: pretty; }
+
+.memberLists { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+.listChip { display: inline-flex; align-items: center; background: var(--gold-10); border: 1px solid var(--gold-30); border-radius: 100px; padding: 5px 12px; font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--gold-light); transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.listChip:hover { background: var(--gold-20); border-color: var(--gold); color: var(--ink); }
+
+/* Pinned to the bottom so cards of different text lengths keep their buttons aligned. */
+.memberLinks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.linkBtn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border-radius: 7px; border: 1px solid var(--hair-14); background: rgba(21, 24, 26, .5); font-size: 12.5px; font-weight: 600; letter-spacing: .04em; color: var(--text-2); transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.linkBtn:hover { color: var(--ink); }
+.youtube:hover { background: rgba(204, 0, 0, .16); border-color: #CC0000; }
+.nexus:hover { background: rgba(218, 138, 56, .16); border-color: #DA8A38; }
+.patreon:hover { background: rgba(255, 66, 77, .14); border-color: #FF424D; }
+.kofi:hover { background: rgba(19, 195, 255, .14); border-color: #13C3FF; }
+.github:hover { background: var(--hair-12); border-color: var(--hair-28); }
+.noLinks { margin: auto 0 0; font-size: 13.5px; color: var(--text-muted); }
+
+/* ---- Biggie Boss / Bordello panels ---------------------------------------- */
+.split { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0; border-radius: 18px; overflow: hidden; }
+.media { position: relative; min-height: 300px; }
+.mediaImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mediaScrim { position: absolute; inset: 0; }
+
+.panelBody { padding: clamp(30px, 3.6vw, 52px); display: flex; flex-direction: column; justify-content: center; }
+.panelEyebrow { margin: 0 0 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.panelTitle { margin: 0 0 14px; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.16; color: var(--ink); }
+.panelText { margin: 0 0 26px; font-size: 17px; line-height: 1.68; text-wrap: pretty; }
+.panelActions { display: flex; flex-wrap: wrap; gap: 10px; }
+.brandBtn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13.5px; letter-spacing: .05em; text-transform: uppercase; padding: 13px 20px; border-radius: 7px; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+
+.biggieSection { padding-top: clamp(30px, 4vw, 44px); padding-bottom: clamp(20px, 3vw, 28px); }
+.biggie { background: linear-gradient(245deg, #14293C 0%, #16212B 58%, var(--bg-card) 100%); border: 1px solid rgba(70, 140, 200, .32); }
+.biggieScrim { background: linear-gradient(105deg, rgba(20, 41, 60, 0) 40%, rgba(20, 38, 54, .78) 82%, #14293C 100%); }
+.biggieEyebrow { color: #7FB8E8; }
+.biggieText { color: #CBD3DA; }
+.biggieOutline { font-weight: 600; border: 1px solid rgba(127, 184, 232, .42); color: #D6E4F0; }
+.biggieOutline:hover { background: rgba(70, 140, 200, .18); border-color: #7FB8E8; color: #FFFFFF; }
+.ytBtn { background: #CC0000; color: #FFFFFF; }
+.ytBtn:hover { background: #E80000; color: #FFFFFF; }
+.kofiBtn { background: #13C3FF; color: #0B2430; }
+.kofiBtn:hover { background: #52D5FF; color: #0B2430; }
+
+.bordelloSection { padding-top: clamp(20px, 3vw, 28px); padding-bottom: clamp(30px, 4vw, 40px); }
+.bordello { background: linear-gradient(115deg, #3A1418 0%, #24161A 58%, var(--bg-card) 100%); border: 1px solid rgba(198, 58, 70, .34); }
+.bordelloBody { order: 2; }
+.bordelloMedia { order: 1; }
+.bordelloScrim { background: linear-gradient(75deg, rgba(58, 20, 24, 0) 40%, rgba(45, 20, 25, .78) 82%, #2A171B 100%); }
+.bordelloEyebrow { color: #E8737F; }
+.bordelloText { color: #D8CBCB; }
+.bordelloBtn { padding: 13px 22px; background: #C63A46; color: #FFF4F4; }
+.bordelloBtn:hover { background: #E0565F; color: #FFF4F4; }
+.bordelloOutline { padding: 13px 22px; font-weight: 600; border: 1px solid rgba(232, 115, 127, .45); color: #F0D8D8; }
+.bordelloOutline:hover { background: rgba(198, 58, 70, .18); border-color: #E8737F; color: #FFF4F4; }
+
+/* ---- contribute ----------------------------------------------------------- */
+.contributeSection { padding-top: clamp(20px, 3vw, 28px); padding-bottom: 0; }
+.contribute { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: clamp(22px, 3vw, 40px); background: var(--bg-card); border: 1px solid var(--hair-09); border-radius: 14px; padding: clamp(26px, 3vw, 40px); }
+.contributeTitle { margin: 0 0 14px; font-size: clamp(1.5rem, 2.8vw, 2rem); }
+.contributeText { margin: 0; max-width: 620px; font-size: 16.5px; line-height: 1.68; color: var(--text-3); text-wrap: pretty; }
+.contributeActions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 420px) {
+  .split, .teamGrid { grid-template-columns: minmax(0, 1fr); }
+}

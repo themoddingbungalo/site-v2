@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router'
 import { ScrollManager } from './components/layout/ScrollManager'
 import { SiteFooter } from './components/layout/SiteFooter'
 import { SiteHeader } from './components/layout/SiteHeader'
+import { Community } from './pages/Community'
 import { GuidePage } from './pages/GuidePage'
 import { Guides } from './pages/Guides'
 import { Home } from './pages/Home'
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/modlists/dngg" element={<WithFooter><Dngg /></WithFooter>} />
         <Route path="/modlists/:slug/readme" element={<WithFooter><ReadMePage /></WithFooter>} />
         <Route path="/guides" element={<WithFooter><Guides /></WithFooter>} />
+        <Route path="/community" element={<WithFooter><Community /></WithFooter>} />
         <Route path="/guides/:slug" element={<WithFooter><GuidePage /></WithFooter>} />
         <Route path="*" element={<WithFooter><NotFound /></WithFooter>} />
       </Routes>

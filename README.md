@@ -31,7 +31,7 @@ npm run preview   # serve the production build locally
 | :-- | :-- |
 | `content/readmes/`, `content/guides/` | Markdown edited by modlist authors |
 | `public/assets/` | Logos, covers, heroes and screenshots |
-| `src/data/` | Site links, the modlist registry and the guide registry |
+| `src/data/` | Site links, the modlist, guide and team registries |
 | `src/pages/` | One React component per page; `src/pages/modlists/` holds the six modlist pages |
 | `src/components/` | Shared header, footer and UI pieces |
 | `src/markdown/` | The markdown pipeline (react-markdown plus the kramdown extras) |
@@ -44,6 +44,13 @@ npm run preview   # serve the production build locally
 2. Add an entry to `modlists` in `src/data/modlists.ts` (name, game, author, cover,
    logo, read me file). The header menu, home cards, search and footer pick it up.
 3. Add a page component at `src/pages/modlists/<Name>.tsx` and a route in `src/App.tsx`.
+
+### Adding someone to the community page
+
+Add an entry to `team` in `src/data/team.ts`: name, role, blurb, the modlists they
+author, and only the links they actually have (`youtube`, `nexus`, `patreon`, `kofi`,
+`github`). Without an `avatar` the card draws their initials, so a portrait is optional
+— drop a square image in `public/assets/team/` when there is one.
 
 ### Adding a guide
 
