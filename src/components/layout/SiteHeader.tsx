@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { guidePath, guideSections, guides } from '../../data/guides'
+import { guideContext, guidePath, guideSections, guides } from '../../data/guides'
 import { modlistPath, modlists, readmePath } from '../../data/modlists'
 import { asset, ext, site } from '../../data/site'
 import { team } from '../../data/team'
@@ -19,7 +19,7 @@ function buildIndex(): SearchEntry[] {
     if (m.readme) out.push({ label: `${m.name} — Read Me`, tag: 'Read me', to: readmePath(m.slug) })
   }
   for (const g of guideSections) out.push({ label: g.label, tag: 'Guide', to: `/guides#${g.id}` })
-  for (const g of guides) out.push({ label: `${g.title} (${g.listName})`, tag: 'Guide', to: guidePath(g.slug) })
+  for (const g of guides) out.push({ label: `${g.title} (${guideContext(g)})`, tag: 'Guide', to: guidePath(g.slug) })
   out.push({ label: 'The Bungalo team', tag: 'Community', to: '/community#team' })
   out.push({ label: 'Biggie Boss', tag: 'Community', to: '/community#biggie' })
   out.push({ label: 'The Modding Bordello', tag: 'Community', to: '/community#bordello' })
@@ -128,7 +128,7 @@ export function SiteHeader() {
                       {g.label}<span className={styles.guideSub}>{g.menuLabel}</span>
                     </Link>
                   ))}
-                  <p className={styles.dropdownDivider}>Per list</p>
+                  <p className={styles.dropdownDivider}>Written guides</p>
                   {guides.map((g) => (
                     <Link key={g.slug} to={guidePath(g.slug)} className={styles.guideItem}>
                       {g.title}<span className={styles.guideSub}>{g.menuLabel}</span>

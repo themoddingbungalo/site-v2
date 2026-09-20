@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 // Every markdown file under content/ is bundled as a lazily loaded string chunk.
 // Editing a file and pushing to main is all an author needs to do; the deploy
 // workflow rebuilds the site.
-const files = import.meta.glob('/content/lists/**/*.md', { query: '?raw', import: 'default' }) as Record<
+const files = import.meta.glob(['/content/lists/**/*.md', '/content/guides/**/*.md'], { query: '?raw', import: 'default' }) as Record<
   string,
   () => Promise<string>
 >

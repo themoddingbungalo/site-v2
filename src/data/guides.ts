@@ -1,11 +1,20 @@
 import type { ModlistSlug } from './modlists'
 
-// Long-form markdown guides written by modlist authors. Adding one: drop the file in
-// content/lists/<list>/guides/<name>.md and add a row here.
+// Long-form markdown guides. Two kinds, and the difference is who owns them:
+//   - a list guide belongs to one modlist, is written by that list's author, and lives
+//     in content/lists/<list>/guides/<name>.md. It carries `list`.
+//   - a tool guide is about a tool every list uses (Wabbajack, xEdit, DynDOLOD…), so it
+//     belongs to no list. It lives in content/guides/<name>.md and carries `section`,
+//     which puts it with the matching walkthrough on the Guides hub.
+// Exactly one of `list` / `section` is set. Adding one is a row here plus the markdown.
 export interface Guide {
   slug: string
-  list: ModlistSlug
-  listName: string
+  /** Set on a list guide. Absent on a tool guide. */
+  list?: ModlistSlug
+  /** Set with `list`, for the labels. */
+  listName?: string
+  /** Set on a tool guide: which hub section it belongs under. */
+  section?: GuideSectionId
   title: string
   blurb: string
   /** Markdown file under content/. */
@@ -33,10 +42,23 @@ export const guides: Guide[] = [
     file: 'lists/csvp/guides/modification-manual.md',
     menuLabel: 'CSVP · Rerunning your Outputs',
   },
+  {
+    slug: 'xedit-patching',
+    section: 'xedit',
+    title: 'Making a Patch',
+    blurb: 'Two mods editing the same weapon, and only one of them wins. How to keep the model from one and the stats from the other, in a patch of your own.',
+    file: 'guides/xedit-patching.md',
+    menuLabel: 'xEdit · Keep changes from both mods',
+  },
 ]
 
 export const guideBySlug = Object.fromEntries(guides.map((g) => [g.slug, g])) as Record<string, Guide>
 export const guidePath = (slug: string) => `/guides/${slug}`
+/** The written guides filed under a hub section — none, for most sections, so far. */
+export const guidesForSection = (id: GuideSectionId) => guides.filter((g) => g.section === id)
+/** What to show beside a guide's title: its list, or the tool it is about. */
+export const guideContext = (g: Guide) =>
+  g.listName ?? guideSections.find((s) => s.id === g.section)?.label ?? 'Guide'
 
 // Screenshots referenced from the guides, keyed by the path used in the markdown.
 export const guideAssets: Record<string, string> = Object.fromEntries(

@@ -11,6 +11,11 @@
 .title { margin: 0 0 16px; font-size: clamp(1.7rem, 3.2vw, 2.3rem); }
 .intro { margin-bottom: 20px; }
 .note { margin: 0; font-size: 16px; line-height: 1.68; color: var(--text-muted); }
+/* Pointer from a section to its written-up guide. Sits under the section lead, above
+   the cards, so the choice between watching and reading is made before the thumbnails. */
+.writtenUp { margin: 0 0 22px; font-size: 16px; line-height: 1.68; color: var(--text-muted); }
+.writtenUp a { font-weight: 600; border-bottom: 1px solid var(--gold-24); }
+.writtenUp a:hover { border-bottom-color: var(--gold-light); }
 .unavailableTitle { margin: 0; font-size: 1.16rem; }
 
 .cardGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: clamp(16px, 1.8vw, 22px); }

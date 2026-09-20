@@ -4,7 +4,8 @@ Everything in this folder is plain markdown, and editing it is the whole job. Yo
 not need to run anything or understand the rest of the site.
 
 Every modlist owns one folder. Its read me lives at the top of it, and its guides live
-in a `guides/` folder underneath:
+in a `guides/` folder underneath. Guides about a *tool* rather than a list — xEdit,
+Wabbajack, DynDOLOD — belong to no modlist, so they sit in `content/guides/` instead:
 
 ```
 content/
@@ -17,6 +18,8 @@ content/
     ngvo/
       readme.md            -> /lists/ngvo/read-me/
     ...
+  guides/
+    xedit-patching.md      -> /guides/xedit-patching
 ```
 
 | File | Page |
@@ -28,9 +31,11 @@ content/
 | `lists/dngg/readme.md` | Do Not Go Gentle — Read Me |
 | `lists/csvp/guides/colloquy-guide.md` | Colloquy's Guide (CSVP) |
 | `lists/csvp/guides/modification-manual.md` | Modification Manual (CSVP) |
+| `guides/xedit-patching.md` | Making a Patch (xEdit) |
 
 CSVP is the only list with guides so far; the other lists get a `guides/` folder when
-someone writes one for them.
+someone writes one for them. A tool guide goes straight into `content/guides/` and shows
+up next to its video walkthrough on the Guides page.
 
 ## How to make a change
 
@@ -47,7 +52,7 @@ show up, do a hard refresh (Ctrl+F5).
 To add a guide to a list, put the `.md` file in that list's `guides/` folder (create
 the folder if it is the first one) and ask the site maintainer to wire it up — it is
 one entry in `src/data/guides.ts`, which sets the title, the blurb and the page
-address. A brand new list works the same way: a new `lists/<name>/readme.md` plus one
+address. A tool guide is the same, in `content/guides/`. A brand new list works the same way: a new `lists/<name>/readme.md` plus one
 entry in `src/data/modlists.ts`.
 
 ## What you can write

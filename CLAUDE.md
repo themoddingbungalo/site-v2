@@ -23,6 +23,7 @@ npm run typecheck  # tsc -b only
 npm run preview    # serve dist/
 node scripts/shot.mjs <url> <out.png> --width=400 --full   # headless Chrome screenshot via CDP (dev only)
 npm run shots -- content/screenshots/NGVO ngvo             # optimise in-game screenshots (see below)
+npm run video -- <youtube-url> --preset=outline            # read a tutorial video with Gemini (see below)
 ```
 
 There is no test suite. `npm run build` must pass; the deploy workflow runs it.
@@ -42,9 +43,10 @@ internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.B
   `/modlists/<list>/readme` redirects to it. Build the URL with `readmePath()`, never
   by hand. The list pages themselves are still `/modlists/<list>`.
 - Each modlist owns a folder: `content/lists/<list>/readme.md` and any number of
-  `content/lists/<list>/guides/<name>.md`. `src/markdown/useMarkdownFile.ts` bundles
-  `content/lists/**/*.md` with `import.meta.glob(..., { query: '?raw' })`; files load
-  lazily per page, keyed by the path under `content/` (`lists/csvp/readme.md`).
+  `content/lists/<list>/guides/<name>.md`. Guides about a tool rather than a list live in
+  `content/guides/<name>.md` instead — see Registries. `src/markdown/useMarkdownFile.ts`
+  bundles both trees with `import.meta.glob([...], { query: '?raw' })`; files load lazily
+  per page, keyed by the path under `content/` (`lists/csvp/readme.md`).
 - `src/markdown/Markdown.tsx` renders with react-markdown + remark-gfm + rehype-raw +
   rehype-slug. `remarkKramdown.ts` implements `{: .important|.warning|.note}` callouts
   and `{: .btn}` button links. `resolveAsset.ts` rewrites GitHub/GitLab blob URLs to raw
@@ -88,6 +90,13 @@ yourself writing a rule that already exists in another module, it belongs in
 home cards, footer, read me routes and guide routes. Adding a list or guide is a data
 entry plus (for lists) a page component and a route in `src/App.tsx`.
 
+A `Guide` is one of two kinds and carries exactly one of the two fields that say which:
+`list` for a guide a modlist author owns (markdown under `content/lists/<list>/guides/`),
+or `section` for a tool guide that belongs to no list (markdown under `content/guides/`,
+surfaced next to the matching walkthrough on the Guides hub by `guidesForSection`). Use
+`guideContext(guide)` wherever a guide needs a label beside its title — it resolves to the
+list name or the tool, so neither kind renders `undefined`.
+
 `src/data/team.ts` drives the roster on `/community` and the team entries in the search
 index. Each member carries only the links they have — the card renders those and falls
 back to an initials monogram when there is no `avatar`. Most bios and links are still
@@ -112,6 +121,38 @@ shape without making its row taller. NGVO uses that for the video plus one shot,
 the two of them fill the top two rows and the remaining eight shots fill two more:
 aim for a count that packs, and remember `extraFirst` puts the video before the shots.
 Below four columns the 2x2 spans are disabled, since they cannot pack without holes.
+
+## Watching the tutorial videos
+
+The guide hub is mostly embedded YouTube. Turning those videos into written pages uses
+two engines, and the choice between them matters:
+
+- `scripts/watch-gemini.mjs` hands the YouTube URL straight to Gemini, which reads the
+  picture and the audio itself. No download, no frames in the context window, and length
+  is not a problem — this is the first pass over any video.
+  `npm run video -- <url> --preset=outline|steps|transcript|guide|ask`, with
+  `--start`/`--end`/`--fps` to scope a stretch (a 25-second window at 1 fps costs ~2.5k
+  tokens; the whole 6-minute video ~36k). There is no resolution dial — reading small
+  dialog text is what `/watch` is for. Notes land in `.tmp/video-notes/` (gitignored).
+  The key is `GEMINI_API_KEY` in `~/.config/watch/.env`; `--list-models` checks it.
+- **Cross-check any exact string before it goes in a page.** Gemini is reliable on what
+  is done and in what order, and unreliable on small proportional text in a dialog — a
+  filename read four times over one video came back three different ways. Values that
+  matter get a scoped second pass, or `/watch --resolution 1024`, or they do not get
+  asserted.
+- `/watch` (the `watch@claude-video` plugin, installed at user scope) downloads the video
+  with yt-dlp and cuts frames with ffmpeg so Claude can actually look at them. Use it on
+  a 30-second stretch when the exact state of a menu or checkbox decides the wording,
+  never on a whole two-hour stream. On Windows the interpreter is `python`, not `python3`.
+
+The local skill `.claude/skills/video-guide/SKILL.md` has the full workflow, including
+what it takes to give a tool guide (Wabbajack, xLODGen, DynDOLOD, xEdit, Creation Kit) a
+home: those belong to no modlist, so `guides.ts` needs `list` optional and the markdown
+glob in `useMarkdownFile.ts` needs widening past `content/lists/`. `.claude` is gitignored,
+so that file is machine-local — this section is the part that travels.
+
+Never let a value into a guide that the video did not clearly show. A wrong path in a LOD
+guide breaks someone's install; `<!-- TODO: confirm — [MM:SS] -->` does not.
 
 ## Styling
 

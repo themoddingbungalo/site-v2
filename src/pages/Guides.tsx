@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../components/layout/ScrollManager'
 import { DiscordIcon, PlayIcon } from '../components/ui/Icons'
 import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
 import { useScrollLock } from '../components/ui/useScrollLock'
-import { guideSections, guideVideos, type GuideSectionId, type GuideVideo } from '../data/guides'
+import { guidePath, guideSections, guideVideos, guidesForSection, type GuideSectionId, type GuideVideo } from '../data/guides'
 import { modlistPath, readmePath } from '../data/modlists'
 import { ext, pageTitle, site } from '../data/site'
 import styles from './Guides.module.css'
@@ -14,6 +14,23 @@ import styles from './Guides.module.css'
 type Playing = { id: string; title: string } | null
 
 const navItems = guideSections.map((s) => ({ id: s.id, label: s.label }))
+
+/** Points at the written-up version of a section's walkthrough. Renders nothing for the
+ *  sections nobody has written up yet, so dropping a guide into the registry is enough. */
+function WrittenUp({ section }: { section: GuideSectionId }) {
+  const written = guidesForSection(section)
+  if (!written.length) return null
+  return (
+    <p className={styles.writtenUp}>
+      Rather read than watch? {written.map((g, i) => (
+        <Fragment key={g.slug}>
+          {i > 0 && ', '}
+          <Link to={guidePath(g.slug)}>{g.title}</Link>
+        </Fragment>
+      ))}
+    </p>
+  )
+}
 
 /** Card for one walkthrough. `size` picks the 58px (feature) or 50px (grid) play button. */
 function VideoCard({ video, size, onPlay, className }: { video: GuideVideo; size: 'lg' | 'sm'; onPlay: (v: GuideVideo) => void; className?: string }) {
@@ -114,6 +131,7 @@ export function Guides() {
               <h2 className={`h2 ${styles.title}`}>Wabbajack</h2>
               <p className={`lead ${styles.intro}`}>Wabbajack automates the installation of large modlists. Set it up correctly once and every list on this site installs in a few clicks.</p>
               <p className={styles.note}>Install it to a root-level folder like <span className="mono">C:\Games\Wabbajack</span> — never Program Files, your desktop or Downloads.</p>
+              <WrittenUp section="wabbajack" />
             </div>
             {videos('wabbajack').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
           </div>
@@ -127,6 +145,7 @@ export function Guides() {
               <h2 className={`h2 ${styles.title}`}>Create a Modlist</h2>
               <p className={`lead ${styles.intro}`}>The perfect list that has exactly what you want is the one you build yourself. Watch a list get made from an empty Mod Organizer profile.</p>
               <Link to={modlistPath('ngvo')} className="btn btn--gold-line">Or start from NGVO →</Link>
+              <WrittenUp section="create-modlist" />
             </div>
           </div>
         </section>
@@ -135,6 +154,7 @@ export function Guides() {
           <p className="eyebrow">Three tools, one order</p>
           <h2 className={`h2 ${styles.title}`}>LOD Generation</h2>
           <p className="lead section-lead">Distant terrain, trees and objects. Run them in this order — xLODGen, then grass cache, then TexGen and DynDOLOD last. Getting the order wrong is the most common cause of broken LODs.</p>
+          <WrittenUp section="lodgen" />
           <div className={styles.cardGrid}>
             {videos('lodgen').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
           </div>
@@ -144,6 +164,7 @@ export function Guides() {
           <p className="eyebrow">Plugins and patching</p>
           <h2 className={`h2 ${styles.title}`}>xEdit</h2>
           <p className="lead section-lead">The tool you will spend the most time in once you start changing a list. Resolve conflicts, write your own patches, and clean up after removed mods.</p>
+          <WrittenUp section="xedit" />
           <div className={styles.cardGrid}>
             {videos('xedit').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
           </div>
@@ -156,6 +177,7 @@ export function Guides() {
               <h2 className={`h2 ${styles.title}`}>Creation Kit</h2>
               <p className={`lead ${styles.intro}`}>Seams are the visible tear where two mods edit the same landscape. This is the fix that works on any of them — including the Northern Roads seams NGVO users run into.</p>
               <Link to={readmePath('ngvo')} className="btn btn--gold-line">NGVO Read Me →</Link>
+              <WrittenUp section="creation-kit" />
             </div>
             {videos('creation-kit').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
           </div>
