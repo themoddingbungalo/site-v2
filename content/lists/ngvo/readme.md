@@ -37,7 +37,7 @@ Wabbajack Modlist Installer by **ghoulified** & **not_docs**.
 Owing to the need to clean master files and certain errors with Wabbajack, NGVO only supports **English Steam** versions of Skyrim Special Edition. **GOG and other Languages are not supported**.
 
 {: .important}
-**NGVO REQUIRES YOUR SKYRIM TO BE UPDATED TO THE LATEST VERSION, AND THIS IS THE GAME VERSION THAT THE MODLIST RUNS ON. IT ALSO REQUIRES THE FULL $20 ANNIVERSARY EDITION UPGRADE** 
+**NGVO REQUIRES YOUR STEAM COPY OF SKYRIM TO BE UPDATED TO THE LATEST VERSION. IT ALSO REQUIRES THE FULL $20 ANNIVERSARY EDITION UPGRADE** 
 
 ***
 

@@ -160,7 +160,7 @@ export function LoreOut() {
           />
           <Callout kind="warning" title="An SSD is absolutely required">
             <p>Hard drives are too slow for stable performance and can cause install and general issues. The instance <strong>must</strong> be on an SSD — the downloads folder can live elsewhere.</p>
-            <p>You must use a <strong>full, latest, English Steam</strong> Fallout 4 with all DLC and <em>without</em> high-res textures. Do not downgrade the game — LoreOut runs on the <strong>latest version</strong>. Linux is not officially supported.</p>
+            <p>You must use a <strong>full, latest, English Steam</strong> Fallout 4 with all DLC and <em>without</em> high-res textures. Do not downgrade the game — LoreOut requires your Steam copy of Fallout 4 to be updated to the <strong>latest version</strong>. Linux is not officially supported.</p>
           </Callout>
         </section>
 

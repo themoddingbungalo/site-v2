@@ -59,7 +59,7 @@ const FAQS: FaqItem[] = [
     a: (
       <>
         <p>A visual, bugfix and tooling modlist. Either play vanilla Skyrim with the best possible visuals, or expand it by adding your own gameplay changes on top.</p>
-        <p>Skyrim Anniversary Edition with the full $20 upgrade is required and NGVO runs on the latest version of Skyrim. You also need the free Creation Kit for Skyrim SE on Steam.</p>
+        <p>NGVO requires your Steam copy of Skyrim to be updated to the latest version, along with the full $20 Anniversary Edition upgrade. You also need the free Creation Kit for Skyrim SE on Steam.</p>
       </>
     ),
   },

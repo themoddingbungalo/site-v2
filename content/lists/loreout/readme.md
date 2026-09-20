@@ -64,7 +64,7 @@ Linux is not officially supported by LoreOut staff.
 ### Pre-Installation
 
 {: .warning}
-You **MUST** use a **FULL (ALL DLC, WITHOUT high-res textures) LATEST** Steam version of Fallout 4. **DO NOT** manually downgrade the game - LoreOut runs on the **LATEST** version.
+You **MUST** use a **FULL (ALL DLC, WITHOUT high-res textures) LATEST** Steam version of Fallout 4. **DO NOT** manually downgrade the game - LoreOut requires your Steam copy of Fallout 4 to be updated to the **LATEST** version.
 
 Your Fallout 4 Steam install must be set to the English language or the Wabbajack install will fail.
 
