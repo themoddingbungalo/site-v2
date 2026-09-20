@@ -173,7 +173,7 @@ export function Ngvo() {
               title="Graphical changes"
               icon={<StrokeIcon><path d="m2 20 5-14 5 8 3-4 7 10H2Z" /><circle cx="17" cy="5" r="2" /></StrokeIcon>}
             >
-              A more vibrant Skyrim atmosphere via Fantasia Landscapes, Traverse the Ulvenwald, Cabbage ENB and the Vinland Grass Patch.
+              A more vibrant Skyrim atmosphere via Vanaheimr, Nature of the Wild Lands, Community Shaders and Freaks Floral Meadows.
             </FeatureCard>
             <FeatureCard
               title="Modular by design"
