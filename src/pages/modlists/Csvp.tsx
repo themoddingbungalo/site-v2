@@ -91,7 +91,7 @@ const faqs: FaqItem[] = [
     a: (
       <>
         <p>An immersive, vanilla-focused modlist built on the visuals in Next Generation Visual Overhaul. It is a packaged experience you can play immediately after download, but sparing enough in sweeping overhauls to allow customisation.</p>
-        <p>Skyrim Anniversary Edition with the full $20 upgrade is required, and CSVP runs on the latest version of Skyrim.</p>
+        <p>Skyrim Anniversary Edition with the full $20 upgrade is required, and CSVP requires your Steam copy of Skyrim to be updated to the latest version.</p>
       </>
     ),
   },
@@ -334,7 +334,6 @@ export function Csvp() {
                 title="First launch"
                 steps={[
                   <>Run <span className="mono">ModOrganizer.exe</span> from the install folder.</>,
-                  <>On first open the CC files sit outside their separator. Optionally drag them into <strong>CORE FILES</strong>, above the Cleaned Plugins mod so it can overwrite them.</>,
                   <>Widescreen users: check the noted separators and mods before loading in.</>,
                   <>Set the dropdown on the right to <strong>CSVP - A NGVO Fork</strong> and press Run.</>,
                   <>Screenshots save to <span className="mono">CSVP\overwrite</span>.</>,
