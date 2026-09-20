@@ -6,7 +6,7 @@ import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
 import { useScrollLock } from '../components/ui/useScrollLock'
 import { guidePath, guideSections, guideVideos, guidesForSection, type GuideSectionId, type GuideVideo } from '../data/guides'
-import { modlistPath, readmePath } from '../data/modlists'
+import { modlistPath } from '../data/modlists'
 import { ext, pageTitle, site } from '../data/site'
 import styles from './Guides.module.css'
 
@@ -176,7 +176,6 @@ export function Guides() {
               <p className="eyebrow">Landscape work</p>
               <h2 className={`h2 ${styles.title}`}>Creation Kit</h2>
               <p className={`lead ${styles.intro}`}>Seams are the visible tear where two mods edit the same landscape. This is the fix that works on any of them — including the Northern Roads seams NGVO users run into.</p>
-              <Link to={readmePath('ngvo')} className="btn btn--gold-line">NGVO Read Me →</Link>
               <WrittenUp section="creation-kit" />
             </div>
             {videos('creation-kit').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
