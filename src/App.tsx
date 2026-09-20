@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Navigate, Route, Routes, useParams } from 'react-router'
 import { ScrollManager } from './components/layout/ScrollManager'
 import { SiteFooter } from './components/layout/SiteFooter'
 import { SiteHeader } from './components/layout/SiteHeader'
@@ -15,6 +15,12 @@ import { LoreOut } from './pages/modlists/LoreOut'
 import { LoreRim } from './pages/modlists/LoreRim'
 import { Ngvo } from './pages/modlists/Ngvo'
 
+/** The read mes moved to /lists/<slug>/read-me; keep the interim v2 path working. */
+function LegacyReadMeRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={`/lists/${slug}/read-me`} replace />
+}
+
 export default function App() {
   return (
     <>
@@ -28,7 +34,8 @@ export default function App() {
         <Route path="/modlists/loreout" element={<LoreOut />} />
         <Route path="/modlists/csvp" element={<Csvp />} />
         <Route path="/modlists/dngg" element={<Dngg />} />
-        <Route path="/modlists/:slug/readme" element={<ReadMePage />} />
+        <Route path="/lists/:slug/read-me" element={<ReadMePage />} />
+        <Route path="/modlists/:slug/readme" element={<LegacyReadMeRedirect />} />
         <Route path="/guides" element={<Guides />} />
         <Route path="/community" element={<Community />} />
         <Route path="/guides/:slug" element={<GuidePage />} />

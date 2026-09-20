@@ -11,7 +11,7 @@ import { preprocess } from '../markdown/preprocess'
 import { useMarkdownFile } from '../markdown/useMarkdownFile'
 import styles from './ReadMePage.module.css'
 
-/** Renders content/readmes/<slug>.md with a sticky "on this page" strip. */
+/** Renders content/lists/<slug>/readme.md with a sticky "on this page" strip. */
 export function ReadMePage() {
   const { slug } = useParams()
   const list = isModlistSlug(slug) ? modlistBySlug[slug] : null

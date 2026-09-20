@@ -13,7 +13,7 @@ import { useMarkdownFile } from '../markdown/useMarkdownFile'
 import readme from './ReadMePage.module.css'
 import styles from './GuidePage.module.css'
 
-/** Renders content/guides/<slug>.md with a sticky sidebar table of contents. */
+/** Renders a guide's markdown (content/lists/<list>/guides/<name>.md) with a sticky sidebar table of contents. */
 export function GuidePage() {
   const { slug } = useParams()
   const guide = slug ? guideBySlug[slug] : undefined

@@ -69,8 +69,9 @@ The site is read alongside an install in progress, not in a quiet reading sessio
 
 Confirmed and binding:
 
-- **Content stays author-editable markdown.** Read mes (`content/readmes/`) and guides
-  (`content/guides/`) must remain plain markdown a non-technical author can edit on
+- **Content stays author-editable markdown.** Each list owns a folder
+  (`content/lists/<list>/readme.md` plus `content/lists/<list>/guides/`), and all of it
+  must remain plain markdown a non-technical author can edit on
   GitHub without running anything. No CMS, no authoring build step. `content/README.md`
   is the contract with those authors and changes to rendering must be reflected there.
 - **Static hosting only.** It deploys as a static SPA to GitHub Pages. No server, no
@@ -105,8 +106,8 @@ varies between the project URL and root.
 
 Real:
 
-- Five written read mes (`content/readmes/`) and two long-form CSVP guides, authored by
-  the list authors.
+- Five written read mes (`content/lists/<list>/readme.md`) and two long-form CSVP
+  guides, authored by the list authors.
 - Nine video walkthroughs on the guides hub, real YouTube ids in `src/data/guides.ts`.
 - In-game screenshots per list under `public/assets/shots/`, plus hero and cover art.
 - The team roster in `src/data/team.ts` — names, roles, authored lists and the profile

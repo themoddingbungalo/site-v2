@@ -29,7 +29,7 @@ npm run preview   # serve the production build locally
 
 | Path | What lives there |
 | :-- | :-- |
-| `content/readmes/`, `content/guides/` | Markdown edited by modlist authors |
+| `content/lists/<list>/` | Markdown edited by modlist authors: `readme.md` plus a `guides/` folder |
 | `public/assets/` | Logos, covers, heroes and screenshots |
 | `src/data/` | Site links, the modlist, guide and team registries |
 | `src/pages/` | One React component per page; `src/pages/modlists/` holds the six modlist pages |
@@ -40,7 +40,7 @@ npm run preview   # serve the production build locally
 
 ### Adding a modlist
 
-1. Add the read me at `content/readmes/<slug>.md`.
+1. Add the read me at `content/lists/<slug>/readme.md`.
 2. Add an entry to `modlists` in `src/data/modlists.ts` (name, game, author, cover,
    logo, read me file). The header menu, home cards, search and footer pick it up.
 3. Add a page component at `src/pages/modlists/<Name>.tsx` and a route in `src/App.tsx`.
@@ -54,9 +54,10 @@ author, and only the links they actually have (`youtube`, `nexus`, `patreon`, `k
 
 ### Adding a guide
 
-1. Add the file at `content/guides/<slug>.md`.
-2. Add an entry to `guides` in `src/data/guides.ts`. It appears in the header menu and
-   renders at `/guides/<slug>` with a sidebar table of contents.
+1. Add the file at `content/lists/<list>/guides/<name>.md`.
+2. Add an entry to `guides` in `src/data/guides.ts`. Its `slug` is the URL and its
+   `file` is the path under `content/`. It appears in the header menu and renders at
+   `/guides/<slug>` with a sidebar table of contents.
 
 ## Deployment
 

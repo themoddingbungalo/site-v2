@@ -1,5 +1,5 @@
 // One entry per hosted modlist. Adding a list: add a row here, drop its read me in
-// content/readmes/<slug>.md, and add a page component under src/pages/modlists.
+// content/lists/<slug>/readme.md, and add a page component under src/pages/modlists.
 export type ModlistSlug = 'lorerim' | 'ngvo' | 'ghoulified' | 'loreout' | 'csvp' | 'dngg'
 
 export interface Modlist {
@@ -56,7 +56,7 @@ export const modlists: Modlist[] = [
     tagline: 'Visual baseline',
     cover: 'assets/logos/NGVO-cover.webp',
     logo: 'assets/logos/NGVO.webp',
-    readme: 'readmes/ngvo.md',
+    readme: 'lists/ngvo/readme.md',
     badge: 'Best base',
   },
   {
@@ -71,7 +71,7 @@ export const modlists: Modlist[] = [
     tagline: 'Hardcore',
     cover: 'assets/logos/Ghoulified-cover.webp',
     logo: 'assets/logos/Ghoulified.webp',
-    readme: 'readmes/ghoulified.md',
+    readme: 'lists/ghoulified/readme.md',
   },
   {
     slug: 'loreout',
@@ -85,7 +85,7 @@ export const modlists: Modlist[] = [
     tagline: 'Fallout 4',
     cover: 'assets/logos/LoreOut.webp',
     logo: 'assets/logos/LoreOut.webp',
-    readme: 'readmes/loreout.md',
+    readme: 'lists/loreout/readme.md',
   },
   {
     slug: 'csvp',
@@ -99,7 +99,7 @@ export const modlists: Modlist[] = [
     tagline: 'Vanilla plus',
     cover: 'assets/logos/CSVP-cover.webp',
     logo: 'assets/logos/CSVP.webp',
-    readme: 'readmes/csvp.md',
+    readme: 'lists/csvp/readme.md',
   },
   {
     slug: 'dngg',
@@ -113,7 +113,7 @@ export const modlists: Modlist[] = [
     tagline: 'Requiem',
     cover: 'assets/logos/DNGG.webp',
     logo: 'assets/logos/DNGG.webp',
-    readme: 'readmes/dngg.md',
+    readme: 'lists/dngg/readme.md',
   },
 ]
 
@@ -124,7 +124,9 @@ export function isModlistSlug(s: string | undefined): s is ModlistSlug {
 }
 
 export const modlistPath = (slug: ModlistSlug) => `/modlists/${slug}`
-export const readmePath = (slug: ModlistSlug) => `/modlists/${slug}/readme`
+// The read me keeps the URL the old wiki used, so links already out in the world
+// (Discord, Nexus pages) still land. A trailing slash matches too.
+export const readmePath = (slug: ModlistSlug) => `/lists/${slug}/read-me`
 
 // Old-wiki image paths that appear inside the read-mes, mapped onto the assets we
 // ship. Anything local that is not listed here is dropped instead of rendered broken.

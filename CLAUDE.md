@@ -37,8 +37,14 @@ internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.B
 
 ## Content pipeline
 
-- `src/markdown/useMarkdownFile.ts` bundles `content/{readmes,guides}/*.md` with
-  `import.meta.glob(..., { query: '?raw' })`; files load lazily per page.
+- Read mes are served at `/lists/<list>/read-me`, the URL the old wiki used, so links
+  already published elsewhere keep working; the interim v2 path
+  `/modlists/<list>/readme` redirects to it. Build the URL with `readmePath()`, never
+  by hand. The list pages themselves are still `/modlists/<list>`.
+- Each modlist owns a folder: `content/lists/<list>/readme.md` and any number of
+  `content/lists/<list>/guides/<name>.md`. `src/markdown/useMarkdownFile.ts` bundles
+  `content/lists/**/*.md` with `import.meta.glob(..., { query: '?raw' })`; files load
+  lazily per page, keyed by the path under `content/` (`lists/csvp/readme.md`).
 - `src/markdown/Markdown.tsx` renders with react-markdown + remark-gfm + rehype-raw +
   rehype-slug. `remarkKramdown.ts` implements `{: .important|.warning|.note}` callouts
   and `{: .btn}` button links. `resolveAsset.ts` rewrites GitHub/GitLab blob URLs to raw

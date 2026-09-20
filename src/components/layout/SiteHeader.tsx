@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { guidePath, guideSections, guides } from '../../data/guides'
-import { modlistPath, modlists } from '../../data/modlists'
+import { modlistPath, modlists, readmePath } from '../../data/modlists'
 import { asset, site } from '../../data/site'
 import { team } from '../../data/team'
 import { ChevronDownIcon, DiscordIcon, MenuIcon, SearchIcon } from '../ui/Icons'
@@ -16,7 +16,7 @@ function buildIndex(): SearchEntry[] {
   const out: SearchEntry[] = []
   for (const m of modlists) {
     out.push({ label: m.fullName === m.name ? m.name : m.fullName, tag: m.tagline, to: modlistPath(m.slug) })
-    if (m.readme) out.push({ label: `${m.name} — Read Me`, tag: 'Read me', to: `${modlistPath(m.slug)}/readme` })
+    if (m.readme) out.push({ label: `${m.name} — Read Me`, tag: 'Read me', to: readmePath(m.slug) })
   }
   for (const g of guideSections) out.push({ label: g.label, tag: 'Guide', to: `/guides#${g.id}` })
   for (const g of guides) out.push({ label: `${g.title} (${g.listName})`, tag: 'Guide', to: guidePath(g.slug) })

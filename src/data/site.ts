@@ -16,7 +16,7 @@ export const site = {
   lorerim: 'https://lorerim.com/',
 } as const
 
-/** GitHub web-editor URL for a file under content/ (e.g. "readmes/csvp.md"). */
+/** GitHub web-editor URL for a file under content/ (e.g. "lists/csvp/readme.md"). */
 export function editUrl(contentPath: string): string {
   return `${site.repo}/edit/main/content/${contentPath}`
 }

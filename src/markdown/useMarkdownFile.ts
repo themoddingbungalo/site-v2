@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 // Every markdown file under content/ is bundled as a lazily loaded string chunk.
 // Editing a file and pushing to main is all an author needs to do; the deploy
 // workflow rebuilds the site.
-const files = import.meta.glob('/content/{readmes,guides}/*.md', { query: '?raw', import: 'default' }) as Record<
+const files = import.meta.glob('/content/lists/**/*.md', { query: '?raw', import: 'default' }) as Record<
   string,
   () => Promise<string>
 >
@@ -14,7 +14,7 @@ export interface MarkdownFile {
   loading: boolean
 }
 
-/** Load "readmes/csvp.md" (a path relative to content/). */
+/** Load "lists/csvp/readme.md" (a path relative to content/). */
 export function useMarkdownFile(path: string | null): MarkdownFile {
   const [state, setState] = useState<MarkdownFile>({ text: null, error: null, loading: !!path })
 

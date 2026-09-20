@@ -1,7 +1,7 @@
 import type { ModlistSlug } from './modlists'
 
 // Long-form markdown guides written by modlist authors. Adding one: drop the file in
-// content/guides/<slug>.md and add a row here.
+// content/lists/<list>/guides/<name>.md and add a row here.
 export interface Guide {
   slug: string
   list: ModlistSlug
@@ -21,7 +21,7 @@ export const guides: Guide[] = [
     listName: 'CSVP',
     title: "Colloquy's Guide",
     blurb: 'How CSVP actually plays — what changed, what it asks of you, and how to make the most of a Skyrim that no longer revolves around you.',
-    file: 'guides/csvp-colloquy-guide.md',
+    file: 'lists/csvp/guides/colloquy-guide.md',
     menuLabel: 'CSVP · How the list plays',
   },
   {
@@ -30,7 +30,7 @@ export const guides: Guide[] = [
     listName: 'CSVP',
     title: 'Modification Manual',
     blurb: 'Your pocket guide to personalising CSVP: what to rerun after adding mods, in what order, and how to rebuild every Output without breaking the list.',
-    file: 'guides/csvp-modification-manual.md',
+    file: 'lists/csvp/guides/modification-manual.md',
     menuLabel: 'CSVP · Rerunning your Outputs',
   },
 ]

@@ -3,20 +3,34 @@
 Everything in this folder is plain markdown, and editing it is the whole job. You do
 not need to run anything or understand the rest of the site.
 
-| Folder | What it holds | Shown at |
-| :-- | :-- | :-- |
-| `readmes/` | One read me per modlist | `/modlists/<list>/readme` |
-| `guides/` | Long-form guides written by list authors | `/guides/<guide>` |
+Every modlist owns one folder. Its read me lives at the top of it, and its guides live
+in a `guides/` folder underneath:
+
+```
+content/
+  lists/
+    csvp/
+      readme.md            -> /lists/csvp/read-me/
+      guides/
+        colloquy-guide.md      -> /guides/csvp-colloquy-guide
+        modification-manual.md -> /guides/csvp-modification-manual
+    ngvo/
+      readme.md            -> /lists/ngvo/read-me/
+    ...
+```
 
 | File | Page |
 | :-- | :-- |
-| `readmes/ngvo.md` | NGVO — Read Me |
-| `readmes/csvp.md` | CSVP — Read Me |
-| `readmes/ghoulified.md` | Ghoulified Reality — Read Me |
-| `readmes/loreout.md` | LoreOut — Read Me |
-| `readmes/dngg.md` | Do Not Go Gentle — Read Me |
-| `guides/csvp-colloquy-guide.md` | Colloquy's Guide (CSVP) |
-| `guides/csvp-modification-manual.md` | Modification Manual (CSVP) |
+| `lists/ngvo/readme.md` | NGVO — Read Me |
+| `lists/csvp/readme.md` | CSVP — Read Me |
+| `lists/ghoulified/readme.md` | Ghoulified Reality — Read Me |
+| `lists/loreout/readme.md` | LoreOut — Read Me |
+| `lists/dngg/readme.md` | Do Not Go Gentle — Read Me |
+| `lists/csvp/guides/colloquy-guide.md` | Colloquy's Guide (CSVP) |
+| `lists/csvp/guides/modification-manual.md` | Modification Manual (CSVP) |
+
+CSVP is the only list with guides so far; the other lists get a `guides/` folder when
+someone writes one for them.
 
 ## How to make a change
 
@@ -30,9 +44,11 @@ not need to run anything or understand the rest of the site.
 The site rebuilds itself and your change is live in about two minutes. If it does not
 show up, do a hard refresh (Ctrl+F5).
 
-To add a brand new list or guide, drop the `.md` file in the right folder and ask the
-site maintainer to wire it up (it is one line in `src/data/modlists.ts` or
-`src/data/guides.ts`).
+To add a guide to a list, put the `.md` file in that list's `guides/` folder (create
+the folder if it is the first one) and ask the site maintainer to wire it up — it is
+one entry in `src/data/guides.ts`, which sets the title, the blurb and the page
+address. A brand new list works the same way: a new `lists/<name>/readme.md` plus one
+entry in `src/data/modlists.ts`.
 
 ## What you can write
 
