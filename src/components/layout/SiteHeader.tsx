@@ -32,6 +32,7 @@ function buildIndex(): SearchEntry[] {
 export function SiteHeader() {
   const [menu, setMenu] = useState<Menu>(null)
   const [drawer, setDrawer] = useState(false)
+  const [atTop, setAtTop] = useState(true)
   const [search, setSearch] = useState(false)
   const [q, setQ] = useState('')
   const location = useLocation()
@@ -42,6 +43,15 @@ export function SiteHeader() {
 
   // The search overlay and the drawer both cover the page; hold it still underneath.
   useScrollLock(search || drawer)
+
+  // The bar is transparent over the top of a hero and takes its background once the
+  // page moves under it.
+  useEffect(() => {
+    const onScroll = () => setAtTop(window.scrollY < 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Close everything on navigation.
   useEffect(() => { setMenu(null); setDrawer(false); setSearch(false) }, [location.pathname, location.hash])
@@ -95,7 +105,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${atTop && !drawer ? styles.clear : ''}`}>
         <div className={styles.bar}>
           <Link to="/" className={styles.logoLink} aria-label="The Modding Bungalo home">
             <img src={asset('assets/themoddingbungalo-horizontal.svg')} alt="The Modding Bungalo" className={styles.logo} />
@@ -126,12 +136,6 @@ export function SiteHeader() {
                   {guideSections.map((g) => (
                     <Link key={g.id} to={`/guides#${g.id}`} className={styles.guideItem}>
                       {g.label}<span className={styles.guideSub}>{g.menuLabel}</span>
-                    </Link>
-                  ))}
-                  <p className={styles.dropdownDivider}>Written guides</p>
-                  {guides.map((g) => (
-                    <Link key={g.slug} to={guidePath(g.slug)} className={styles.guideItem}>
-                      {g.title}<span className={styles.guideSub}>{g.menuLabel}</span>
                     </Link>
                   ))}
                 </div>
@@ -179,9 +183,6 @@ export function SiteHeader() {
             <div className={styles.drawerGroup}>
               {guideSections.map((g) => (
                 <Link key={g.id} to={`/guides#${g.id}`} className={styles.drawerLink}>{g.label}</Link>
-              ))}
-              {guides.map((g) => (
-                <Link key={g.slug} to={guidePath(g.slug)} className={styles.drawerLink}>{g.title}</Link>
               ))}
             </div>
             <p className={styles.drawerTitle}>Community</p>

@@ -2,8 +2,19 @@
   position: fixed; top: 0; left: 0; right: 0; z-index: 60;
   background: var(--header-bg); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--hair-09);
+  transition: background .28s ease, border-color .28s ease;
 }
-.bar { max-width: var(--container); margin: 0 auto; padding: 0 clamp(16px, 3vw, 36px); height: var(--header-h); display: flex; align-items: center; gap: 28px; }
+/* Over the top of a hero the bar carries no surface of its own, just enough of a
+   scrim for the links to stay legible against a bright sky. */
+.clear { background: transparent; backdrop-filter: none; border-bottom-color: transparent; }
+.header::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(to bottom, rgba(12, 14, 15, .55), rgba(12, 14, 15, 0));
+  transition: opacity .28s ease;
+}
+.clear::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .header, .header::before { transition: none; } }
+.bar { position: relative; max-width: var(--container); margin: 0 auto; padding: 0 clamp(16px, 3vw, 36px); height: var(--header-h); display: flex; align-items: center; gap: 28px; }
 .logoLink { display: flex; align-items: center; flex: 0 0 auto; }
 .logo { height: 34px; width: auto; display: block; }
 
@@ -32,7 +43,6 @@
 .guideItem { display: block; padding: 10px 12px; border-radius: 7px; color: var(--ink); font-size: 15px; font-weight: 600; }
 .guideItem:hover { background: var(--gold-12); color: var(--ink); }
 .guideSub { display: block; font-weight: 400; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-.dropdownDivider { margin: 10px 4px 6px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); border-top: 1px solid var(--hair-10); padding-top: 12px; }
 
 .right { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; margin-left: auto; }
 .iconBtn {
