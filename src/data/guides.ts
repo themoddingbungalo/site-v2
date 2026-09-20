@@ -45,10 +45,10 @@ export const guides: Guide[] = [
   {
     slug: 'xedit-patching',
     section: 'xedit',
-    title: 'Making a Patch',
-    blurb: 'Two mods editing the same weapon, and only one of them wins. How to keep the model from one and the stats from the other, in a patch of your own.',
+    title: 'Patches and Masters',
+    blurb: 'Two mods editing the same weapon, and only one of them wins. How to keep the model from one and the stats from the other — then how to cut a dependency back out of the patch you made.',
     file: 'guides/xedit-patching.md',
-    menuLabel: 'xEdit · Keep changes from both mods',
+    menuLabel: 'xEdit · Make a patch, drop a master',
   },
 ]
 

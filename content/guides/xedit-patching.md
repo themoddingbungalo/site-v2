@@ -1,11 +1,11 @@
-Two mods edit the same weapon: one gives it a new model, the other reworks its stats. Whichever loads last wins outright, and the other mod's work is simply gone. A patch is how you keep both. By the end of this you will have made a small ESL-flagged plugin that takes the model from one mod and the stats from the other, and you will know how to do the same for anything else in your load order.
+Two mods edit the same weapon: one gives it a new model, the other reworks its stats. Whichever loads last wins outright, and the other mod's work is simply gone. A patch is how you keep both. By the end of this you will have made a small ESL-flagged plugin that takes the model from one mod and the stats from the other — and, in the second half, cut a mod back out of a patch that depends on it.
 
 <div class="youtube-container">
   <iframe src="https://www.youtube.com/embed/eO9B8xMWRP0"></iframe>
 </div>
 
 {: .note}
-This is the same job whichever xEdit you run — SSEEdit, FO4Edit, EnderalSEEdit. The version shown is SSEEdit 4.0.4; a newer one may move a menu item, but nothing in the method changes.
+This is the same job whichever xEdit you run — SSEEdit, FO4Edit, EnderalSEEdit. The two videos were recorded on different builds (4.0.4 and 4.1.5), which is a fair illustration of the point: a newer version may move a menu item, but nothing in the method changes.
 
 ## Loading your plugins
 
@@ -36,7 +36,7 @@ Read the colours: red rows are where plugins disagree, and the winning value is 
 ## Creating the patch
 
 1. Decide which plugin holds the most of what you want to keep. That one becomes the base of the patch, so you copy less by hand.
-2. Right-click that plugin's **column header** in the right-hand pane and choose **Copy as override into...**.
+2. Right-click that plugin's **column header** in the right-hand pane and pick **Copy as override into...** from the menu.
 3. In the file list, scroll to the bottom and tick the `<new file>.esp` row that shows `ESL` in the ESL column. The dialog refuses to continue with nothing selected.
 4. Click **OK**.
 5. In the **New Module File** window, type a name you will recognise into **Filename without extension:** — the video uses `Valdrs Dagger Patch` — and click **OK**.
@@ -70,3 +70,42 @@ Be deliberate about what you copy. Taking the model from a replacer makes sense;
 3. Click **OK**.
 
 The patch is written into MO2's **Overwrite** folder. Move it into a mod of its own, enable it, and make sure it loads after both of the mods it patches.
+
+## Removing a master
+
+Every plugin lists the files it depends on, its *masters*. A patch picks them up automatically as you copy records in, and that is usually what you want — until it is not. Perhaps a mod from the Nexus drags in a file you have no intention of installing, or you have pulled a mod out of your load order and the patch that referenced it now refuses to load. Removing a master is how you cut that dependency without rebuilding the patch.
+
+<div class="youtube-container">
+  <iframe src="https://www.youtube.com/embed/5cHJ0i7hE2U"></iframe>
+</div>
+
+The order matters here: a master cannot be dropped while anything in the plugin still points at it, so you find the references first and clean up second.
+
+### Finding what still references it
+
+1. Load the plugin **and all of the masters it currently has**. This is the same rule as the start of the guide — with one missing, xEdit will not open the file at all, and you cannot remove a master from a plugin you cannot load.
+2. Select the plugin in the left-hand pane, right-click it and pick **Apply Script...** from the menu.
+3. Pick **Report masters** from the **Script** dropdown — type `masters` into the filter box above it to find it quickly. The script's own description says what it is for: it lists the records and elements that require a master, so you can deal with them before running Clean Masters. Click **OK**.
+4. A **Masters** window lists every master the plugin has. Use the **Search** box, tick the one you want to remove, and click **OK**.
+5. Read the message log in the bottom-right pane, under **Selected masters are required by the following records and elements:**. Each line names a record, its FormID in square brackets, and the element inside it that holds the reference.
+
+{: .note}
+Nothing listed under that heading? Then nothing points at the master any more and you can go straight to cleaning. That is the quick path, and it is common for a master a mod picked up but never really used.
+
+### Clearing the references
+
+1. Copy the FormID from a reported line and paste it into the **FormID** box at the top left of the window, then press Enter. xEdit jumps straight to that record.
+2. In the right-hand pane, find the rows carrying values from the master you are removing — its column is the one to read across from.
+3. Right-click those rows in **your plugin's** column and choose **Remove**.
+4. Work through every record the report listed.
+
+{: .warning}
+Remove only the rows that came from the master you are cutting out. Everything else in that record — the rows forwarded from the vanilla game or from mods you are keeping — is the work the patch exists to do, and removing it is how a patch quietly stops doing its job.
+
+### Cleaning and checking
+
+1. Right-click the plugin in the left-hand pane and choose **Clean Masters**, which strips out every master nothing references any more.
+2. The plugin's **File Header** turns bold. That is the plugin being flagged as changed, and it is your confirmation that the master came off.
+3. To see the result, open **File Header** and read the **Master Files** list — the one you removed should be gone.
+
+If the master is still listed, something is still referencing it. Run **Report masters** again: it will name whatever you missed.
