@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useParams } from 'react-router'
+import { PageTransition } from './components/layout/PageTransition'
 import { ScrollManager } from './components/layout/ScrollManager'
 import { SiteFooter } from './components/layout/SiteFooter'
 import { SiteHeader } from './components/layout/SiteHeader'
@@ -24,23 +25,29 @@ function LegacyReadMeRedirect() {
 export default function App() {
   return (
     <>
-      <ScrollManager />
       <SiteHeader />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/modlists/lorerim" element={<LoreRim />} />
-        <Route path="/modlists/ngvo" element={<Ngvo />} />
-        <Route path="/modlists/ghoulified" element={<Ghoulified />} />
-        <Route path="/modlists/loreout" element={<LoreOut />} />
-        <Route path="/modlists/csvp" element={<Csvp />} />
-        <Route path="/modlists/dngg" element={<Dngg />} />
-        <Route path="/lists/:slug/read-me" element={<ReadMePage />} />
-        <Route path="/modlists/:slug/readme" element={<LegacyReadMeRedirect />} />
-        <Route path="/guides" element={<Guides />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/guides/:slug" element={<GuidePage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <PageTransition>
+        {(location) => (
+          <>
+            <ScrollManager />
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/modlists/lorerim" element={<LoreRim />} />
+              <Route path="/modlists/ngvo" element={<Ngvo />} />
+              <Route path="/modlists/ghoulified" element={<Ghoulified />} />
+              <Route path="/modlists/loreout" element={<LoreOut />} />
+              <Route path="/modlists/csvp" element={<Csvp />} />
+              <Route path="/modlists/dngg" element={<Dngg />} />
+              <Route path="/lists/:slug/read-me" element={<ReadMePage />} />
+              <Route path="/modlists/:slug/readme" element={<LegacyReadMeRedirect />} />
+              <Route path="/guides" element={<Guides />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/guides/:slug" element={<GuidePage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </>
+        )}
+      </PageTransition>
       <SiteFooter />
     </>
   )

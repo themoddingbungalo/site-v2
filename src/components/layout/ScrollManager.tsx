@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
+import { useDisplayedLocation } from './PageTransition'
 
 /** Offset for the fixed header plus the sticky "on this page" strip. */
 const HASH_OFFSET = 130
@@ -7,9 +8,12 @@ const HASH_OFFSET = 130
 /**
  * On navigation: scroll to the hash target if there is one, otherwise to the top.
  * Content may render a tick later (lazy markdown), so hash scrolling retries briefly.
+ * This follows the location the page transition is showing, so the jump to the top
+ * happens while the new page is still faded out.
  */
 export function ScrollManager() {
-  const { pathname, hash, key } = useLocation()
+  const routerLocation = useLocation()
+  const { pathname, hash, key } = useDisplayedLocation() ?? routerLocation
 
   useEffect(() => {
     if (!hash) {
