@@ -29,6 +29,8 @@ dist-ssr
 # Claude Code tooling: per-machine settings plus a vendored skill carrying a 17 MB
 # platform binary, neither of which belongs in the repo
 .claude
+# Same category: the design hook's local rule overrides
+.impeccable
 
 # raw screenshot captures — run scripts/optimise-shots.mjs to produce public/assets/shots
 content/screenshots/
