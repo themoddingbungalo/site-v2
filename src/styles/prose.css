@@ -47,6 +47,11 @@
 .prose .shot { border: 1px solid var(--hair-12); background: var(--bg-code); cursor: zoom-in; }
 
 .prose .btn { text-decoration: none; margin: 0 8px 10px 0; font-size: 14px; padding: 13px 22px; border-radius: 8px; }
+/* `.prose a` sets a gold text colour and outranks `.btn--gold`, which would leave a
+   {: .btn} link gold-on-gold and unreadable. Give the variants their colour back. */
+.prose a.btn--gold, .prose a.btn--gold:hover { color: var(--on-gold); }
+.prose a.btn--gold-outline { color: var(--gold-light); }
+.prose a.btn--gold-outline:hover { color: var(--ink); }
 
 .prose .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 26px; }
 .prose .link-row a { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-10); border: 1px solid var(--gold-42); border-radius: 100px; padding: 10px 18px; font-size: 14px; font-weight: 600; letter-spacing: .04em; color: var(--gold-light); text-decoration: none; }

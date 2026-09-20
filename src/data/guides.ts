@@ -58,6 +58,14 @@ export const guides: Guide[] = [
     file: 'guides/creation-kit-seams.md',
     menuLabel: 'Creation Kit · Close a gap, blend a seam',
   },
+  {
+    slug: 'wabbajack-setup',
+    section: 'wabbajack',
+    title: 'Setting Up Wabbajack',
+    blurb: 'Thousands of mods, one button. Where to put Wabbajack, what to set up in Windows before you press play, and what to do on the days a download fails.',
+    file: 'guides/wabbajack-setup.md',
+    menuLabel: 'Wabbajack · From download to first list',
+  },
 ]
 
 export const guideBySlug = Object.fromEntries(guides.map((g) => [g.slug, g])) as Record<string, Guide>
