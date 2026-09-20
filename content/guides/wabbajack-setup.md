@@ -30,9 +30,13 @@ Most lists expect these before you install, and they are the difference between 
 3. Select your **fastest drive**, choose **Custom size**, and set **Initial size** and **Maximum size** to the *same* number.
 4. Click **Set**, then **OK**, and reboot if Windows asks.
 
+![The Virtual Memory dialog with automatic management unticked and a custom size set on the fastest drive.](assets/guides/wabbajack-setup/virtual-memory.webp)
+
 How big depends on the list, so check its read me first. `40000` MB for both is the figure most often suggested; some people run `60000`.
 
 ### Shader cache, on NVIDIA
+
+![Manage 3D Settings, with Shader Cache Size open and 10 GB selected.](assets/guides/wabbajack-setup/shader-cache.webp)
 
 In the NVIDIA Control Panel, go to **Manage 3D Settings** → **Global Settings**, find **Shader Cache Size** and set it to **10 GB**. Heavily modded Skyrim compiles a great many shaders, and the default cache is nowhere near big enough to keep them.
 
@@ -44,6 +48,8 @@ Add an exclusion for the folder you are about to install the list into — Windo
 
 Click **Browse Modlists**. Use the **Game** dropdown to narrow it to your game, and tick **Show Unofficial Lists** — the split between official and unofficial matters far less than it sounds, and leaving it unticked hides a great many good lists. **Show NSFW** does what it says.
 
+![Browsing Modlists, with the Game filter set and Show Unofficial Lists beside it.](assets/guides/wabbajack-setup/browse-modlists.webp)
+
 Plenty of lists are not in the gallery at all and are distributed from GitHub, Nexus or their own site. Those come as a `.wabbajack` file: download it and double-click, and it opens the same install screen the gallery would.
 
 ## Installing the list
@@ -53,6 +59,8 @@ The install screen shows the list, its Discord, readme, website and manifest, an
 1. **Modlist Installation Location** — where the list goes. Put it on the **root of a drive**, on an **SSD**: `F:\LoreRim`, not `F:\Games\Wabbajack\Modlists\LoreRim`. Some lists require an SSD outright; all of them are better on one. Keep the path short, because Windows still has a path length limit and a deep folder tree plus a deeply nested mod file will hit it.
 2. **Resource Download Location** — where the downloaded archives are kept. It defaults to a folder inside the installation, but it does not have to be on the same drive. This is the lever when space is tight: a 550 GB list can be 250 GB of downloads, so pointing this at a second drive or an external disk keeps a quarter of a terabyte off your SSD.
 3. **Overwrite Installation** — tick this whenever you are updating a list you already have. There is no real harm in always ticking it.
+
+![The install configuration screen: Target Modlist, Modlist Installation Location, Resource Download Location, the Overwrite Installation tickbox and the play button.](assets/guides/wabbajack-setup/install-screen.webp)
 
 Then press the play button and leave it alone. This takes hours.
 

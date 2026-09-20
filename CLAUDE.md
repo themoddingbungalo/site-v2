@@ -22,6 +22,7 @@ npm run build      # tsc -b && vite build && scripts/postbuild.mjs (copies index
 npm run typecheck  # tsc -b only
 npm run preview    # serve dist/
 node scripts/shot.mjs <url> <out.png> --width=400 --full   # headless Chrome screenshot via CDP (dev only)
+node scripts/video-shot.mjs <video-id> 3:01 <out.webp> --crop=x,y,w,h   # screenshot from a guide video
 npm run shots -- content/screenshots/NGVO ngvo             # optimise in-game screenshots (see below)
 npm run video -- <youtube-url> --preset=outline            # read a tutorial video with Gemini (see below)
 ```
@@ -144,6 +145,14 @@ two engines, and the choice between them matters:
   with yt-dlp and cuts frames with ffmpeg so Claude can actually look at them. Use it on
   a 30-second stretch when the exact state of a menu or checkbox decides the wording,
   never on a whole two-hour stream. On Windows the interpreter is `python`, not `python3`.
+
+Screenshots for these guides come out of the videos themselves, with
+`scripts/video-shot.mjs`: the walkthroughs are uploaded in 4K, so a cropped dialog is
+sharper than anything a 720p frame grab gives you. `--crop` takes fractions of the frame
+(`0.4,0.05,0.6,0.31`), output is WebP at 1600px, and the source video is cached in
+`.tmp/video-shots/` — delete that folder when done, it holds hundreds of megabytes. Each
+new image also needs its path adding to `guideAssets` in `src/data/guides.ts`, or
+`resolveAsset` drops it rather than rendering it broken.
 
 The local skill `.claude/skills/video-guide/SKILL.md` has the full workflow, including
 what it takes to give a tool guide (Wabbajack, xLODGen, DynDOLOD, xEdit, Creation Kit) a

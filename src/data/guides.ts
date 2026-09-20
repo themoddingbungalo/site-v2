@@ -77,8 +77,11 @@ export const guideContext = (g: Guide) =>
   g.listName ?? guideSections.find((s) => s.id === g.section)?.label ?? 'Guide'
 
 // Screenshots referenced from the guides, keyed by the path used in the markdown.
+// An unmapped local path is dropped rather than rendered broken, so adding a shot is
+// two steps: the file under public/assets/, and its path here.
 export const guideAssets: Record<string, string> = Object.fromEntries(
   [
+    // CSVP's modification manual, carried over from the old wiki.
     'assets/csvp/disableref.webp',
     'assets/csvp/synordernew.webp',
     'assets/csvp/pgpatchercurrent.webp',
@@ -87,6 +90,17 @@ export const guideAssets: Record<string, string> = Object.fromEntries(
     'assets/csvp/2perfdyndo.webp',
     'assets/csvp/maintexgen.webp',
     'assets/csvp/maindyndo.webp',
+    // Tool guides — frames from the walkthrough videos, via scripts/video-shot.mjs.
+    'assets/guides/creation-kit-seams/cell-view.webp',
+    'assets/guides/creation-kit-seams/data-dialog.webp',
+    'assets/guides/creation-kit-seams/landscape-edit-settings.webp',
+    'assets/guides/wabbajack-setup/browse-modlists.webp',
+    'assets/guides/wabbajack-setup/install-screen.webp',
+    'assets/guides/wabbajack-setup/shader-cache.webp',
+    'assets/guides/wabbajack-setup/virtual-memory.webp',
+    'assets/guides/xedit-patching/conflict-view.webp',
+    'assets/guides/xedit-patching/drag-to-patch.webp',
+    'assets/guides/xedit-patching/new-file-esl.webp',
   ].map((p) => [p, p]),
 )
 

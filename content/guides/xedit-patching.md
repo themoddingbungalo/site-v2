@@ -29,7 +29,7 @@ A plugin whose masters are missing will not load, and xEdit will stop with an er
 5. Click the conflicting record. The right-hand pane puts one column per plugin, in load order, left to right.
 6. Right-click anywhere in that pane and choose **Hide no conflict and empty rows** so only the rows that actually differ remain.
 
-<!-- screenshot: the right-hand pane after hiding non-conflicting rows, showing red and green columns, [03:01] -->
+![The right-hand pane with non-conflicting rows hidden: each plugin gets a column, and the red rows are where they disagree.](assets/guides/xedit-patching/conflict-view.webp)
 
 Read the colours: red rows are where plugins disagree, and the winning value is the one in the rightmost column that has it. In the example, one mod changes `Model` and `MOD4 - 1st Person Model`, another changes `DESC - Description` and the enchantment — different properties of the same weapon, which is exactly the case load order cannot solve. Move either mod and you lose the other's work.
 
@@ -38,6 +38,8 @@ Read the colours: red rows are where plugins disagree, and the winning value is 
 1. Decide which plugin holds the most of what you want to keep. That one becomes the base of the patch, so you copy less by hand.
 2. Right-click that plugin's **column header** in the right-hand pane and pick **Copy as override into...** from the menu.
 3. In the file list, scroll to the bottom and tick the `<new file>.esp` row that shows `ESL` in the ESL column. The dialog refuses to continue with nothing selected.
+![The file list, with the <new file>.esp row that carries ESL in the ESL column selected.](assets/guides/xedit-patching/new-file-esl.webp)
+
 4. Click **OK**.
 5. In the **New Module File** window, type a name you will recognise into **Filename without extension:** — the video uses `Valdrs Dagger Patch` — and click **OK**.
 6. Your patch appears as a new column on the far right of the pane, and as a new plugin in the left one.
@@ -54,7 +56,7 @@ Your patch is currently an exact copy of one plugin. Now take the rows you want 
 3. Click **Yes** on the confirmation prompt.
 4. Repeat for every row you want to keep from every plugin.
 
-<!-- screenshot: dragging a model row into the patch column, [05:00] -->
+![The patch column on the right, now carrying the model from one mod and the stats from another.](assets/guides/xedit-patching/drag-to-patch.webp)
 
 Two things make this quicker and safer:
 

@@ -47,12 +47,16 @@ Skip this if you already have a patch plugin for the mod in question — use tha
 4. Tick the mods you identified in the console as well, so the Kit loads them as masters and you are editing the landscape as it actually ends up in game.
 5. Click **OK** and wait. This takes a while.
 
+![The Data window: the patch selected with Set as Active File, its Status reading Active File.](assets/guides/creation-kit-seams/data-dialog.webp)
+
 ## Getting to the seam
 
 1. In the **Cell View** window, set **World Space** to `Tamriel` — or `DLC2SolstheimWorld` for Solstheim. Nearly every seam you will ever fix is in one of the two.
 2. Type your coordinates into the two grid boxes and click **Go**.
 3. Use the **View** menu to toggle off **Grass**, **Trees** and **Markers**. Without that you cannot see the ground you are trying to fix. Sometimes a toggle needs pressing twice.
 4. Hold **Shift** and move the mouse to swing the camera around; hold **Shift** and use the scroll wheel to move forwards and backwards.
+
+![Cell View with the world space set to Tamriel and the cell coordinates typed into the X and Y boxes.](assets/guides/creation-kit-seams/cell-view.webp)
 
 {: .note}
 Some textures may render as flat purple depending on how your BSAs are set up. It looks alarming and means nothing — it is a Creation Kit loading quirk, not damage to your game.
@@ -76,6 +80,8 @@ A hard line between two ground textures is fixed by painting one of them across 
 1. With **Landscape Edit Settings** open, find a texture in the **Texture** list — the **Used** column tells you what is already in play here.
 2. Select it, then **right-click** in the render window to paint. Left click is the height tool; right click lays down texture.
 3. If nothing happens, the texture cannot go there. Pick another and try again.
+
+![Landscape Edit Settings, with the Texture list showing its ID, Used and FileName columns.](assets/guides/creation-kit-seams/landscape-edit-settings.webp)
 
 {: .important}
 Each grid square holds only about six different landscape textures, so a texture that is not already present on that side has nowhere to go and the Kit simply refuses to paint it. The ones that work are the textures **shared by both sides of the seam** — so look at what each side is made of and find the overlap. Two rock textures can refuse outright while a pine forest texture takes immediately — that is the overlap doing its work, not the tool being temperamental.
