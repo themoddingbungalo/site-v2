@@ -66,6 +66,31 @@ export const guides: Guide[] = [
     file: 'guides/wabbajack-setup.md',
     menuLabel: 'Wabbajack · From download to first list',
   },
+  // The LOD series runs in order; the sibling switcher on each page follows this one.
+  {
+    slug: 'lodgen-terrain',
+    section: 'lodgen',
+    title: 'Terrain LOD',
+    blurb: 'Part one of three. xLODGen, the settings that matter, and the distant ground that stops your landscape ending in mid-air.',
+    file: 'guides/lodgen-terrain.md',
+    menuLabel: 'LOD 1 · xLODGen and the terrain',
+  },
+  {
+    slug: 'lodgen-grass-cache',
+    section: 'lodgen',
+    title: 'Grass Cache',
+    blurb: 'Part two of three. Pre-computing every blade of grass: the xEdit work, the Creation Kit step people skip, and the INI that decides whether any of it happens.',
+    file: 'guides/lodgen-grass-cache.md',
+    menuLabel: 'LOD 2 · Pre-caching the grass',
+  },
+  {
+    slug: 'lodgen-dyndolod',
+    section: 'lodgen',
+    title: 'TexGen & DynDOLOD',
+    blurb: 'Part three of three. Objects, trees and grass in the distance — plus the load order and the clean-up that keep the result stable.',
+    file: 'guides/lodgen-dyndolod.md',
+    menuLabel: 'LOD 3 · TexGen and DynDOLOD',
+  },
 ]
 
 export const guideBySlug = Object.fromEntries(guides.map((g) => [g.slug, g])) as Record<string, Guide>
@@ -94,6 +119,13 @@ export const guideAssets: Record<string, string> = Object.fromEntries(
     'assets/guides/creation-kit-seams/cell-view.webp',
     'assets/guides/creation-kit-seams/data-dialog.webp',
     'assets/guides/creation-kit-seams/landscape-edit-settings.webp',
+    'assets/guides/lodgen-dyndolod/dyndolod-settings.webp',
+    'assets/guides/lodgen-dyndolod/texgen-settings.webp',
+    'assets/guides/lodgen-grass-cache/gras-filter.webp',
+    'assets/guides/lodgen-grass-cache/grasscontrol-ini.webp',
+    'assets/guides/lodgen-grass-cache/recalc-bounds.webp',
+    'assets/guides/lodgen-terrain/mo2-executable.webp',
+    'assets/guides/lodgen-terrain/xlodgen-options.webp',
     'assets/guides/wabbajack-setup/browse-modlists.webp',
     'assets/guides/wabbajack-setup/install-screen.webp',
     'assets/guides/wabbajack-setup/shader-cache.webp',

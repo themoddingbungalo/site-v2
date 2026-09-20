@@ -1,6 +1,7 @@
 import type { Element, ElementContent, Root as HastRoot } from 'hast'
 import { useMemo } from 'react'
 import ReactMarkdown, { type Components } from 'react-markdown'
+import { Link } from 'react-router'
 import rehypeRaw from 'rehype-raw'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
@@ -87,6 +88,12 @@ export function Markdown({ source, assets = {}, enlargeImages = false }: Markdow
       return <img {...rest} src={url} alt={alt ?? ''} loading="lazy" />
     },
     a({ node: _node, href, children, ...rest }) {
+      // A root-relative href is a link to another page on this site. It has to go
+      // through <Link>, which applies the router basename — a bare <a href="/guides/x">
+      // loses the deploy base and 404s on themoddingbungalo.github.io/site-v2.
+      if (href?.startsWith('/')) {
+        return <Link {...rest} to={href}>{children}</Link>
+      }
       const external = isExternalHref(href)
       return (
         <a {...rest} href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
