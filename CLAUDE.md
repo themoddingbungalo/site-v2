@@ -33,7 +33,9 @@ There is no test suite. `npm run build` must pass; the deploy workflow runs it.
 
 `vite.config.ts` reads `VITE_BASE_PATH` (default `/`). The workflow sets it from
 `actions/configure-pages`, so it is `/site-v2/` on `themoddingbungalo.github.io/site-v2`
-and `/` once a custom domain is attached. Never hard-code either. Use
+and `/` once a custom domain is attached. Never hard-code either. To check a change under
+the deploy base, build and preview with `VITE_BASE_PATH=/site-v2/` — from git bash, set
+`MSYS_NO_PATHCONV=1` first or the value arrives mangled into a Windows path. Use
 `asset('assets/...')` from `src/data/site.ts` for public files and `<Link to>` for
 internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.BASE_URL`.
 
@@ -49,7 +51,9 @@ internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.B
   bundles both trees with `import.meta.glob([...], { query: '?raw' })`; files load lazily
   per page, keyed by the path under `content/` (`lists/csvp/readme.md`).
 - `src/markdown/Markdown.tsx` renders with react-markdown + remark-gfm + rehype-raw +
-  rehype-slug. `remarkKramdown.ts` implements `{: .important|.warning|.note}` callouts
+  rehype-slug. A root-relative link in markdown (`[Grass Cache](/guides/lodgen-grass-cache)`)
+  is rendered through react-router's `<Link>` so it picks up the basename; a plain `<a>`
+  would lose the deploy base and 404. `remarkKramdown.ts` implements `{: .important|.warning|.note}` callouts
   and `{: .btn}` button links. `resolveAsset.ts` rewrites GitHub/GitLab blob URLs to raw
   URLs, maps old-wiki paths through the asset maps in `src/data/modlists.ts` /
   `src/data/guides.ts`, and drops unmapped local images. Badge-only `<table>`s become
@@ -138,9 +142,13 @@ two engines, and the choice between them matters:
   The key is `GEMINI_API_KEY` in `~/.config/watch/.env`; `--list-models` checks it.
 - **Cross-check any exact string before it goes in a page.** Gemini is reliable on what
   is done and in what order, and unreliable on small proportional text in a dialog — a
-  filename read four times over one video came back three different ways. Values that
-  matter get a scoped second pass, or `/watch --resolution 1024`, or they do not get
-  asserted.
+  filename read four times over one video came back three different ways. Stronger still:
+  grep the transcript for a value before quoting it. The xLODGen write-up came back with a
+  settings table whose terms appear nowhere in what the presenter says. Values that matter
+  get a scoped second pass, a 4K frame, or they do not get asserted.
+- **Budget by length: ~5.7k input tokens per minute of video.** A 3-hour stream is over a
+  million and will not fit in one pass — take the transcript first, then outline in
+  chunks with `--start`/`--end`, or sweep the whole thing at `--fps=0.2`.
 - `/watch` (the `watch@claude-video` plugin, installed at user scope) downloads the video
   with yt-dlp and cuts frames with ffmpeg so Claude can actually look at them. Use it on
   a 30-second stretch when the exact state of a menu or checkbox decides the wording,
@@ -150,7 +158,9 @@ Screenshots for these guides come out of the videos themselves, with
 `scripts/video-shot.mjs`: the walkthroughs are uploaded in 4K, so a cropped dialog is
 sharper than anything a 720p frame grab gives you. `--crop` takes fractions of the frame
 (`0.4,0.05,0.6,0.31`), output is WebP at 1600px, and the source video is cached in
-`.tmp/video-shots/` — delete that folder when done, it holds hundreds of megabytes. Each
+`.tmp/video-shots/` — delete that folder when done, it holds hundreds of megabytes.
+`--clip` fetches only a few seconds around the timestamp instead of the whole file, which
+is the only workable option on a long video. Each
 new image also needs its path adding to `guideAssets` in `src/data/guides.ts`, or
 `resolveAsset` drops it rather than rendering it broken.
 

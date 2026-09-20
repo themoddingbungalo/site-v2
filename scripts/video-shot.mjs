@@ -6,6 +6,9 @@
 //     --width=1600      output width in px (default 1600)
 //     --quality=82      webp quality (default 82)
 //     --keep            leave the full uncropped frame next to the output, as .full.png
+//     --clip            fetch only a few seconds around the timestamp, not the whole
+//                       video. Use it on anything long: a 3-hour stream is ~4.5 GB in
+//                       4K, and a clip is a few MB.
 // The source video is cached in .tmp/video-shots/<id>.mp4 (gitignored), so repeated
 // grabs from one video download it once. ffmpeg/yt-dlp come from PATH; override with
 // FFMPEG / YT_DLP if a session's PATH predates the install.
@@ -30,7 +33,7 @@ for (const a of argv) {
 }
 const [source, stamp, out] = words
 if (!source || !stamp || !out) {
-  console.error('usage: video-shot.mjs <video-id|url> <MM:SS> <out.webp> [--crop=x,y,w,h] [--width=] [--quality=] [--keep]')
+  console.error('usage: video-shot.mjs <video-id|url> <MM:SS> <out.webp> [--crop=x,y,w,h] [--width=] [--quality=] [--keep] [--clip]')
   process.exit(2)
 }
 
@@ -41,16 +44,32 @@ mkdirSync(CACHE, { recursive: true })
 mkdirSync(dirname(outPath), { recursive: true })
 
 // ── source, downloaded once per video ─────────────────────────────────────────
-const video = resolve(CACHE, `${id}.mp4`)
+const seconds = (t) => String(t).split(':').map(Number).reduce((a, n) => a * 60 + n, 0)
+const at = seconds(stamp)
+// Prefer av01: same 2160p at a fraction of the bytes (48 MB vs 604 MB on a 12-minute
+// video), and we only ever decode single frames out of it.
+const FORMAT = 'bv*[height<=2160][vcodec^=av01]/bv*[height<=2160]/b'
+const fetchFailed = () => {
+  console.error('[video-shot] yt-dlp failed. Is it on PATH? Set YT_DLP=... to point at it.')
+  process.exit(1)
+}
+
+// --clip pulls a few seconds around the timestamp instead of the whole video, which is
+// the only sane option on a long one. The cut is forced onto keyframes so the clip
+// really does start where we asked and the offset below lands on the right frame.
+const CLIP_PAD = 3
+const clipStart = Math.max(0, at - CLIP_PAD)
+const video = resolve(CACHE, flags.clip ? `${id}-${clipStart}-${at + CLIP_PAD}.mp4` : `${id}.mp4`)
+const seekTo = flags.clip ? at - clipStart : at
+
 if (!existsSync(video)) {
-  console.error(`[video-shot] fetching ${id} at up to 2160p…`)
+  console.error(`[video-shot] fetching ${flags.clip ? `${clipStart}s–${at + CLIP_PAD}s of ` : ''}${id} at up to 2160p…`)
+  const args = ['-f', FORMAT, '-o', video]
+  if (flags.clip) args.push('--download-sections', `*${clipStart}-${at + CLIP_PAD}`, '--force-keyframes-at-cuts')
   try {
-    // Prefer av01: same 2160p at a fraction of the bytes (48 MB vs 604 MB on a
-    // 12-minute video), and we only ever decode single frames out of it.
-    execFileSync(YT_DLP, ['-f', 'bv*[height<=2160][vcodec^=av01]/bv*[height<=2160]/b', '-o', video, url], { stdio: ['ignore', 'ignore', 'inherit'] })
+    execFileSync(YT_DLP, [...args, url], { stdio: ['ignore', 'ignore', 'inherit'] })
   } catch {
-    console.error(`[video-shot] yt-dlp failed. Is it on PATH? Set YT_DLP=... to point at it.`)
-    process.exit(1)
+    fetchFailed()
   }
 }
 
@@ -60,7 +79,7 @@ if (!existsSync(video)) {
 // decode from zero on a 4K file.
 const framePng = resolve(CACHE, `${id}-${String(stamp).replace(/[^\w]/g, '')}.png`)
 try {
-  execFileSync(FFMPEG, ['-ss', String(stamp), '-i', video, '-frames:v', '1', '-y', framePng], { stdio: ['ignore', 'ignore', 'pipe'] })
+  execFileSync(FFMPEG, ['-ss', String(seekTo), '-i', video, '-frames:v', '1', '-y', framePng], { stdio: ['ignore', 'ignore', 'pipe'] })
 } catch (err) {
   console.error(`[video-shot] ffmpeg failed: ${err.stderr?.toString().split('\n').slice(-3).join('\n') ?? err.message}`)
   process.exit(1)
@@ -96,4 +115,4 @@ if (flags.keep) {
 } else {
   rmSync(framePng, { force: true })
 }
-console.error(`[video-shot] source cached at .tmp/video-shots/${id}.mp4 (${Math.round(statSync(video).size / 1048576)} MB) — delete .tmp/video-shots when done`)
+console.error(`[video-shot] source cached at ${video.slice(ROOT.length + 1)} (${Math.round(statSync(video).size / 1048576)} MB) — delete .tmp/video-shots when done`)
