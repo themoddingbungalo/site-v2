@@ -50,6 +50,14 @@ export const guides: Guide[] = [
     file: 'guides/xedit-patching.md',
     menuLabel: 'xEdit · Make a patch, drop a master',
   },
+  {
+    slug: 'creation-kit-seams',
+    section: 'creation-kit',
+    title: 'Fixing a Seam',
+    blurb: 'A hard line where two ground textures meet, or a hole you can see the sky through. Find the cell, find the mod that did it, and close it in a patch of your own.',
+    file: 'guides/creation-kit-seams.md',
+    menuLabel: 'Creation Kit · Close a gap, blend a seam',
+  },
 ]
 
 export const guideBySlug = Object.fromEntries(guides.map((g) => [g.slug, g])) as Record<string, Guide>
