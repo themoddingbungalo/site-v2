@@ -1,19 +1,28 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
-import { Callout } from '../../components/ui/Callout'
 import { DiscordBand } from '../../components/ui/DiscordBand'
 import { FaqAccordion, type FaqItem } from '../../components/ui/FaqAccordion'
-import { Gallery, type Shot } from '../../components/ui/Gallery'
+import { Gallery, galleryExtra, shotsFor, type Shot } from '../../components/ui/Gallery'
 import { BookIcon, DownloadIcon, StrokeIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
+import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav } from '../../components/ui/SectionNav'
 import { SizeCards, SpecCards, SpecToggle } from '../../components/ui/Specs'
 import { FeatureCard, StepList, StuckTile, TroubleTile } from '../../components/ui/Steps'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
+import {
+  AntivirusTile,
+  DownloadFailedTile,
+  DynDolodCrashTile,
+  NotWhitelistedTile,
+  SkyrimRequirements,
+  skyrimPreInstall,
+  step,
+  wabbajackInstall,
+} from '../../content/install'
 import { readmePath } from '../../data/modlists'
-import { pageTitle, site } from '../../data/site'
-import styles from './Ngvo.module.css'
+import { ext, pageTitle, site } from '../../data/site'
 
 const NAV = [
   { id: 'overview', label: 'Overview' },
@@ -27,14 +36,7 @@ const NAV = [
 
 const LOAD_ORDER = 'https://loadorderlibrary.com/lists/next-generation-visual-overhaul-NGVO'
 
-const ext = { target: '_blank', rel: 'noopener' } as const
-
-// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
-const shot = (name: string, alt: string): Shot => ({
-  src: `assets/shots/ngvo/${name}.webp`,
-  thumb: `assets/shots/ngvo/${name}-thumb.webp`,
-  alt,
-})
+const shot = shotsFor('ngvo')
 
 // The video and the first two shots are 2x2, which packs the ten shots plus the video
 // into five complete rows of the four-column grid.
@@ -146,20 +148,20 @@ export function Ngvo() {
       <SectionNav items={NAV} />
 
       <div className="container">
-        <section id="overview" className={styles.overview}>
+        <section id="overview" className="section--intro">
           <div className="grid grid--2">
-            <div>
+            <div className="flow">
               <p className="eyebrow">Overview</p>
-              <h2 className={`h2 ${styles.overviewTitle}`}>A visual baseline, not a straitjacket</h2>
-              <p className={`lead ${styles.copy}`}>NGVO is built around one philosophy: give you the absolute best visuals available while staying as moddable as possible. Everything is sorted into clear separators so you can pull a piece out, rerun the relevant tools, and keep going.</p>
-              <p className={`lead ${styles.copy}`}>Play it as vanilla Skyrim with 2026 visuals, or treat it as the foundation for your own list. Requiem, EnaiRim and SimonRim all drop on top cleanly.</p>
+              <h2 className="h2 head--loose">A visual baseline, not a straitjacket</h2>
+              <p className="lead">NGVO is built around one philosophy: give you the absolute best visuals available while staying as moddable as possible. Everything is sorted into clear separators so you can pull a piece out, rerun the relevant tools, and keep going.</p>
+              <p className="lead">Play it as vanilla Skyrim with 2026 visuals, or treat it as the foundation for your own list. Requiem, EnaiRim and SimonRim all drop on top cleanly.</p>
             </div>
             <YouTubeEmbed id="ypRo6a3mTLw" title="NGVO showcase" />
           </div>
         </section>
 
-        <section id="features" className={styles.features}>
-          <h2 className={`h2 ${styles.featuresTitle}`}>Key features</h2>
+        <section id="features" className="section--tight">
+          <h2 className="h2 head--gap">Key features</h2>
           <div className="grid grid--cards">
             <FeatureCard
               title="Tools at your disposal"
@@ -212,55 +214,23 @@ export function Ngvo() {
               { label: 'Total required', value: '~250 GB' },
             ]}
           />
-          <Callout title="Read this before you start">
-            <p>NGVO requires Skyrim updated to the <strong>latest version</strong> and the full $20 Anniversary Edition upgrade. Only <strong>English Steam</strong> versions are supported — GOG and other languages are not.</p>
-            <p>Windows 10 or 11, version 21H2 or newer. LTSC and modified variants will not work. AMD RX 580 and older cards are not supported. Running from an HDD or external drive is strongly advised against.</p>
-          </Callout>
+          <SkyrimRequirements name="NGVO" />
         </section>
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className={`h2 ${styles.installTitle}`}>Installation</h2>
-          <p className={`lead ${styles.installIntro}`}>With Nexus Premium this is mostly a waiting game. Work through pre-installation properly — almost every support ticket traces back to a skipped step here.</p>
+          <h2 className="h2 head--tight">Installation</h2>
+          <p className="lead section-lead section-lead--roomy">With Nexus Premium this is mostly a waiting game. Work through pre-installation properly — almost every support ticket traces back to a skipped step here.</p>
 
-          <Link to={readmePath('ngvo')} className={styles.readmeCard}>
-            <div className={styles.readmeLead}>
-              <BookIcon size={22} stroke="#F0C070" className={styles.readmeIcon} />
-              <div>
-                <p className={styles.readmeTitle}>Full NGVO Read Me</p>
-                <p className={styles.readmeText}>The summary below covers the shape of the install. The Read Me has every step in full, maintained by the modlist author.</p>
-              </div>
-            </div>
-            <span className={styles.readmeCta}>Open Read Me</span>
-          </Link>
+          <ReadMeCard slug="ngvo" />
 
-          <div className={styles.installGrid}>
-            <StepList
-              number={1}
-              title="Pre-installation"
-              steps={[
-                <>Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" {...ext}>Visual C++ x64</a> and the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0" {...ext}>.NET desktop runtime x64</a>.</>,
-                <>Stop Skyrim from <a href="https://help.steampowered.com/en/faqs/view/71AB-698D-57EB-178C#disable" {...ext}>auto-updating</a>.</>,
-                <>Fully uninstall Skyrim — delete the game folder <em>and</em> the Skyrim Special Edition folder in <span className="mono">\Documents\My Games\</span>.</>,
-                <>Disable OneDrive and anything else that hooks into user file areas.</>,
-                <>Reinstall Skyrim outside Program Files — somewhere like <span className="mono">C:\Games</span>.</>,
-                <>Start the game once and let it run the graphics check.</>,
-                <>Launch to the main menu and let the Creation Club files download. <strong>Do not verify your game files.</strong></>,
-                <>Remove or disable third-party antivirus such as MalwareBytes or Webroot.</>,
-                <><strong>Install the Skyrim SE Creation Kit on Steam and run it at least once.</strong></>,
-              ]}
-            />
+          <div className="grid grid--install">
+            <StepList number={1} title="Pre-installation" steps={[...skyrimPreInstall, step.creationKit]} />
             <div>
               <StepList
                 number={2}
                 title="Download and install"
-                steps={[
-                  <>Put <a href={site.wabbajack} {...ext}>Wabbajack</a> in a folder like <span className="mono">C:\Games\Wabbajack</span> — not Program Files, desktop or Downloads.</>,
-                  <>Open Wabbajack, click <strong>Browse Modlists</strong>, press download on NGVO.</>,
-                  <>Set the install folder to something like <span className="mono">C:\NGVO</span>.</>,
-                  <>Downloads do not need to be on an SSD, but it is faster if they are.</>,
-                  <>Press play and go pet your nearest fluffy animal while Wabbajack works.</>,
-                ]}
+                steps={wabbajackInstall({ name: 'NGVO', folder: 'C:\\NGVO' })}
               />
               <StepList
                 number={3}
@@ -277,23 +247,15 @@ export function Ngvo() {
         </section>
 
         <section id="troubleshooting" className="section">
-          <h2 className={`h2 ${styles.troubleTitle}`}>Troubleshooting</h2>
+          <h2 className="h2 head--gap">Troubleshooting</h2>
           <div className="grid grid--tiles">
-            <TroubleTile title="Could not download x">
-              Large files fail on flaky connections. Rerun Wabbajack or download manually into the same downloads folder. Make sure you own all the paid AE content and that the Creation Kit is installed.
-            </TroubleTile>
-            <TroubleTile title="x is not a whitelisted download">
-              This happens while the list is being updated. Check for a new version or wait for the release ping in Discord.
-            </TroubleTile>
-            <TroubleTile title="Antivirus reports a virus">
-              Pre-installation step 8 was skipped. If you did follow it, <a href="https://www.thewindowsclub.com/exclude-a-folder-from-windows-security-scan" {...ext}>add a Defender exclusion</a> for Mod Organizer.
-            </TroubleTile>
+            <DownloadFailedTile>Make sure you own all the paid AE content and that the Creation Kit is installed.</DownloadFailedTile>
+            <NotWhitelistedTile />
+            <AntivirusTile />
             <TroubleTile title="Crashing on an AMD GPU" tone="gold">
               Disable DLAA and enable TAA in <span className="mono">SkyrimPrefs.ini</span> inside the profile folder. Otherwise you <em>will</em> crash.
             </TroubleTile>
-            <TroubleTile title="Crash after dying and reloading" tone="gold">
-              A DynDOLOD DLL NG issue. Disable the DLL and rerun DynDOLOD to use papyrus scripts instead — heavier on FPS and worse LODs, but stable.
-            </TroubleTile>
+            <DynDolodCrashTile />
             <StuckTile text="Check the FAQs below, then bring your MO2 log to the support channel." href={site.discord} />
           </div>
         </section>
@@ -306,7 +268,7 @@ export function Ngvo() {
           <Gallery
             shots={SHOTS}
             extraFirst
-            extra={<YouTubeEmbed id="nKkY0H4R3oU" title="NGVO second showcase" radius={12} className={styles.videoFeature} />}
+            extra={<YouTubeEmbed id="nKkY0H4R3oU" title="NGVO second showcase" radius={12} className={galleryExtra.feature} />}
           />
         </section>
 

@@ -1,80 +1,16 @@
-/* Ghoulified Reality modlist page — only the bits the shared components and
-   global utilities do not already cover. */
+/* Ghoulified Reality — only the 3BFTweaks panel and the hero scrim. The rest of the
+   page is shared components and global utilities. */
 
-/* The artboard's hero scrim is a touch darker than the shared one; the scrim is
-   the hero's second child. */
-.hero > div:nth-child(2) { background: linear-gradient(to bottom, rgba(21, 24, 26, .62) 0%, rgba(21, 24, 26, .7) 40%, rgba(21, 24, 26, .93) 86%, var(--bg) 100%); }
-
-/* Overview */
-.overview { padding: clamp(56px, 7vw, 88px) 0 clamp(30px, 4vw, 44px); }
-.overviewTitle { margin-bottom: 20px; }
-.copy { line-height: 1.72; }
-.copy + .copy { margin-top: 18px; }
-
-/* Installation */
-.installTitle { margin-bottom: 16px; }
-.installIntro { max-width: 700px; margin-bottom: clamp(32px, 4vw, 44px); }
-
-.readmeCard {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-  margin: 0 0 clamp(30px, 4vw, 42px); padding: 22px 26px;
-  background: linear-gradient(120deg, var(--gold-14), rgba(217, 160, 60, .04));
-  border: 1px solid rgba(217, 160, 60, .38); border-radius: 12px; color: inherit;
-  transition: border-color .2s ease, transform .2s ease;
-}
-.readmeCard:hover { border-color: rgba(217, 160, 60, .75); transform: translateY(-2px); color: inherit; }
-.readmeLead { display: flex; align-items: flex-start; gap: 15px; min-width: 0; }
-.readmeIcon { flex: 0 0 auto; margin-top: 3px; }
-.readmeTitle { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.14rem; font-weight: 600; color: var(--ink); }
-.readmeText { margin: 0; font-size: 16px; line-height: 1.6; color: var(--gold-text-soft); text-wrap: pretty; }
-.readmeCta { flex: 0 0 auto; background: var(--gold); color: var(--on-gold); font-weight: 700; font-size: 13.5px; letter-spacing: .05em; text-transform: uppercase; padding: 12px 20px; border-radius: 7px; }
-
-.installGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 2.6vw, 32px); }
-@media (max-width: 420px) { .installGrid { grid-template-columns: minmax(0, 1fr); } }
-
-/* Pre-installation list with the two highlighted Rare Curios rows (the shared
-   StepList cannot highlight individual rows). Mirrors Steps.module.css. */
-.stepHead { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
-.stepBadge { width: 30px; height: 30px; display: grid; place-items: center; background: var(--gold); color: var(--on-gold); border-radius: 8px; font-family: var(--font-display); font-weight: 700; font-size: 15px; flex: 0 0 auto; }
-.stepTitle { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; color: var(--ink); }
-.stepList { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; }
-.stepRow { display: flex; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--hair-07); font-size: 16.5px; line-height: 1.62; color: var(--text-2); }
-.stepRow:last-child { border-bottom: 0; }
-.stepRow strong { color: var(--ink); }
-.stepNum { flex: 0 0 auto; font-family: var(--font-mono); font-size: 13px; color: var(--gold); padding-top: 3px; }
-.stepRowHot { border-bottom-color: rgba(217, 160, 60, .28); background: rgba(217, 160, 60, .07); color: var(--text-callout); }
-.stepRowHot .stepNum, .stepRowHot :global(.mono) { color: var(--gold-light); }
-
-/* Optional mods */
-.optTitle { margin-bottom: 16px; }
-.optIntro { max-width: 720px; margin-bottom: clamp(26px, 3.4vw, 36px); }
-.optCard { background: var(--bg-card); border: 1px solid var(--hair-09); border-radius: 12px; padding: 24px; }
-.optCardRed { border-left: 3px solid var(--red); }
-.optCardTitle { margin: 0 0 9px; font-family: var(--font-display); font-weight: 600; font-size: 1.14rem; color: var(--ink); }
-.optCardText { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
+/* The artboard's hero scrim is a touch darker than the shared one. */
+.scrim { background: linear-gradient(to bottom, rgba(21, 24, 26, .62) 0%, rgba(21, 24, 26, .7) 40%, rgba(21, 24, 26, .93) 86%, var(--bg) 100%); }
 
 /* 3BFTweaks */
 .tweaksPanel { background: var(--bg-card); border: 1px solid var(--hair-10); border-radius: 18px; padding: clamp(28px, 4vw, 52px); }
 .tweaksTitle { margin-bottom: 18px; font-size: clamp(1.7rem, 3.2vw, 2.3rem); }
-.tweaksIntro { max-width: 760px; margin-bottom: 24px; line-height: 1.72; }
+.tweaksIntro { max-width: 760px; margin-bottom: 24px; }
 .tweaksGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(14px, 1.8vw, 20px); margin-bottom: clamp(26px, 3vw, 34px); }
 @media (max-width: 420px) { .tweaksGrid { grid-template-columns: minmax(0, 1fr); } }
-.tweaksItem { border-top: 2px solid rgba(217, 160, 60, .4); padding-top: 18px; }
+.tweaksItem { border-top: 2px solid var(--gold-42); padding-top: 18px; }
 .tweaksItemTitle { margin: 0 0 9px; font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; color: var(--ink); }
 .tweaksItemText { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
 .tweaksActions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-/* Troubleshooting */
-.troubleTitle { margin-bottom: clamp(26px, 3.4vw, 36px); }
-/* Green "note" tile; the shared TroubleTile only has red and gold tones. */
-.tileGreen { background: var(--bg-card); border: 1px solid var(--hair-09); border-left: 3px solid var(--green); border-radius: 11px; padding: 24px; }
-.tileGreenTitle { margin: 0 0 10px; font-family: var(--font-mono); font-size: 14px; color: var(--green-ink); }
-.tileGreenBody { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
-
-/* Showcase video: a two-by-two block leading the shared Gallery grid, matching NGVO.
-   Reverts to a normal tile once the grid drops below four columns. */
-.showVideo { grid-column: span 2; grid-row: span 2; border-color: var(--hair-10); }
-@media (max-width: 1180px) { .showVideo { grid-column: auto; grid-row: auto; } }
-
-/* Discord band credits */
-.creditsYou { color: var(--text-2); }

@@ -1,11 +1,11 @@
 import { Link } from 'react-router'
-import { asset, site } from '../../data/site'
+import { asset, ext, site } from '../../data/site'
 import { PencilIcon } from '../ui/Icons'
 import styles from './SiteFooter.module.css'
 
 export function ContributeButton({ className = '' }: { className?: string }) {
   return (
-    <a href={site.repo} target="_blank" rel="noopener" className={`btn btn--gold-tint ${className}`}>
+    <a href={site.repo} {...ext} className={`btn btn--gold-tint ${className}`}>
       <PencilIcon size={16} />
       Contribute to the Wiki
     </a>
@@ -18,7 +18,7 @@ function Legal() {
       <p>Copyright © 2026 The Modding Bungalo</p>
       <p>
         Website by{' '}
-        <a href={site.author.url} target="_blank" rel="noopener" className={styles.author}>
+        <a href={site.author.url} {...ext} className={styles.author}>
           {site.author.name}
         </a>
       </p>
@@ -37,7 +37,7 @@ export function SiteFooter() {
           <Link to="/#modlists">Modlists</Link>
           <Link to="/guides">Guides</Link>
           <Link to="/community">Community</Link>
-          <a href={site.discord} target="_blank" rel="noopener">Discord</a>
+          <a href={site.discord} {...ext}>Discord</a>
         </div>
         <ContributeButton />
       </div>

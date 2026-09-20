@@ -1,4 +1,4 @@
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(12px, 1.4vw, 16px); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--tile-min, 260px), 1fr)); gap: clamp(12px, 1.4vw, 16px); }
 .tile { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--hair-10); border-radius: 12px; overflow: hidden; padding: 0; background: var(--bg-thumb); cursor: pointer; transition: border-color .15s ease; }
 .tile:hover { border-color: var(--gold-60); }
 .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -8,6 +8,11 @@
 .feature { grid-column: span 2; grid-row: span 2; }
 /* Below four columns a 2x2 tile can no longer be packed without leaving holes. */
 @media (max-width: 1180px) { .feature { grid-column: auto; grid-row: auto; } }
+/* A tile the page supplies rather than a screenshot — a video embed, usually. It
+   borrows the screenshot tiles' border so the grid reads as one surface. */
+.extra { border-color: var(--hair-10); }
+.extraFeature { grid-column: span 2; grid-row: span 2; }
+@media (max-width: 1180px) { .extraFeature { grid-column: auto; grid-row: auto; } }
 @media (max-width: 620px) { .wide { grid-column: auto; } .grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* Above the sticky header (60), the section nav (50) and the search overlay (200).

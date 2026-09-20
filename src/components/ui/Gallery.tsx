@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { asset } from '../../data/site'
 import { useScrollLock } from './useScrollLock'
@@ -16,8 +16,30 @@ export interface Shot {
   feature?: boolean
 }
 
+/**
+ * Classes for a tile a page passes in via `extra` (usually a YouTube embed), so the
+ * 2x2 span and its breakpoint are written once rather than per page.
+ */
+export const galleryExtra = {
+  tile: styles.extra,
+  feature: `${styles.extra} ${styles.extraFeature}`,
+}
+
+/**
+ * Builds a `Shot` for one list: `shotsFor('ngvo')('riverwood', '…')` resolves to
+ * `assets/shots/ngvo/riverwood.webp` plus the `-thumb` variant, which is exactly the
+ * pair `npm run shots` writes.
+ */
+export const shotsFor = (list: string) => (name: string, alt: string): Shot => ({
+  src: `assets/shots/${list}/${name}.webp`,
+  thumb: `assets/shots/${list}/${name}-thumb.webp`,
+  alt,
+})
+
 interface Props {
   shots: Shot[]
+  /** Narrowest a tile may be before the grid drops a column. */
+  minTile?: number
   /** Extra tile rendered alongside the shots (usually a YouTube embed). */
   extra?: ReactNode
   /** Put `extra` before the shots instead of after. */
@@ -28,7 +50,7 @@ interface Props {
 }
 
 /** Screenshot grid with a click-to-enlarge lightbox. */
-export function Gallery({ shots, extra, extraFirst, eyebrow = 'Showcase', title = 'In-game screenshots', hint = 'Click any shot to view it full size' }: Props) {
+export function Gallery({ shots, minTile = 260, extra, extraFirst, eyebrow = 'Showcase', title = 'In-game screenshots', hint = 'Click any shot to view it full size' }: Props) {
   const [index, setIndex] = useState<number | null>(null)
   const open = index === null ? null : shots[index]
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -83,7 +105,7 @@ export function Gallery({ shots, extra, extraFirst, eyebrow = 'Showcase', title 
         </div>
         <p className="small-muted">{hint}</p>
       </div>
-      <div className={styles.grid}>
+      <div className={styles.grid} style={{ '--tile-min': `${minTile}px` } as CSSProperties}>
         {extraFirst && extra}
         {shots.map((s, i) => (
           <button

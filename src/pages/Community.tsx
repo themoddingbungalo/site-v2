@@ -5,10 +5,11 @@ import { ContributeButton } from '../components/layout/SiteFooter'
 import { BordelloPanel } from '../components/ui/BordelloPanel'
 import { DiscordBand } from '../components/ui/DiscordBand'
 import { DiscordIcon, GitHubIcon, KofiIcon, NexusIcon, PatreonIcon, YouTubeIcon } from '../components/ui/Icons'
+import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
 import { useReveal } from '../components/ui/useReveal'
 import { modlistBySlug, modlistPath } from '../data/modlists'
-import { asset, pageTitle, site } from '../data/site'
+import { asset, ext, pageTitle, site } from '../data/site'
 import { initials, team, teamLinkLabels, teamLinkOrder, type TeamLinkKind, type TeamMember } from '../data/team'
 import styles from './Community.module.css'
 
@@ -78,9 +79,7 @@ function MemberCard({ member }: { member: TeamMember }) {
           {links.map((kind) => (
             <a
               key={kind}
-              href={member.links[kind]}
-              target="_blank"
-              rel="noopener"
+              href={member.links[kind]} {...ext}
               className={`${styles.linkBtn} ${styles[kind]}`}
             >
               {linkIcons[kind]}
@@ -102,26 +101,18 @@ export function Community() {
 
   return (
     <div ref={rootRef}>
-      <section className={styles.hero}>
-        <div className={styles.heroMedia}>
-          <img src={asset('assets/heroes/whiterun-guards.webp')} alt="" />
-        </div>
-        <div className={styles.heroScrim} />
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroCopy}>
-            <p className={`eyebrow ${styles.heroEyebrow}`}>Who we are</p>
-            <h1 className={`h1 ${styles.heroTitle}`}>The Community</h1>
-            <p className={styles.heroLead}>
-              The Bungalo is a Discord server full of modders who give their lists away for free. These are the people
-              behind them, the server they came from, and the neighbours next door.
-            </p>
-            <div className={styles.stats}>
-              <div><div className={styles.statValue}>{team.length + 1}</div><div className={styles.statLabel}>People listed</div></div>
-              <div><div className={styles.statValue}>2024</div><div className={styles.statLabel}>Running since</div></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="assets/heroes/whiterun-guards.webp"
+        position="center 38%"
+        scrimClassName={styles.heroScrim}
+        eyebrow="Who we are"
+        title="The Community"
+        lead="The Bungalo is a Discord server full of modders who give their lists away for free. These are the people behind them, the server they came from, and the neighbours next door."
+        stats={[
+          { value: team.length + 1, label: 'People listed' },
+          { value: 2024, label: 'Running since' },
+        ]}
+      />
 
       <SectionNav items={navItems} />
 
@@ -139,10 +130,10 @@ export function Community() {
               Modder, YouTuber and streamer. &ldquo;The #1 Modlist Enthusiast. I hate vanilla.&rdquo; Released LoreRim in early 2024 after building it live on stream.
             </p>
             <div className={styles.panelActions}>
-              <a href={site.biggie.youtube} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.ytBtn}`}>
+              <a href={site.biggie.youtube} {...ext} className={`${styles.brandBtn} ${styles.ytBtn}`}>
                 <YouTubeIcon size={17} />YouTube
               </a>
-              <a href={site.biggie.kofi} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.kofiBtn}`}>
+              <a href={site.biggie.kofi} {...ext} className={`${styles.brandBtn} ${styles.kofiBtn}`}>
                 <KofiIcon size={17} />Ko-fi
               </a>
               <Link to={modlistPath('lorerim')} className={`${styles.brandBtn} ${styles.biggieOutline}`}>LoreRim</Link>
@@ -184,7 +175,7 @@ export function Community() {
           </div>
           <div className={styles.contributeActions}>
             <ContributeButton />
-            <a href={site.discord} target="_blank" rel="noopener" className="btn btn--outline btn--xs">
+            <a href={site.discord} {...ext} className="btn btn--outline btn--xs">
               <DiscordIcon size={16} />Ask first in Discord
             </a>
           </div>

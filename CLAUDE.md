@@ -57,6 +57,31 @@ internal navigation; `BrowserRouter` gets its `basename` from `import.meta.env.B
   rely on raw HTML.
 - `src/styles/prose.css` is the typography for rendered markdown.
 
+## Shared pieces
+
+The six modlist pages are assembled, not written. Before adding markup to one, check
+whether the thing already exists:
+
+- `src/components/ui/` — `ModlistHero`, `PageHero`, `SectionNav`, `SpecCards`/`SizeCards`/
+  `SpecToggle`, `StepList` (a step can be `{ body, hot }` to highlight a row people
+  skip), `TroubleTile` (red/gold/green), `StuckTile`, `FeatureCard`, `Tile`, `KeyRows`,
+  `Callout` (`label` for an uppercase micro-label, `compact` for a tighter box),
+  `ReadMeCard`, `Gallery` (`shotsFor(slug)` builds the `Shot`s, `galleryExtra` classes
+  span an extra tile) and `DiscordBand` (`primary` overrides the default Discord button,
+  `secondary` takes any number of outlined ones).
+- `src/content/install.tsx` — the prose every Skyrim list repeats: `skyrimPreInstall`
+  and the individual `step.*` fragments, `wabbajackInstall()`, `SkyrimRequirements`,
+  and the Wabbajack failure tiles (`DownloadFailedTile`, `NotWhitelistedTile`,
+  `AntivirusTile`, `DynDolodCrashTile`, `UpdatingTile`). Fix a sentence here and it
+  lands on every list at once. Only genuinely list-specific copy belongs in a page.
+- `src/markdown/MarkdownArticle.tsx` — `useMarkdownPage()` plus the article body,
+  loading/error states and the "edit on GitHub" footer, shared by the read me and
+  guide pages.
+
+A page's own CSS module should hold only what is unique to that list. If you find
+yourself writing a rule that already exists in another module, it belongs in
+`global.css` or in the component instead.
+
 ## Registries
 
 `src/data/modlists.ts` and `src/data/guides.ts` drive the header menus, search index,
@@ -90,10 +115,18 @@ Below four columns the 2x2 spans are disabled, since they cannot pack without ho
 
 ## Styling
 
-Design tokens in `src/styles/tokens.css`; global utility classes (`.container`,
-`.section`, `.eyebrow`, `.h1/.h2`, `.btn` variants, `.card`, `.chip`, `.grid--*`) in
-`src/styles/global.css`; everything else is CSS Modules next to the component. Hover
-states always live in CSS, never inline. Fonts are self-hosted via `@fontsource`.
+Design tokens in `src/styles/tokens.css` — colours, the recurring surface gradients
+(`--grad-gold-band`, `--grad-gold-card`, `--grad-panel`) and the layout constants.
+Global utility classes in `src/styles/global.css`: `.container`, `.section` plus
+`.section--intro`/`--tight`, `.eyebrow`, `.h1/.h2`, `.head--sub/--tight/--loose/--gap`
+for heading-to-content gaps, `.lead` with `.section-lead` for a standfirst, `.flow` for
+a run of stacked body copy, `.label` with `--gold`/`--red`, `.sub`, `.btn` variants,
+`.card`, `.chip` and `.grid--*` (including `--install` and `--stack`). Everything else
+is CSS Modules next to the component. Hover states always live in CSS, never inline.
+Fonts are self-hosted via `@fontsource`.
+
+Reach for a token or a utility before writing a literal. `rgba(217, 160, 60, .32)` has
+a name; so does a 26px heading gap.
 
 ## Design source
 

@@ -20,6 +20,8 @@ interface Props {
   chips?: Chip[]
   /** Buttons rendered in the CTA row. */
   children?: ReactNode
+  /** A class from the page's own module, when its art needs a different scrim. */
+  scrimClassName?: string
   backTo?: string
   backLabel?: string
   /** Extra classes on the section (e.g. to tint the scrim). */
@@ -29,14 +31,14 @@ interface Props {
 /** Full-bleed hero used at the top of every modlist page. */
 export function ModlistHero({
   image, position = 'center', logo, logoAlt = '', eyebrow, title, blurb, chips = [], children,
-  backTo = '/#modlists', backLabel = '← All modlists', className = '',
+  scrimClassName = '', backTo = '/#modlists', backLabel = '← All modlists', className = '',
 }: Props) {
   return (
     <section className={`${styles.hero} ${className}`}>
       <div className={styles.bg}>
         <img src={asset(image)} alt="" style={{ objectPosition: position }} />
       </div>
-      <div className={styles.scrim} />
+      <div className={`${styles.scrim} ${scrimClassName}`} />
       <div className={`container ${styles.inner}`}>
         <Link to={backTo} className={`back-link ${styles.back}`}>{backLabel}</Link>
         <div className={styles.content}>

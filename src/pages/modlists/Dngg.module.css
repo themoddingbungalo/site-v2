@@ -1,92 +1,20 @@
-/* Do Not Go Gentle — page-specific styles. Global utilities (.section, .h2, .lead,
-   .btn, .grid--*) cover the rest. Overrides that fight a global class are scoped
-   under .page because global.css is injected after the page modules. */
+/* Do Not Go Gentle — the hero scrim, the spec footnotes and the ENB two-column
+   layout. Everything else is a shared component or a global utility. */
 
-/* ---- hero -------------------------------------------------------------- */
 /* Darker scrim than the shared default; the hero image is the list logo art. */
-.hero > div:nth-child(2) {
-  background: linear-gradient(to bottom, rgba(21, 24, 26, .72) 0%, rgba(21, 24, 26, .78) 40%, rgba(21, 24, 26, .95) 86%, var(--bg) 100%);
-}
+.scrim { background: linear-gradient(to bottom, rgba(21, 24, 26, .72) 0%, rgba(21, 24, 26, .78) 40%, rgba(21, 24, 26, .95) 86%, var(--bg) 100%); }
 .hero :global(.eyebrow) { margin-bottom: 16px; font-size: clamp(11px, 1.5vw, 13px); letter-spacing: .3em; }
 
-/* ---- shared bits ------------------------------------------------------- */
-.page strong { color: var(--ink); }
-.page .h2Tight { margin-bottom: 16px; }
-.page .intro { max-width: 720px; margin-bottom: clamp(26px, 3.4vw, 34px); }
-.page .introWide { max-width: 700px; margin-bottom: clamp(32px, 4vw, 44px); }
-.page .introFirst { margin-bottom: clamp(26px, 3.4vw, 36px); }
-
-.subLabel { margin: 0 0 14px; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dim); }
-
-.tile { background: var(--bg-card); border: 1px solid var(--hair-09); border-radius: 12px; padding: 24px; }
-.tileGold { background: linear-gradient(150deg, var(--gold-12), rgba(217, 160, 60, .03)); border-color: rgba(217, 160, 60, .32); }
-.tileSm { padding: 22px 24px; }
-.tileStack { margin-bottom: 14px; }
-.tileTitle { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.14rem; color: var(--ink); }
-.tileSm .tileTitle { font-size: 1.06rem; }
-.optional .tileTitle { margin-bottom: 9px; }
-.tileText { margin: 0 0 10px; font-size: 16px; line-height: 1.64; color: var(--text-3); }
-.tileText:last-child { margin-bottom: 0; }
-.tileGold .tileText { color: var(--gold-text-soft); }
-
-/* ---- overview ---------------------------------------------------------- */
-.overview { padding: clamp(56px, 7vw, 88px) 0 clamp(30px, 4vw, 44px); }
-.page .h2Overview { margin-bottom: 20px; }
-.para { margin: 0 0 18px; font-size: 17.5px; line-height: 1.72; color: var(--text-2); text-wrap: pretty; }
-.paraLast { margin-bottom: 22px; }
-/* Uppercase-label callout (no icon, tighter padding than the shared default). */
-.page .tagCallout { padding: 20px 22px; border-radius: 10px; }
-.tagCallout p.tag { margin: 0 0 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--red-ink); }
-
 /* ---- specs ------------------------------------------------------------- */
-.page .h2Specs { margin-bottom: 10px; }
-.specSub { margin: 0; font-size: 16.5px; color: var(--text-4); }
+/* Footnote under a big Cinzel number, back in body type. */
 .sizeNote { display: block; margin-top: 8px; font-family: var(--font-body); font-size: 14.5px; font-weight: 400; line-height: 1.6; color: var(--text-muted-2); }
-
-/* ---- install ----------------------------------------------------------- */
-.readme {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-  margin: 0 0 clamp(30px, 4vw, 42px); padding: 22px 26px;
-  background: linear-gradient(120deg, var(--gold-14), rgba(217, 160, 60, .04));
-  border: 1px solid rgba(217, 160, 60, .38); border-radius: 12px; color: inherit;
-  transition: border-color .2s ease, transform .2s ease;
-}
-.readme:hover { border-color: rgba(217, 160, 60, .75); transform: translateY(-2px); color: inherit; }
-.readmeLeft { display: flex; align-items: flex-start; gap: 15px; min-width: 0; }
-.readmeIcon { flex: 0 0 auto; margin-top: 3px; }
-.readmeTitle { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.14rem; font-weight: 600; color: var(--ink); }
-.readmeText { margin: 0; font-size: 16px; line-height: 1.6; color: var(--gold-text-soft); text-wrap: pretty; }
-.readmeBtn { flex: 0 0 auto; background: var(--gold); color: var(--on-gold); font-weight: 700; font-size: 13.5px; letter-spacing: .05em; text-transform: uppercase; padding: 12px 20px; border-radius: 7px; }
-
-.installGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 2.6vw, 32px); }
-/* Step 03 ("fully uninstall Skyrim") is highlighted in the design. */
-.preSteps li:nth-child(3) { background: rgba(217, 160, 60, .07); border-bottom-color: rgba(217, 160, 60, .28); color: var(--text-callout); }
-.preSteps li:nth-child(3) > span:first-child { color: var(--gold-light); }
-.preSteps li:nth-child(3) :global(.mono) { color: var(--gold-light); }
-.page .failCallout { padding: 20px 22px; }
-.failCallout :global(p) { font-size: 16px; line-height: 1.64; }
 
 /* ---- ENB & shaders ----------------------------------------------------- */
 .visualsGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(16px, 2vw, 24px); }
-.perf { display: flex; flex-direction: column; }
-.perfRow { display: flex; justify-content: space-between; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--hair-07); }
-.perfRow:last-child { border-bottom: 0; }
-.perfName { font-size: 16px; color: var(--text-2); }
-.perfNote { font-size: 14px; color: var(--text-muted); }
-.perfRow:last-child .perfName { color: var(--ink); font-weight: 600; }
-.perfRow:last-child .perfNote { color: var(--gold); }
-.perfAfter { margin: 18px 0 0; }
-
-/* ---- getting help ------------------------------------------------------ */
-.help { padding: clamp(30px, 4vw, 48px) 0 clamp(70px, 9vw, 110px); }
-.helpPanel { background: linear-gradient(140deg, #22272B 0%, #1A1E21 100%); border: 1px solid var(--gold-24); border-radius: 18px; padding: clamp(36px, 5vw, 64px); text-align: center; }
-.helpTitle { margin: 0 0 16px; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.14; color: var(--ink); }
-.helpText { margin: 0 auto 30px; max-width: 580px; font-size: 17.5px; line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
-.helpActions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.page .helpBtn { padding: 16px 30px; }
-.credits { margin: 34px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted-2); }
-.page .credits strong { color: var(--text-2); }
+.perfAfter { margin: 18px 0 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
+.perfAfter strong { color: var(--ink); }
+.tileStack { margin-bottom: 14px; }
 
 @media (max-width: 420px) {
-  .installGrid, .visualsGrid { grid-template-columns: minmax(0, 1fr); }
+  .visualsGrid { grid-template-columns: minmax(0, 1fr); }
 }

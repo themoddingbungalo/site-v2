@@ -1,0 +1,25 @@
+.tile { background: var(--bg-card); border: 1px solid var(--hair-09); border-radius: 12px; padding: 24px; }
+.gold { background: var(--grad-gold-card); border-color: var(--gold-32); }
+.red { border-left: 3px solid var(--red); }
+.small { padding: 22px 24px; }
+
+.title { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.14rem; color: var(--ink); }
+.small .title { font-size: 1.06rem; }
+
+.body { font-size: 16px; line-height: 1.64; color: var(--text-3); }
+.body :global(p) { margin: 0 0 10px; }
+.body :global(p:last-child) { margin-bottom: 0; }
+.body :global(strong) { color: var(--ink); }
+.gold .body { color: var(--gold-text-soft); }
+
+/* ---- key/value rows ------------------------------------------------------ */
+.rows { display: flex; flex-direction: column; }
+.row { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hair-07); }
+.row:last-child { border-bottom: 0; }
+.rowKey { font-size: 16px; color: var(--text-4); }
+.rowValue { font-size: 16px; color: var(--ink); font-weight: 600; text-align: right; }
+.rowNote { font-size: 14px; color: var(--text-muted); text-align: right; }
+/* A ranking reads best-last, so the final row is the recommendation. */
+.ranked .rowKey { color: var(--text-2); }
+.ranked .row:last-child .rowKey { color: var(--ink); font-weight: 600; }
+.ranked .row:last-child .rowNote { color: var(--gold); }

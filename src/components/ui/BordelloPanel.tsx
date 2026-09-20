@@ -1,4 +1,4 @@
-import { asset, site } from '../../data/site'
+import { asset, ext, site } from '../../data/site'
 import styles from './BordelloPanel.module.css'
 
 /**
@@ -31,10 +31,10 @@ export function BordelloPanel({
           work &mdash; head there for adult content and support.
         </p>
         <div className={styles.actions}>
-          <a href={site.bordello.discord} target="_blank" rel="noopener" className={`${styles.btn} ${styles.btnSolid}`}>
+          <a href={site.bordello.discord} {...ext} className={`${styles.btn} ${styles.btnSolid}`}>
             Join the Bordello
           </a>
-          <a href={site.bordello.site} target="_blank" rel="noopener" className={`${styles.btn} ${styles.btnOutline}`}>
+          <a href={site.bordello.site} {...ext} className={`${styles.btn} ${styles.btnOutline}`}>
             Visit their site
           </a>
         </div>

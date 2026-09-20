@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { guidePath, guideSections, guides } from '../../data/guides'
 import { modlistPath, modlists, readmePath } from '../../data/modlists'
-import { asset, site } from '../../data/site'
+import { asset, ext, site } from '../../data/site'
 import { team } from '../../data/team'
 import { ChevronDownIcon, DiscordIcon, MenuIcon, SearchIcon } from '../ui/Icons'
 import { useScrollLock } from '../ui/useScrollLock'
@@ -147,7 +147,7 @@ export function SiteHeader() {
                   <Link to="/community" className={styles.plainItem}>The Bungalo team</Link>
                   <Link to="/community#biggie" className={styles.plainItem}>Biggie Boss</Link>
                   <Link to="/community#bordello" className={styles.plainItem}>The Modding Bordello</Link>
-                  <a href={site.repo} target="_blank" rel="noopener" className={styles.plainItem}>Contribute to the Wiki</a>
+                  <a href={site.repo} {...ext} className={styles.plainItem}>Contribute to the Wiki</a>
                 </div>
               )}
             </div>
@@ -160,7 +160,7 @@ export function SiteHeader() {
             <button type="button" aria-label="Search" ref={searchBtnRef} className={styles.iconBtn} onClick={() => { setSearch(true); setDrawer(false) }}>
               <SearchIcon />
             </button>
-            <a href={site.discord} target="_blank" rel="noopener" className={styles.cta}>
+            <a href={site.discord} {...ext} className={styles.cta}>
               <DiscordIcon />
               <span className={styles.ctaLabel}>Join Discord</span>
             </a>
@@ -190,7 +190,7 @@ export function SiteHeader() {
               <Link to="/community" className={styles.drawerLink}>The Bungalo team</Link>
               <Link to="/community#biggie" className={styles.drawerLink}>Biggie Boss</Link>
               <Link to="/community#bordello" className={styles.drawerLink}>The Modding Bordello</Link>
-              <a href={site.repo} target="_blank" rel="noopener" className={styles.drawerLink}>Contribute to the Wiki</a>
+              <a href={site.repo} {...ext} className={styles.drawerLink}>Contribute to the Wiki</a>
             </div>
           </div>
         )}
@@ -225,7 +225,7 @@ export function SiteHeader() {
             <div className={styles.searchList}>
               {(results ?? index.filter((e) => modlists.some((m) => modlistPath(m.slug) === e.to))).map((e) =>
                 e.external ? (
-                  <a key={e.to + e.label} href={e.to} target="_blank" rel="noopener" className={styles.searchItem}>
+                  <a key={e.to + e.label} href={e.to} {...ext} className={styles.searchItem}>
                     <span className={styles.searchItemName}>{e.label}</span><span className={styles.searchItemTag}>{e.tag}</span>
                   </a>
                 ) : (

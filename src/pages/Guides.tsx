@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../components/layout/ScrollManager'
 import { DiscordIcon, PlayIcon } from '../components/ui/Icons'
+import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
 import { useScrollLock } from '../components/ui/useScrollLock'
 import { guideSections, guideVideos, type GuideSectionId, type GuideVideo } from '../data/guides'
 import { modlistPath, readmePath } from '../data/modlists'
-import { asset, pageTitle, site } from '../data/site'
+import { ext, pageTitle, site } from '../data/site'
 import styles from './Guides.module.css'
 
 /** Which video is open in the modal player, or null when closed. */
@@ -23,7 +24,7 @@ function VideoCard({ video, size, onPlay, className }: { video: GuideVideo; size
         <h3 className={`h3 ${styles.unavailableTitle}`}>{video.title}</h3>
         <p className={styles.videoBlurb}>{video.blurb}</p>
         <p className={styles.unavailableNote}>The original recording is no longer on YouTube. Send us a replacement link and it goes straight back up.</p>
-        <a href={site.discord} target="_blank" rel="noopener" className={styles.askLink}>
+        <a href={site.discord} {...ext} className={styles.askLink}>
           <DiscordIcon size={15} /> Ask in Discord
         </a>
       </div>
@@ -91,23 +92,17 @@ export function Guides() {
 
   return (
     <>
-      <section className={styles.hero}>
-        <div className={styles.heroMedia}>
-          <img src={asset('assets/heroes/partysnax.webp')} alt="" />
-        </div>
-        <div className={styles.heroScrim} />
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroCopy}>
-            <p className={`eyebrow ${styles.heroEyebrow}`}>Documentation</p>
-            <h1 className={`h1 ${styles.heroTitle}`}>Modding Guides</h1>
-            <p className={styles.heroLead}>Everything you need to install a list, or build one of your own. Walkthroughs recorded by the Bungalo — pick a tool and follow along.</p>
-            <div className={styles.stats}>
-              <div><div className={styles.statValue}>{totalVideos}</div><div className={styles.statLabel}>Video walkthroughs</div></div>
-              <div><div className={styles.statValue}>{guideSections.length}</div><div className={styles.statLabel}>Tools covered</div></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="assets/heroes/partysnax.webp"
+        position="center 55%"
+        eyebrow="Documentation"
+        title="Modding Guides"
+        lead="Everything you need to install a list, or build one of your own. Walkthroughs recorded by the Bungalo — pick a tool and follow along."
+        stats={[
+          { value: totalVideos, label: 'Video walkthroughs' },
+          { value: guideSections.length, label: 'Tools covered' },
+        ]}
+      />
 
       <SectionNav items={navItems} />
 
@@ -139,7 +134,7 @@ export function Guides() {
         <section id="lodgen" className={styles.section}>
           <p className="eyebrow">Three tools, one order</p>
           <h2 className={`h2 ${styles.title}`}>LOD Generation</h2>
-          <p className={`lead ${styles.introWide}`}>Distant terrain, trees and objects. Run them in this order — xLODGen, then grass cache, then TexGen and DynDOLOD last. Getting the order wrong is the most common cause of broken LODs.</p>
+          <p className="lead section-lead">Distant terrain, trees and objects. Run them in this order — xLODGen, then grass cache, then TexGen and DynDOLOD last. Getting the order wrong is the most common cause of broken LODs.</p>
           <div className={styles.cardGrid}>
             {videos('lodgen').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
           </div>
@@ -148,7 +143,7 @@ export function Guides() {
         <section id="xedit" className={styles.section}>
           <p className="eyebrow">Plugins and patching</p>
           <h2 className={`h2 ${styles.title}`}>xEdit</h2>
-          <p className={`lead ${styles.introWide}`}>The tool you will spend the most time in once you start changing a list. Resolve conflicts, write your own patches, and clean up after removed mods.</p>
+          <p className="lead section-lead">The tool you will spend the most time in once you start changing a list. Resolve conflicts, write your own patches, and clean up after removed mods.</p>
           <div className={styles.cardGrid}>
             {videos('xedit').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
           </div>

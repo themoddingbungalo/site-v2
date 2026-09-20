@@ -16,6 +16,9 @@ export const site = {
   lorerim: 'https://lorerim.com/',
 } as const
 
+/** Spread onto any outbound `<a>`: `<a href={url} {...ext}>`. */
+export const ext = { target: '_blank', rel: 'noopener' } as const
+
 /** GitHub web-editor URL for a file under content/ (e.g. "lists/csvp/readme.md"). */
 export function editUrl(contentPath: string): string {
   return `${site.repo}/edit/main/content/${contentPath}`

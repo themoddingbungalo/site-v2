@@ -1,21 +1,9 @@
-.overview { padding: clamp(56px, 7vw, 88px) 0 clamp(30px, 4vw, 44px); }
-.overviewTitle { margin-bottom: 20px; }
-.para { margin: 0 0 18px; font-size: 17.5px; line-height: 1.72; color: var(--text-2); text-wrap: pretty; }
-.para:last-child { margin-bottom: 0; }
+/* LoreRim — only the documentation panel, which is unique to this list. Everything
+   else on the page is a shared component or a global utility. */
 
-.glance { background: var(--bg-card); border: 1px solid var(--hair-09); border-radius: 14px; padding: clamp(26px, 3vw, 34px); }
-.glanceLabel { margin: 0 0 20px; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dim); }
-.glanceRows { display: flex; flex-direction: column; gap: 0; }
-.glanceRow { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hair-07); }
-.glanceRow:last-child { border-bottom: 0; }
-.glanceKey { font-size: 16px; color: var(--text-4); }
-.glanceVal { font-size: 16px; color: var(--ink); font-weight: 600; text-align: right; }
-.glanceLink { font-size: 16px; font-weight: 600; text-align: right; }
-
-.trailer { padding: clamp(30px, 4vw, 48px) 0; }
-.trailerTitle { margin-bottom: clamp(22px, 3vw, 30px); }
-
-.featuresTitle { margin-bottom: clamp(26px, 3.4vw, 38px); }
+/* The at-a-glance card's label sits a little further from its rows than .label's
+   default, matching the artboard. */
+.glanceLabel { margin-bottom: 20px; }
 
 .docs { position: relative; overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); background: var(--bg-card); border: 1px solid var(--hair-10); border-radius: 18px; }
 .docsMedia { position: relative; min-height: 280px; }
@@ -25,13 +13,6 @@
 .docsTitle { margin: 0 0 16px; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.16; color: var(--ink); }
 .docsText { margin: 0 0 26px; font-size: 17.5px; line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
 .docsActions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-.support { padding: clamp(30px, 4vw, 48px) 0 clamp(70px, 9vw, 110px); }
-.supportPanel { background: linear-gradient(140deg, #22272B 0%, #1A1E21 100%); border: 1px solid var(--gold-24); border-radius: 18px; padding: clamp(36px, 5vw, 64px); text-align: center; }
-.supportTitle { margin: 0 0 16px; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.14; color: var(--ink); }
-.supportText { margin: 0 auto 30px; max-width: 560px; font-size: 17.5px; line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
-.supportActions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.supportBtn { padding: 16px 30px; }
 
 @media (max-width: 420px) {
   .docs { grid-template-columns: minmax(0, 1fr); }

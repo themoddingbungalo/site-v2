@@ -34,6 +34,7 @@ npm run preview   # serve the production build locally
 | `src/data/` | Site links, the modlist, guide and team registries |
 | `src/pages/` | One React component per page; `src/pages/modlists/` holds the six modlist pages |
 | `src/components/` | Shared header, footer and UI pieces |
+| `src/content/` | Install prose the modlist pages share word for word |
 | `src/markdown/` | The markdown pipeline (react-markdown plus the kramdown extras) |
 | `src/styles/` | Design tokens, global utilities and markdown typography |
 | `.github/workflows/pages.yml` | Build and deploy on every push to `main` |
@@ -44,6 +45,10 @@ npm run preview   # serve the production build locally
 2. Add an entry to `modlists` in `src/data/modlists.ts` (name, game, author, cover,
    logo, read me file). The header menu, home cards, search and footer pick it up.
 3. Add a page component at `src/pages/modlists/<Name>.tsx` and a route in `src/App.tsx`.
+   Build it from the shared pieces in `src/components/ui/` and `src/content/install.tsx`
+   rather than copying another list's page — the sections every list has (hero, spec
+   cards, read-me band, install steps, troubleshooting tiles, Discord band) are all
+   components already.
 
 ### Adding someone to the community page
 

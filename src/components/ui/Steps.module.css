@@ -7,19 +7,28 @@
 .row:last-child { border-bottom: 0; }
 .row :global(strong) { color: var(--ink); }
 .num { flex: 0 0 auto; font-family: var(--font-mono); font-size: 13px; color: var(--gold); padding-top: 3px; }
+/* A step people skip and then file a support ticket about. */
+.rowHot { background: var(--gold-07); border-bottom-color: var(--gold-28); color: var(--text-callout); }
+.rowHot .num, .rowHot :global(.mono) { color: var(--gold-light); }
 
 .tile { background: var(--bg-card); border: 1px solid var(--hair-09); border-left-width: 3px; border-radius: 11px; padding: 24px; }
-.tileRed { border-left-color: var(--red); }
-.tileGold { border-left-color: var(--gold); }
+.red { border-left-color: var(--red); }
+.gold { border-left-color: var(--gold); }
+.green { border-left-color: var(--green); }
 .tileTitle { margin: 0 0 10px; font-family: var(--font-mono); font-size: 14px; }
-.tileTitleRed { color: var(--red-ink); }
-.tileTitleGold { color: var(--gold-2); }
-.tileBody { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
+.redTitle { color: var(--red-ink); }
+.goldTitle { color: var(--gold-2); }
+.greenTitle { color: var(--green-ink); }
+.tileBody { font-size: 16px; line-height: 1.64; color: var(--text-3); }
+.tileBody :global(p) { margin: 0 0 10px; }
+.tileBody :global(p:last-child) { margin-bottom: 0; }
 .tileBody :global(strong) { color: var(--ink); }
 
-.stuck { background: linear-gradient(150deg, var(--gold-12), rgba(217, 160, 60, .03)); border: 1px solid rgba(217, 160, 60, .32); border-radius: 11px; padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+.stuck { background: var(--grad-gold-card); border: 1px solid var(--gold-32); border-radius: 11px; padding: 24px; display: flex; flex-direction: column; justify-content: center; }
 .stuckTitle { margin: 0 0 12px; font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--ink); }
 .stuckText { margin: 0 0 18px; font-size: 16px; line-height: 1.64; color: var(--gold-text-soft); }
+.stuckBtn { align-self: flex-start; }
 
+.featureIcon { margin-bottom: 18px; }
 .featureTitle { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
 .featureText { margin: 0; font-size: 16px; line-height: 1.66; color: var(--text-3); }

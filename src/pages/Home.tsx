@@ -6,7 +6,7 @@ import { DiscordIcon, PlayIcon, SteamIcon, StrokeIcon } from '../components/ui/I
 import { useParallax, useReveal } from '../components/ui/useReveal'
 import { guideSections, type GuideSectionId } from '../data/guides'
 import { modlistPath, modlists } from '../data/modlists'
-import { asset, pageTitle, site } from '../data/site'
+import { asset, ext, pageTitle, site } from '../data/site'
 import styles from './Home.module.css'
 
 const stats = [
@@ -104,9 +104,7 @@ export function Home() {
           </p>
           <div data-reveal className={styles.heroActions}>
             <a
-              href={site.discord}
-              target="_blank"
-              rel="noopener"
+              href={site.discord} {...ext}
               className={`btn btn--gold ${styles.heroBtn} ${styles.heroBtnGold}`}
             >
               <DiscordIcon size={20} />
@@ -272,7 +270,7 @@ export function Home() {
           <p className={styles.ctaText}>
             Support channels for every list, modding help from the people who built them, and a community that keeps modding free.
           </p>
-          <a href={site.discord} target="_blank" rel="noopener" className={`btn btn--gold btn--lg ${styles.ctaBtn}`}>
+          <a href={site.discord} {...ext} className={`btn btn--gold btn--lg ${styles.ctaBtn}`}>
             <DiscordIcon size={21} />
             Join the Discord
           </a>

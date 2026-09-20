@@ -1,14 +1,9 @@
-import { useMemo } from 'react'
 import { Link, Navigate, useParams } from 'react-router'
 import { useTitle } from '../components/layout/ScrollManager'
-import { DiscordIcon, PencilIcon } from '../components/ui/Icons'
 import { SectionNav } from '../components/ui/SectionNav'
 import { isModlistSlug, modlistBySlug, modlistPath, readmeAssets } from '../data/modlists'
-import { editUrl, pageTitle, site } from '../data/site'
-import { extractHeadings } from '../markdown/headings'
-import { Markdown } from '../markdown/Markdown'
-import { preprocess } from '../markdown/preprocess'
-import { useMarkdownFile } from '../markdown/useMarkdownFile'
+import { pageTitle } from '../data/site'
+import { MarkdownArticle, useMarkdownPage } from '../markdown/MarkdownArticle'
 import styles from './ReadMePage.module.css'
 
 /** Renders content/lists/<slug>/readme.md with a sticky "on this page" strip. */
@@ -16,9 +11,7 @@ export function ReadMePage() {
   const { slug } = useParams()
   const list = isModlistSlug(slug) ? modlistBySlug[slug] : null
   const file = list?.readme ?? null
-  const { text, error, loading } = useMarkdownFile(file)
-  const headings = useMemo(() => (text ? extractHeadings(preprocess(text)).filter((h) => h.level === 2) : []), [text])
-  const navItems = useMemo(() => headings.map((h) => ({ id: h.id, label: h.text.replace(/:\s*$/, '') })), [headings])
+  const page = useMarkdownPage(file)
 
   useTitle(pageTitle(list ? `${list.fullName} — Read Me` : 'Read Me'))
 
@@ -39,33 +32,18 @@ export function ReadMePage() {
         </div>
       </section>
 
-      <SectionNav items={navItems} />
+      <SectionNav items={page.navItems} />
 
       <div className="container">
-        <article className={styles.article}>
-          {loading && <p className={styles.loading}>Loading the read me…</p>}
-          {error && (
-            <div className={styles.error}>
-              <p className={styles.errorLabel}>Could not load</p>
-              <p className={styles.errorText}>{error}</p>
-            </div>
-          )}
-          {text && <Markdown source={text} assets={readmeAssets} />}
-
-          <div className={styles.foot}>
-            <p className={styles.footText}>
-              Something out of date or missing? This page is generated from a markdown file — modlist authors can edit it directly.
-              {' '}
-              <a href={editUrl(file)} target="_blank" rel="noopener" className={styles.editLink}>
-                <PencilIcon size={14} /> Edit this page on GitHub
-              </a>
-            </p>
-            <a href={site.discord} target="_blank" rel="noopener" className="btn btn--gold btn--sm">
-              <DiscordIcon />
-              Ask for help
-            </a>
-          </div>
-        </article>
+        <MarkdownArticle
+          {...page}
+          file={file}
+          className={styles.article}
+          loadingLabel="Loading the read me…"
+          assets={readmeAssets}
+          note="Something out of date or missing? This page is generated from a markdown file — modlist authors can edit it directly."
+          cta="Ask for help"
+        />
       </div>
     </>
   )

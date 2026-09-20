@@ -2,15 +2,17 @@ import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
 import { Callout } from '../../components/ui/Callout'
 import { DiscordBand } from '../../components/ui/DiscordBand'
-import { Gallery, type Shot } from '../../components/ui/Gallery'
+import { Gallery, shotsFor, type Shot } from '../../components/ui/Gallery'
 import { BookIcon, DownloadIcon, StrokeIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
+import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
 import { SpecCards } from '../../components/ui/Specs'
 import { FeatureCard, StepList } from '../../components/ui/Steps'
+import { Tile } from '../../components/ui/Tile'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import { readmePath } from '../../data/modlists'
-import { pageTitle, site } from '../../data/site'
+import { ext, pageTitle, site } from '../../data/site'
 import styles from './LoreOut.module.css'
 
 const NAV: SectionNavItem[] = [
@@ -23,14 +25,7 @@ const NAV: SectionNavItem[] = [
   { id: 'showcase', label: 'Showcase' },
 ]
 
-const ext = { target: '_blank', rel: 'noopener' } as const
-
-// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
-const shot = (name: string, alt: string): Shot => ({
-  src: `assets/shots/loreout/${name}.webp`,
-  thumb: `assets/shots/loreout/${name}-thumb.webp`,
-  alt,
-})
+const shot = shotsFor('loreout')
 
 // The first two shots are 2x2, which packs the ten into four complete rows of the
 // four-column grid. There is no video tile here; the trailer sits in the overview.
@@ -80,15 +75,6 @@ const MODS: { label: string; links: { id: number; name: string }[] }[] = [
   },
 ]
 
-function Tile({ title, gold, red, children }: { title: string; gold?: boolean; red?: boolean; children: React.ReactNode }) {
-  return (
-    <div className={`${styles.tile} ${gold ? styles.tileGold : ''} ${red ? styles.tileRed : ''}`}>
-      <h3 className={styles.tileTitle}>{title}</h3>
-      <p className={styles.tileText}>{children}</p>
-    </div>
-  )
-}
-
 export function LoreOut() {
   useTitle(pageTitle('LoreOut'))
 
@@ -97,6 +83,7 @@ export function LoreOut() {
       <ModlistHero
         image="assets/heroes/loreout.webp"
         position="center 45%"
+        scrimClassName={styles.scrim}
         logo="assets/logos/LoreOut.webp"
         logoAlt="LoreOut"
         title="The Modern Roleplaying Modlist"
@@ -107,7 +94,6 @@ export function LoreOut() {
           { label: '800+ mods', gold: true },
           { label: 'Survival difficulty' },
         ]}
-        className={styles.hero}
       >
         <a href={site.wabbajack} {...ext} className="btn btn--gold btn--glow"><DownloadIcon />Install with Wabbajack</a>
         <a href={site.discord} {...ext} className="btn btn--ghost">Support</a>
@@ -116,15 +102,14 @@ export function LoreOut() {
 
       <SectionNav items={NAV} />
 
-      <div className={`container ${styles.page}`}>
-        <section id="overview" className={styles.overview}>
+      <div className="container">
+        <section id="overview" className="section--intro">
           <div className="grid grid--2">
-            <div>
+            <div className="flow">
               <p className="eyebrow">Overview</p>
-              <h2 className={`h2 ${styles.h2Overview}`}>A full redesign of Fallout 4</h2>
-              <p className={styles.para}>Every aspect has been shaped to enhance gameplay, visuals and roleplayability. An auto-installing Wabbajack list filled with some of the best mods the community has to offer, designed for replayability so no two playthroughs are the same.</p>
-              <Callout kind="warning" icon={false} className={styles.tagCallout}>
-                <p className={styles.tag}>A note about difficulty</p>
+              <h2 className="h2 head--loose">A full redesign of Fallout 4</h2>
+              <p className="lead">Every aspect has been shaped to enhance gameplay, visuals and roleplayability. An auto-installing Wabbajack list filled with some of the best mods the community has to offer, designed for replayability so no two playthroughs are the same.</p>
+              <Callout kind="warning" icon={false} compact label="A note about difficulty">
                 <p>LoreOut is built around a custom tweaked <strong>Survival</strong> setting — the only staff-supported difficulty. Read up on what the overhauls do, especially the perks and skills in You Are Exceptional. Difficulty is adjustable, but it is tuned for a more involved experience out of the box. Don't get discouraged.</p>
               </Callout>
             </div>
@@ -132,8 +117,8 @@ export function LoreOut() {
           </div>
         </section>
 
-        <section id="features" className={styles.features}>
-          <h2 className={`h2 ${styles.h2Features}`}>What's changed</h2>
+        <section id="features" className="section--tight">
+          <h2 className="h2 head--gap">What's changed</h2>
           <div className="grid grid--cards">
             <FeatureCard
               title="Gunplay and roleplaying"
@@ -163,8 +148,8 @@ export function LoreOut() {
         </section>
 
         <section id="specs" className="section">
-          <h2 className={`h2 ${styles.h2Specs}`}>System requirements</h2>
-          <p className={styles.specSub}>Recommended for roughly 90–120 FPS at 1080p.</p>
+          <h2 className="h2 head--sub">System requirements</h2>
+          <p className={`sub ${styles.specSub}`}>Recommended for roughly 90–120 FPS at 1080p.</p>
           <SpecCards
             cards={[
               { label: 'CPU', value: 'Ryzen 7 5700X3D or Intel equivalent' },
@@ -181,21 +166,12 @@ export function LoreOut() {
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className={`h2 ${styles.h2Tight}`}>Installation</h2>
-          <p className={`lead ${styles.introWide}`}>Install LoreOut to the same drive as Fallout 4, and keep both out of <span className={`mono ${styles.mono15}`}>\Program Files\</span>.</p>
+          <h2 className="h2 head--tight">Installation</h2>
+          <p className="lead section-lead section-lead--roomy">Install LoreOut to the same drive as Fallout 4, and keep both out of <span className={`mono ${styles.mono15}`}>\Program Files\</span>.</p>
 
-          <Link to={readmePath('loreout')} className={styles.readme}>
-            <div className={styles.readmeLeft}>
-              <BookIcon size={22} stroke="#F0C070" className={styles.readmeIcon} />
-              <div>
-                <p className={styles.readmeTitle}>Full LoreOut Read Me</p>
-                <p className={styles.readmeText}>The summary below covers the shape of the install. The Read Me has every step in full, maintained by the modlist author.</p>
-              </div>
-            </div>
-            <span className={styles.readmeBtn}>Open Read Me</span>
-          </Link>
+          <ReadMeCard slug="loreout" />
 
-          <div className={styles.installGrid}>
+          <div className="grid grid--install">
             <StepList
               number={1}
               title="Pre-installation"
@@ -208,7 +184,7 @@ export function LoreOut() {
                 <>Reinstall, run the Launcher once for the graphics check — then never launch through it again or it reverts your INIs.</>,
               ]}
             />
-            <div>
+            <div className="grid grid--stack">
               <StepList
                 number={2}
                 title="Wabbajack"
@@ -219,15 +195,15 @@ export function LoreOut() {
                   <>If downloads fail, rerun before asking in Discord — it resumes. Otherwise sign out of Nexus via the gear icon, restart Wabbajack, sign back in.</>,
                 ]}
               />
-              <Callout kind="important" icon={false} title="Missing Nexus files" className={styles.nexusCallout}>
-                <p>Two mods were removed from Nexus and must be fetched externally. Start the install; if it fails, close Wabbajack, drop the zips into <span className="mono" style={{ color: 'var(--gold-light)' }}>LoreOut/Downloads</span>, and rerun — it resumes. Grab MiscHairstyle 1.6 and MoreHairstyles-MoreBeards from <a href="https://fo4-mischairstyle.tumblr.com/post/139169515871/mischairstyle16-download-47-new-hairs-for-male" {...ext}>fo4-mischairstyle.tumblr.com</a>.</p>
+              <Callout kind="important" icon={false} compact title="Missing Nexus files">
+                <p>Two mods were removed from Nexus and must be fetched externally. Start the install; if it fails, close Wabbajack, drop the zips into <span className="mono mono--light">LoreOut/Downloads</span>, and rerun — it resumes. Grab MiscHairstyle 1.6 and MoreHairstyles-MoreBeards from <a href="https://fo4-mischairstyle.tumblr.com/post/139169515871/mischairstyle16-download-47-new-hairs-for-male" {...ext}>fo4-mischairstyle.tumblr.com</a>.</p>
               </Callout>
             </div>
           </div>
         </section>
 
         <section id="setup" className="section">
-          <h2 className={`h2 ${styles.h2Setup}`}>Post-installation</h2>
+          <h2 className="h2 head--gap">Post-installation</h2>
           <div className="grid grid--tiles">
             <Tile title="Pick your resolution">
               Near the bottom of MO2's left pane find <strong>“INI SETTINGS - Choose only one!”</strong> and select the file for your display. Ultrawide users also activate the matching option under OPTIONAL PLUGINS.
@@ -238,10 +214,10 @@ export function LoreOut() {
             <Tile title="Launching the game">
               Set the MO2 dropdown to <strong>LoreOut</strong> and press Run. You must launch through Mod Organizer — it handles most mods via its virtual file system.
             </Tile>
-            <Tile title="Required MCM setup" gold>
+            <Tile title="Required MCM setup" tone="gold">
               Imperative for the intended experience. Create your character, exit the vault, press ESC → Mod Config → MCM settings → “MCM Settings” dropdown → <strong>MCM Settings Manager</strong> → Apply. Return to the game and choose <strong>Remove</strong> on the Legendary effects popup. Save, quit to desktop, restart.
             </Tile>
-            <Tile title="Updating" red>
+            <Tile title="Updating" tone="red">
               Check the changelog first — it says whether the update is save-safe. Rerun Wabbajack to overwrite. It <strong>deletes every file that is not part of the list</strong>; prefix a mod's name with <span className="mono">[NoDelete]</span> to keep it, though added mods are unsupported.
             </Tile>
             <Tile title="Removing the list">
@@ -251,12 +227,12 @@ export function LoreOut() {
         </section>
 
         <section id="mods" className="section">
-          <h2 className={`h2 ${styles.h2Tight}`}>Key mods</h2>
-          <p className={`lead ${styles.intro}`}>A fraction of the 800+ in the list — these are the ones most worth reading up on before you start.</p>
+          <h2 className="h2 head--tight">Key mods</h2>
+          <p className="lead section-lead">A fraction of the 800+ in the list — these are the ones most worth reading up on before you start.</p>
           <div className={styles.modsGrid}>
             {MODS.map((group) => (
               <div key={group.label}>
-                <p className={styles.subLabel}>{group.label}</p>
+                <p className="label label--gold">{group.label}</p>
                 <div className={styles.modList}>
                   {group.links.map((m) => (
                     <a key={m.id} href={nexus(m.id)} {...ext} className={styles.modLink}>{m.name}</a>
@@ -274,8 +250,8 @@ export function LoreOut() {
         <DiscordBand
           title="Hosted in the Bungalo"
           text="LoreOut's support, install help and changelogs all live in the Discord."
-          primaryLabel="Join the Discord"
-          credits={<>Credits — <strong className={styles.creditStrong}>you</strong> for reading and playing, Biggie_Boss for the collab, Alexerator, RetroPaladin, Micalov, DegenerateDak, CSEPteam, ShimSham, Grilledturkey, VishVadeva and the F4NV, Project Mojave and F4CW teams, Ungeziefi for The Midnight Ride, and A Raven of Many Hats.</>}
+          primary={{ label: 'Join the Discord' }}
+          credits={<>Credits — <strong>you</strong> for reading and playing, Biggie_Boss for the collab, Alexerator, RetroPaladin, Micalov, DegenerateDak, CSEPteam, ShimSham, Grilledturkey, VishVadeva and the F4NV, Project Mojave and F4CW teams, Ungeziefi for The Midnight Ride, and A Raven of Many Hats.</>}
         />
       </div>
     </>

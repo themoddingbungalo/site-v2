@@ -1,11 +1,20 @@
 .box { display: flex; gap: 16px; align-items: flex-start; border: 1px solid; border-left-width: 3px; border-radius: 11px; padding: 22px 24px; }
-.important { background: var(--gold-09); border-color: rgba(217, 160, 60, .32); border-left-color: var(--gold); }
+.important { background: var(--gold-09); border-color: var(--gold-32); border-left-color: var(--gold); }
 .warning { background: var(--red-bg); border-color: var(--red-bd); border-left-color: var(--red); }
 .note { background: var(--green-bg); border-color: var(--green-bd); border-left-color: var(--green); }
+.compact { padding: 20px 22px; border-radius: 10px; }
 .icon { flex: 0 0 auto; margin-top: 2px; }
 .body { min-width: 0; }
 .title { margin: 0 0 8px; font-family: var(--font-display); font-size: 1.06rem; font-weight: 600; color: var(--ink); }
 .body :global(p) { margin: 0 0 10px; font-size: 16.5px; line-height: 1.66; color: var(--text-callout); }
 .body :global(p:last-child) { margin-bottom: 0; }
 .body :global(strong) { color: var(--ink); }
+.compact .body :global(p) { font-size: 16px; line-height: 1.64; }
+/* Specificity has to clear `.compact .body p` below, or the label would inherit the
+   body-copy size. */
+.box .body .label { margin: 0 0 8px; font-size: 11.5px; line-height: 1.4; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.important .body .label { color: var(--gold-dim); }
+.warning .body .label { color: var(--red-ink); }
+.note .body .label { color: var(--green-ink); }
+
 .body :global(ul), .body :global(ol) { margin: 0; padding-left: 22px; font-size: 16.5px; line-height: 1.66; color: var(--text-callout); display: flex; flex-direction: column; gap: 8px; }

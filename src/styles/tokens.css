@@ -54,6 +54,9 @@
   --hair-24: rgba(245, 236, 214, .24);
   --hair-28: rgba(245, 236, 214, .28);
 
+  --gold-03: rgba(217, 160, 60, .03);
+  --gold-04: rgba(217, 160, 60, .04);
+  --gold-07: rgba(217, 160, 60, .07);
   --gold-09: rgba(217, 160, 60, .09);
   --gold-10: rgba(217, 160, 60, .1);
   --gold-12: rgba(217, 160, 60, .12);
@@ -61,12 +64,23 @@
   --gold-16: rgba(217, 160, 60, .16);
   --gold-20: rgba(217, 160, 60, .2);
   --gold-24: rgba(217, 160, 60, .24);
+  --gold-28: rgba(217, 160, 60, .28);
   --gold-30: rgba(217, 160, 60, .3);
+  --gold-32: rgba(217, 160, 60, .32);
   --gold-34: rgba(217, 160, 60, .34);
+  --gold-38: rgba(217, 160, 60, .38);
   --gold-42: rgba(217, 160, 60, .42);
   --gold-45: rgba(217, 160, 60, .45);
   --gold-50: rgba(217, 160, 60, .5);
   --gold-60: rgba(217, 160, 60, .6);
+  --gold-75: rgba(217, 160, 60, .75);
+
+  /* The four surface gradients the artboards reuse everywhere. Spelling them out per
+     component is how the same wash ended up with four slightly different angles. */
+  --grad-gold-band: linear-gradient(120deg, var(--gold-14), var(--gold-04));
+  --grad-gold-card: linear-gradient(150deg, var(--gold-12), var(--gold-03));
+  --grad-gold-card-strong: linear-gradient(150deg, var(--gold-14), var(--gold-04));
+  --grad-panel: linear-gradient(140deg, #22272B 0%, #1A1E21 100%);
 
   --scroll-thumb: #2E3438;
 

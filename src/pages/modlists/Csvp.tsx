@@ -4,16 +4,25 @@ import { useTitle } from '../../components/layout/ScrollManager'
 import { Callout } from '../../components/ui/Callout'
 import { DiscordBand } from '../../components/ui/DiscordBand'
 import { FaqAccordion, type FaqItem } from '../../components/ui/FaqAccordion'
-import { Gallery, type Shot } from '../../components/ui/Gallery'
+import { Gallery, galleryExtra, shotsFor, type Shot } from '../../components/ui/Gallery'
 import { BookIcon, DownloadIcon, StrokeIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
+import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
 import { SizeCards, SpecCards, SpecToggle } from '../../components/ui/Specs'
 import { FeatureCard, StepList, StuckTile, TroubleTile } from '../../components/ui/Steps'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
+import {
+  AntivirusTile,
+  DownloadFailedTile,
+  DynDolodCrashTile,
+  NotWhitelistedTile,
+  SkyrimRequirements,
+  skyrimPreInstall,
+} from '../../content/install'
 import { guidePath } from '../../data/guides'
 import { readmePath } from '../../data/modlists'
-import { pageTitle, site } from '../../data/site'
+import { ext, pageTitle, site } from '../../data/site'
 import s from './Csvp.module.css'
 
 const NEXUS = 'https://www.nexusmods.com/skyrimspecialedition/mods/135701'
@@ -110,9 +119,7 @@ const faqs: FaqItem[] = [
       <>
         <p>Three steps: bind Dual Wield Block to <strong>L1</strong> in Valhalla's MCM, activate the <strong>Controller Config (ON)</strong> profile in the MCM Recorder menu, then open and close moreHUD's MCM. To switch back, bind Dual Wield Block to V again and activate Controller Config (OFF).</p>
         <p>Hotkeys 1–6 need to be set on the keyboard — they are mapped but cannot be assigned by the gamepad itself. With STB Hotkey Quick Cast you can swap between powers and shouts on the fly by binding them to a hotkey.</p>
-        <div style={{ marginTop: 4 }}>
-          <YouTubeEmbed id="VxIci4aqVpg" title="CSVP gamepad setup" radius={11} />
-        </div>
+        <YouTubeEmbed id="VxIci4aqVpg" title="CSVP gamepad setup" radius={11} className={s.faqVideo} />
       </>
     ),
   },
@@ -131,12 +138,7 @@ const faqs: FaqItem[] = [
   },
 ]
 
-// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
-const shot = (name: string, alt: string): Shot => ({
-  src: `assets/shots/csvp/${name}.webp`,
-  thumb: `assets/shots/csvp/${name}-thumb.webp`,
-  alt,
-})
+const shot = shotsFor('csvp')
 
 // The wide video is 2x2, so it plus the second video and the ten shots fill five
 // complete rows of this page's three-column grid.
@@ -153,7 +155,29 @@ const shots: Shot[] = [
   shot('icy-lake', 'Moonlight on a frozen lake'),
 ]
 
-const ext = { target: '_blank', rel: 'noopener' } as const
+const GUIDE_CARDS = [
+  {
+    slug: 'csvp-colloquy-guide',
+    title: "Colloquy's Guide",
+    text: 'Twelve chapters on how CSVP plays — levelling, questline gating, followers, the Civil War, economy and difficulty. Read this before your first playthrough.',
+    tags: ['Gameplay', '12 sections'],
+    cta: 'Read the guide →',
+    icon: (
+      <>
+        <path d="M12 3 4 6.5v6c0 5 3.4 7.7 8 8.5 4.6-.8 8-3.5 8-8.5v-6L12 3Z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
+  },
+  {
+    slug: 'csvp-modification-manual',
+    title: 'Modification Manual',
+    text: 'Adding mods of your own? This is what to rerun and in what order — Synthesis, VRAMr, ParallaxGen, xLODGen, TexGen, DynDOLOD, grass cache, ENB swaps and Pandora.',
+    tags: ['Advanced', 'With screenshots'],
+    cta: 'Open the manual →',
+    icon: <path d="M20.3 5.7a4.5 4.5 0 0 1-5.9 5.9L6 20a2.1 2.1 0 1 1-3-3l8.4-8.4a4.5 4.5 0 0 1 5.9-5.9l-2.6 2.6.9 3.5 3.5.9 2.2-2.6Z" />,
+  },
+]
 
 /** Colloquy's Skyrim Vanilla Plus — modlist page. */
 export function Csvp() {
@@ -194,18 +218,16 @@ export function Csvp() {
 
       <div className="container">
         {/* ---- Overview ---------------------------------------------------- */}
-        <section id="overview" className={s.overview}>
+        <section id="overview" className="section--intro">
           <div className="grid grid--2">
-            <div>
+            <div className="flow">
               <p className="eyebrow">Overview</p>
-              <h2 className={`h2 ${s.h2Loose}`}>That 2011 feeling, with 2026 visuals</h2>
-              <p className={s.overviewP}>A true homebrewed vanilla experience — it was important that this list feels like something anyone can make. Many of NGVO's systems and requirements were taken out to streamline everything: no Creation Kit, no BodySlide Studio.</p>
-              <p className={s.overviewP}>Colloquy is a proud vanilla apologist, so the only goal was a fresh coat of paint. No custom followers, no new lands, no sweeping changes to combat or world scaling. Everything present has simply been enhanced.</p>
+              <h2 className="h2 head--loose">That 2011 feeling, with 2026 visuals</h2>
+              <p className="lead">A true homebrewed vanilla experience — it was important that this list feels like something anyone can make. Many of NGVO's systems and requirements were taken out to streamline everything: no Creation Kit, no BodySlide Studio.</p>
+              <p className="lead">Colloquy is a proud vanilla apologist, so the only goal was a fresh coat of paint. No custom followers, no new lands, no sweeping changes to combat or world scaling. Everything present has simply been enhanced.</p>
               <div className={s.quote}>
-                <div>
-                  <p className={s.quoteLabel}>From the author</p>
-                  <p className={s.quoteText}>“This isn't an ongoing project or anything, it is simply my personal Modlist that I wanted to make accessible for the people close to me. Please don't expect the work of an expert — I am only a passionate fan.”</p>
-                </div>
+                <p className="label label--gold">From the author</p>
+                <p className={s.quoteText}>“This isn't an ongoing project or anything, it is simply my personal Modlist that I wanted to make accessible for the people close to me. Please don't expect the work of an expert — I am only a passionate fan.”</p>
               </div>
             </div>
             <YouTubeEmbed id="asuwknZghMU" title="CSVP trailer" />
@@ -213,10 +235,10 @@ export function Csvp() {
         </section>
 
         {/* ---- How it plays ------------------------------------------------ */}
-        <section id="philosophy" className={s.philosophy}>
+        <section id="philosophy" className="section--tight">
           <p className="eyebrow">How it plays</p>
-          <h2 className={`h2 ${s.h2Tight}`}>CSVP is about taking your time</h2>
-          <p className={`lead ${s.intro} ${s.introPhilosophy}`}>Questlines are stretched out, fast travel is limited in an immersive way, and you can trip on a rug if you move haphazardly. Everything about this list asks you to slow down.</p>
+          <h2 className="h2 head--tight">CSVP is about taking your time</h2>
+          <p className="lead section-lead">Questlines are stretched out, fast travel is limited in an immersive way, and you can trip on a rug if you move haphazardly. Everything about this list asks you to slow down.</p>
           <div className="grid grid--cards">
             <FeatureCard
               title="Survival, softened"
@@ -250,8 +272,8 @@ export function Csvp() {
         <section id="specs" className="section">
           <div className="section-head">
             <div>
-              <h2 className={`h2 ${s.h2Sub}`}>System requirements</h2>
-              <p className={s.subtitle}>Two profiles, identical gameplay. The difference is strictly visual and performance.</p>
+              <h2 className="h2 head--sub">System requirements</h2>
+              <p className="sub">Two profiles, identical gameplay. The difference is strictly visual and performance.</p>
             </div>
             <SpecToggle<Profile>
               options={[{ key: 'main', label: 'Main' }, { key: 'perf', label: 'Performance' }]}
@@ -277,45 +299,24 @@ export function Csvp() {
             ]}
           />
 
-          <Callout title="Read this before you start">
-            <p>CSVP requires Skyrim updated to the <strong>latest version</strong> with the full Anniversary Edition upgrade. Only <strong>English Steam</strong> versions are supported — GOG and other languages are not.</p>
-            <p>Windows 10 or 11, version 21H2 or newer. LTSC and modified variants will not work. Running from an HDD or external drive is strongly advised against — though you can move or delete the Downloads folder after install if space is tight.</p>
-          </Callout>
+          <SkyrimRequirements
+            name="CSVP"
+            amd={false}
+            storageNote=" — though you can move or delete the Downloads folder after install if space is tight"
+          />
         </section>
 
         {/* ---- Installation ------------------------------------------------ */}
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className={`h2 ${s.h2Tight}`}>Installation</h2>
-          <p className={`lead ${s.introNarrow} ${s.introInstall}`}>Only the Main version appears in the Wabbajack UI — enable “Non Featured” lists when searching. Performance is a separate download from the Nexus page. Both install the same way.</p>
+          <h2 className="h2 head--tight">Installation</h2>
+          <p className="lead section-lead section-lead--roomy">Only the Main version appears in the Wabbajack UI — enable “Non Featured” lists when searching. Performance is a separate download from the Nexus page. Both install the same way.</p>
 
-          <Link to={readmePath('csvp')} className={s.readmeBand}>
-            <div className={s.readmeInner}>
-              <BookIcon size={22} stroke="#F0C070" className={s.readmeIcon} />
-              <div>
-                <p className={s.readmeTitle}>Full CSVP Read Me</p>
-                <p className={s.readmeText}>The summary below covers the shape of the install. The Read Me has every step in full, maintained by the modlist author.</p>
-              </div>
-            </div>
-            <span className={`btn btn--gold btn--xs ${s.readmeBtn}`}>Open Read Me</span>
-          </Link>
+          <ReadMeCard slug="csvp" />
 
-          <div className={s.installGrid}>
-            <StepList
-              number={1}
-              title="Pre-installation"
-              steps={[
-                <>Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" {...ext}>Visual C++ x64</a> and the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0" {...ext}>.NET desktop runtime x64</a>.</>,
-                <>Stop Skyrim from <a href="https://help.steampowered.com/en/faqs/view/71AB-698D-57EB-178C#disable" {...ext}>auto-updating</a>.</>,
-                <>Fully uninstall Skyrim — the game folder <em>and</em> the Skyrim Special Edition folder in <span className="mono">\Documents\My Games\</span>.</>,
-                <>Disable OneDrive and anything else that hooks into user file areas.</>,
-                <>Reinstall Skyrim outside Program Files — somewhere like <span className="mono">C:\Games</span>.</>,
-                <>Start the game once and let it run the graphics check.</>,
-                <>Launch to the main menu and let the Creation Club files download. <strong>Do not verify your game files.</strong></>,
-                <>Remove or disable third-party antivirus such as MalwareBytes or Webroot.</>,
-              ]}
-            />
-            <div className={s.installCol}>
+          <div className="grid grid--install">
+            <StepList number={1} title="Pre-installation" steps={skyrimPreInstall} />
+            <div className="grid grid--stack">
               <StepList
                 number={2}
                 title="Install from disk"
@@ -346,66 +347,42 @@ export function Csvp() {
         {/* ---- Guides ------------------------------------------------------ */}
         <section id="guides" className="section">
           <p className="eyebrow">Guides</p>
-          <h2 className={`h2 ${s.h2Tight}`}>Written by Colloquy</h2>
-          <p className={`lead ${s.intro} ${s.introGuides}`}>One guide for playing the list, one for taking it apart. Both live as markdown, so the author can edit them whenever the list changes.</p>
+          <h2 className="h2 head--tight">Written by Colloquy</h2>
+          <p className="lead section-lead">One guide for playing the list, one for taking it apart. Both live as markdown, so the author can edit them whenever the list changes.</p>
           <div className={s.guideGrid}>
-            <Link to={guidePath('csvp-colloquy-guide')} className={s.guideCard}>
-              <StrokeIcon size={26} className={s.guideIcon}>
-                <path d="M12 3 4 6.5v6c0 5 3.4 7.7 8 8.5 4.6-.8 8-3.5 8-8.5v-6L12 3Z" />
-                <path d="m9 12 2 2 4-4" />
-              </StrokeIcon>
-              <h3 className={s.guideTitle}>Colloquy's Guide</h3>
-              <p className={s.guideText}>Twelve chapters on how CSVP plays — levelling, questline gating, followers, the Civil War, economy and difficulty. Read this before your first playthrough.</p>
-              <div className={s.tags}>
-                <span className={s.tag}>Gameplay</span>
-                <span className={s.tag}>12 sections</span>
-              </div>
-              <span className={s.guideCta}>Read the guide →</span>
-            </Link>
-            <Link to={guidePath('csvp-modification-manual')} className={s.guideCard}>
-              <StrokeIcon size={26} className={s.guideIcon}>
-                <path d="M20.3 5.7a4.5 4.5 0 0 1-5.9 5.9L6 20a2.1 2.1 0 1 1-3-3l8.4-8.4a4.5 4.5 0 0 1 5.9-5.9l-2.6 2.6.9 3.5 3.5.9 2.2-2.6Z" />
-              </StrokeIcon>
-              <h3 className={s.guideTitle}>Modification Manual</h3>
-              <p className={s.guideText}>Adding mods of your own? This is what to rerun and in what order — Synthesis, VRAMr, ParallaxGen, xLODGen, TexGen, DynDOLOD, grass cache, ENB swaps and Pandora.</p>
-              <div className={s.tags}>
-                <span className={s.tag}>Advanced</span>
-                <span className={s.tag}>With screenshots</span>
-              </div>
-              <span className={s.guideCta}>Open the manual →</span>
-            </Link>
+            {GUIDE_CARDS.map((g) => (
+              <Link key={g.slug} to={guidePath(g.slug)} className={s.guideCard}>
+                <StrokeIcon size={26} className={s.guideIcon}>{g.icon}</StrokeIcon>
+                <h3 className={s.guideTitle}>{g.title}</h3>
+                <p className={s.guideText}>{g.text}</p>
+                <div className={s.tags}>
+                  {g.tags.map((t) => <span key={t} className={s.tag}>{t}</span>)}
+                </div>
+                <span className={s.guideCta}>{g.cta}</span>
+              </Link>
+            ))}
           </div>
 
-          <Callout kind="warning" icon={false} className={s.warn}>
-            <p className={s.warnLabel}>Before you modify</p>
-            <p className={s.warnText}>Do not file official bug reports if you have changed anything in the list. Ask in the chats instead — help is happily given either way.</p>
+          <Callout kind="warning" icon={false} compact label="Before you modify" className={s.warn}>
+            <p>Do not file official bug reports if you have changed anything in the list. Ask in the chats instead — help is happily given either way.</p>
           </Callout>
         </section>
 
         {/* ---- Troubleshooting --------------------------------------------- */}
         <section id="troubleshooting" className="section">
-          <h2 className={`h2 ${s.h2Tight}`}>Troubleshooting</h2>
-          <p className={`lead ${s.intro} ${s.introTrouble}`}>Rule of thumb: a browser window on failure means you are missing files from Skyrim itself. No browser means a Wabbajack issue — rerunning usually solves it. A system error usually means antivirus, and Windows Defender counts.</p>
+          <h2 className="h2 head--tight">Troubleshooting</h2>
+          <p className="lead section-lead">Rule of thumb: a browser window on failure means you are missing files from Skyrim itself. No browser means a Wabbajack issue — rerunning usually solves it. A system error usually means antivirus, and Windows Defender counts.</p>
           <div className="grid grid--tiles">
-            <TroubleTile title="Could not download x">
-              Large files fail on flaky connections. Rerun Wabbajack, or download manually into the same downloads folder. Make sure you own all the paid AE content.
-            </TroubleTile>
-            <TroubleTile title="x is not a whitelisted download">
-              This happens while the list is being updated. Check for a new version or wait for the release ping in Discord.
-            </TroubleTile>
-            <TroubleTile title="Antivirus reports a virus">
-              A pre-installation step was skipped. If you did follow them, add a Windows Defender exclusion for Mod Organizer.
-            </TroubleTile>
+            <DownloadFailedTile>Make sure you own all the paid AE content.</DownloadFailedTile>
+            <NotWhitelistedTile />
+            <AntivirusTile />
             <TroubleTile title="Head skin tone bugs out on a new game" tone="gold">
               Almost always happens. Open the console, type <span className="mono">showracemenu</span>, confirm your character once more and it will not recur this playthrough.
             </TroubleTile>
-            <TroubleTile title="Crash after dying and reloading" tone="gold">
-              A DynDOLOD DLL NG issue. Disable the DLL and rerun DynDOLOD to fall back to papyrus scripts — heavier on FPS and worse LODs, but stable.
+            <DynDolodCrashTile />
+            <TroubleTile title="Optional post-game tidying" tone="green">
+              SKSE, ShaderCache and MCM files from Overwrite can go into <strong>CSVP - MCM &amp; INI Settings</strong>; KiLoader files into <strong>KiLoader Output</strong>. The <span className="mono">textures</span> folder is PhotoMode output and always regenerates.
             </TroubleTile>
-            <div className={s.tileGreen}>
-              <p className={s.tileGreenTitle}>Optional post-game tidying</p>
-              <p className={s.tileBody}>SKSE, ShaderCache and MCM files from Overwrite can go into <strong className="strong">CSVP - MCM &amp; INI Settings</strong>; KiLoader files into <strong className="strong">KiLoader Output</strong>. The <span className="mono">textures</span> folder is PhotoMode output and always regenerates.</p>
-            </div>
             <StuckTile
               text="Post your Wabbajack or MO2 log in the CSVP channel and someone will take a look."
               href={site.discord}
@@ -420,7 +397,7 @@ export function Csvp() {
               <p className="eyebrow">Reference</p>
               <h2 className="h2">Hotkeys</h2>
             </div>
-            <p className={s.hotkeyNote}>Press <span className={s.kbd}>F11</span> in game for a reminder</p>
+            <p className="sub">Press <span className={s.kbd}>F11</span> in game for a reminder</p>
           </div>
           <div className={s.hotkeyWrap}>
             <div className={s.hotkeys} role="table" aria-label="CSVP hotkeys">
@@ -440,15 +417,16 @@ export function Csvp() {
         </section>
 
         {/* ---- Showcase ---------------------------------------------------- */}
-        <section id="gallery" className={`section ${s.galleryWrap}`}>
+        <section id="gallery" className="section">
           <Gallery
             shots={shots}
+            minTile={340}
             title="See it in motion"
             extraFirst
             extra={
               <>
-                <YouTubeEmbed id="CClrbI8RK7k" title="CSVP showcase" radius={12} className={`${s.videoTile} ${s.videoWide}`} />
-                <YouTubeEmbed id="VxIci4aqVpg" title="CSVP gamepad setup" radius={12} className={s.videoTile} />
+                <YouTubeEmbed id="CClrbI8RK7k" title="CSVP showcase" radius={12} className={galleryExtra.feature} />
+                <YouTubeEmbed id="VxIci4aqVpg" title="CSVP gamepad setup" radius={12} className={galleryExtra.tile} />
               </>
             }
           />
@@ -457,8 +435,8 @@ export function Csvp() {
         <DiscordBand
           title="Our Discord is the hub for all things CSVP"
           text="“I would love to have you join! I'm always open to hearing suggestions and additions you made to your personal list that could be thrown in here.”"
-          secondary={{ href: NEXUS, label: 'Nexus page' }}
-          credits={<>Credits — <strong style={{ color: 'var(--text-2)' }}>you</strong> for reading this, Biggie_Boss for NGVO, JaySerpa for GTS, Halgari and the Wabbajack team, every mod author whose work made this list possible, and everyone in the Modding Bungalo Discord.</>}
+          secondary={[{ href: NEXUS, label: 'Nexus page' }]}
+          credits={<>Credits — <strong>you</strong> for reading this, Biggie_Boss for NGVO, JaySerpa for GTS, Halgari and the Wabbajack team, every mod author whose work made this list possible, and everyone in the Modding Bungalo Discord.</>}
         />
       </div>
     </>

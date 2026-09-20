@@ -1,14 +1,16 @@
 import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
+import { DiscordBand } from '../../components/ui/DiscordBand'
 import { DiscordIcon, StrokeIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
 import { SectionNav } from '../../components/ui/SectionNav'
 import { FeatureCard } from '../../components/ui/Steps'
+import { KeyRows, type KeyRow } from '../../components/ui/Tile'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
-import { asset, pageTitle, site } from '../../data/site'
+import { asset, ext, pageTitle, site } from '../../data/site'
 import styles from './LoreRim.module.css'
 
-const navItems = [
+const NAV = [
   { id: 'overview', label: 'Overview' },
   { id: 'trailer', label: 'Trailer' },
   { id: 'features', label: "What's overhauled" },
@@ -16,18 +18,15 @@ const navItems = [
   { id: 'support', label: 'Support' },
 ]
 
-const glance: { key: string; value: React.ReactNode }[] = [
+const GLANCE: KeyRow[] = [
   { key: 'Game', value: 'Skyrim Special Edition' },
   { key: 'Author', value: 'biggie_boss' },
   { key: 'Gameplay base', value: 'Requiem + EnaiRim' },
   { key: 'Released', value: 'Early 2024' },
-  {
-    key: 'Documentation',
-    value: <a href={site.lorerim} target="_blank" rel="noopener" className={styles.glanceLink}>lorerim.com</a>,
-  },
+  { key: 'Documentation', value: <a href={site.lorerim} {...ext}>lorerim.com</a> },
 ]
 
-const features = [
+const FEATURES = [
   {
     title: 'Modern action combat',
     text: 'Skyrim plays like a current-generation action game — movement, animation and impact all brought up to date.',
@@ -75,11 +74,11 @@ const features = [
 
 function GlobeIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <StrokeIcon size={18} stroke="currentColor">
       <circle cx="12" cy="12" r="10" />
       <path d="M2 12h20" />
       <path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z" />
-    </svg>
+    </StrokeIcon>
   )
 }
 
@@ -102,52 +101,48 @@ export function LoreRim() {
           { label: 'EnaiRim + Requiem' },
         ]}
       >
-        <a href={site.lorerim} target="_blank" rel="noopener" className="btn btn--gold btn--glow">
+        <a href={site.lorerim} {...ext} className="btn btn--gold btn--glow">
           <GlobeIcon />
           Visit lorerim.com
         </a>
         <Link to="#trailer" className="btn btn--ghost">Watch the trailer</Link>
-        <a href={site.discord} target="_blank" rel="noopener" className="btn btn--ghost">Support</a>
+        <a href={site.discord} {...ext} className="btn btn--ghost">Support</a>
       </ModlistHero>
 
-      <SectionNav items={navItems} />
+      <SectionNav items={NAV} />
 
       <div className="container">
-        <section id="overview" className={styles.overview}>
+        <section id="overview" className="section--intro">
           <div className="grid grid--2">
-            <div>
+            <div className="flow">
               <p className="eyebrow">Overview</p>
-              <h2 className={`h2 ${styles.overviewTitle}`}>Every aspect, overhauled</h2>
-              <p className={styles.para}>
-                LoreRim was built to turn Skyrim into both a modern action game and a genuine roleplaying one, by integrating many of EnaiSiaion's EnaiRim mods, Requiem – The Roleplaying Overhaul, and hundreds of custom addons and patches on top.
+              <h2 className="h2 head--loose">Every aspect, overhauled</h2>
+              <p className="lead">
+                LoreRim was built to turn Skyrim into both a modern action game and a genuine roleplaying one, by
+                integrating many of EnaiSiaion's EnaiRim mods, Requiem – The Roleplaying Overhaul, and hundreds of
+                custom addons and patches on top.
               </p>
-              <p className={styles.para}>
-                Biggie Boss released it in early 2024, having built it live across multiple streams after testing dozens of other people's lists first.
+              <p className="lead">
+                Biggie Boss released it in early 2024, having built it live across multiple streams after testing
+                dozens of other people's lists first.
               </p>
             </div>
-            <div className={styles.glance}>
-              <p className={styles.glanceLabel}>At a glance</p>
-              <div className={styles.glanceRows}>
-                {glance.map((row) => (
-                  <div key={row.key} className={styles.glanceRow}>
-                    <span className={styles.glanceKey}>{row.key}</span>
-                    {typeof row.value === 'string' ? <span className={styles.glanceVal}>{row.value}</span> : row.value}
-                  </div>
-                ))}
-              </div>
+            <div className="card">
+              <p className={`label label--gold ${styles.glanceLabel}`}>At a glance</p>
+              <KeyRows rows={GLANCE} />
             </div>
           </div>
         </section>
 
-        <section id="trailer" className={styles.trailer}>
-          <h2 className={`h2 ${styles.trailerTitle}`}>Trailer</h2>
+        <section id="trailer" className="section--tight">
+          <h2 className="h2 head--gap">Trailer</h2>
           <YouTubeEmbed id="9T50lRVFAmE" title="LoreRim trailer" />
         </section>
 
         <section id="features" className="section">
-          <h2 className={`h2 ${styles.featuresTitle}`}>What's overhauled</h2>
+          <h2 className="h2 head--gap">What's overhauled</h2>
           <div className="grid grid--cards">
-            {features.map((f) => (
+            {FEATURES.map((f) => (
               <FeatureCard key={f.title} icon={f.icon} title={f.title}>{f.text}</FeatureCard>
             ))}
           </div>
@@ -163,31 +158,25 @@ export function LoreRim() {
               <p className="eyebrow">Documentation</p>
               <h2 className={styles.docsTitle}>LoreRim has its own site</h2>
               <p className={styles.docsText}>
-                Install instructions, system requirements, mechanics documentation and the changelog all live on lorerim.com — it is the authoritative source and is kept current with each release.
+                Install instructions, system requirements, mechanics documentation and the changelog all live on
+                lorerim.com — it is the authoritative source and is kept current with each release.
               </p>
               <div className={styles.docsActions}>
-                <a href={site.lorerim} target="_blank" rel="noopener" className="btn btn--gold btn--sm">Read the docs</a>
-                <a href={site.biggie.youtube} target="_blank" rel="noopener" className="btn btn--outline btn--sm">Dev streams</a>
+                <a href={site.lorerim} {...ext} className="btn btn--gold btn--sm">Read the docs</a>
+                <a href={site.biggie.youtube} {...ext} className="btn btn--outline btn--sm">Dev streams</a>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="support" className={styles.support}>
-          <div className={styles.supportPanel}>
-            <h2 className={styles.supportTitle}>Support lives in the Bungalo</h2>
-            <p className={styles.supportText}>
-              Install help, release pings and build advice from the people who made it — plus everyone else playing the same list.
-            </p>
-            <div className={styles.supportActions}>
-              <a href={site.discord} target="_blank" rel="noopener" className={`btn btn--gold ${styles.supportBtn}`}>
-                <DiscordIcon size={19} />
-                Join the Discord
-              </a>
-              <a href={site.biggie.kofi} target="_blank" rel="noopener" className={`btn btn--outline ${styles.supportBtn}`}>Support on Ko-fi</a>
-            </div>
-          </div>
-        </section>
+        <div id="support">
+          <DiscordBand
+            title="Support lives in the Bungalo"
+            text="Install help, release pings and build advice from the people who made it — plus everyone else playing the same list."
+            primary={{ label: 'Join the Discord', icon: <DiscordIcon size={19} /> }}
+            secondary={[{ href: site.biggie.kofi, label: 'Support on Ko-fi' }]}
+          />
+        </div>
       </div>
     </>
   )

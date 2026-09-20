@@ -1,27 +1,11 @@
-/* ---- section spacing ------------------------------------------------------ */
-.overview { padding: clamp(56px, 7vw, 88px) 0 clamp(30px, 4vw, 44px); }
-.philosophy { padding: clamp(30px, 4vw, 48px) 0; }
-
-.h2Tight { margin-bottom: 16px; }
-.h2Loose { margin-bottom: 20px; }
-.h2Sub { margin-bottom: 10px; }
-
-.overviewP { margin: 0 0 18px; font-size: 17.5px; line-height: 1.72; color: var(--text-2); text-wrap: pretty; }
-.intro { max-width: 720px; }
-.introNarrow { max-width: 700px; }
-.introPhilosophy { margin-bottom: clamp(26px, 3.4vw, 38px); }
-.introInstall { margin-bottom: clamp(32px, 4vw, 44px); }
-.introGuides { margin-bottom: clamp(28px, 3.6vw, 40px); }
-.introTrouble { margin-bottom: clamp(26px, 3.4vw, 36px); }
-.subtitle { margin: 0; font-size: 16.5px; color: var(--text-4); }
+/* CSVP — the author pull-quote, the two guide cards and the hotkey table. Everything
+   else on the page is a shared component or a global utility. */
 
 /* ---- overview: author pull-quote ----------------------------------------- */
 .quote {
-  display: flex; gap: 14px; align-items: flex-start;
   background: var(--hair-04); border: 1px solid var(--hair-10); border-left: 3px solid var(--gold);
-  border-radius: 10px; padding: 20px 22px; margin-top: 26px;
+  border-radius: 10px; padding: 20px 22px;
 }
-.quoteLabel { margin: 0 0 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dim); }
 .quoteText { margin: 0; font-size: 16.5px; line-height: 1.66; color: #D6D1C7; font-style: italic; }
 
 /* ---- philosophy: disabled-CC list inside the 4th card -------------------- */
@@ -29,24 +13,6 @@
 
 /* ---- specs ---------------------------------------------------------------- */
 .countValue { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--text-hero); font-weight: 600; }
-
-/* ---- install: read-me band ------------------------------------------------ */
-.readmeBand {
-  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-  margin: 0 0 clamp(30px, 4vw, 42px); padding: 22px 26px;
-  background: linear-gradient(120deg, var(--gold-14), rgba(217, 160, 60, .04));
-  border: 1px solid rgba(217, 160, 60, .38); border-radius: 12px; color: inherit;
-  transition: border-color .2s ease, transform .2s ease;
-}
-.readmeBand:hover { border-color: rgba(217, 160, 60, .75); transform: translateY(-2px); color: inherit; }
-.readmeInner { display: flex; align-items: flex-start; gap: 15px; min-width: 0; }
-.readmeIcon { flex: 0 0 auto; margin-top: 3px; }
-.readmeTitle { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.14rem; font-weight: 600; color: var(--ink); }
-.readmeText { margin: 0; font-size: 16px; line-height: 1.6; color: var(--gold-text-soft); text-wrap: pretty; }
-.readmeBtn { flex: 0 0 auto; }
-
-.installGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 2.6vw, 32px); }
-.installCol { display: flex; flex-direction: column; gap: 28px; }
 
 /* ---- guides: link cards --------------------------------------------------- */
 .guideGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(18px, 2.4vw, 26px); }
@@ -64,18 +30,14 @@
 .tag { font-size: 12.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted-2); border: 1px solid var(--hair-14); border-radius: 100px; padding: 6px 13px; }
 .guideCta { margin-top: auto; align-self: flex-start; font-size: 13.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-light); }
 
-.warn { margin-top: clamp(22px, 2.6vw, 30px); padding: 20px 22px; }
-.warn .warnLabel { margin: 0 0 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--red-ink); }
-.warn .warnText { margin: 0; font-size: 16.5px; line-height: 1.66; color: #D6D1C7; }
+.warn { margin-top: clamp(22px, 2.6vw, 30px); }
 
-/* ---- troubleshooting: green "tidying" tile -------------------------------- */
-.tileGreen { background: var(--bg-card); border: 1px solid var(--hair-09); border-left: 3px solid var(--green); border-radius: 11px; padding: 24px; }
-.tileGreenTitle { margin: 0 0 10px; font-family: var(--font-mono); font-size: 14px; color: var(--green-ink); }
-.tileBody { margin: 0; font-size: 16px; line-height: 1.64; color: var(--text-3); }
+/* ---- FAQs ----------------------------------------------------------------- */
+/* The gamepad answer ends on a video; give it a little air off the paragraph. */
+.faqVideo { margin-top: 4px; }
 
 /* ---- hotkeys -------------------------------------------------------------- */
 .kbd { font-family: var(--font-mono); background: var(--hair-08); border: 1px solid var(--hair-16); border-radius: 5px; padding: 3px 7px; color: var(--ink); }
-.hotkeyNote { margin: 0; font-size: 15px; color: var(--text-4); }
 .hotkeyWrap { overflow-x: auto; }
 .hotkeys {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px;
@@ -84,17 +46,3 @@
 .hotkeyRow { display: flex; align-items: center; justify-content: space-between; gap: 14px; background: var(--bg-card); padding: 16px 20px; }
 .hotkeyLabel { font-size: 16px; color: var(--text-2); }
 .keycap { flex: 0 0 auto; font-family: var(--font-mono); font-size: 13.5px; background: var(--gold-14); border: 1px solid var(--gold-30); border-radius: 6px; padding: 5px 10px; color: var(--gold-light); }
-
-/* ---- gallery: video tiles ------------------------------------------------- */
-/* This page shows two videos, so its grid runs at three wider columns rather than the
-   shared four. The showcase video takes a 2x2 block; with the second video and the ten
-   shots as single tiles that fills five complete rows. Spanning two rows as well as two
-   columns keeps the video's 16/9 shape without making its row taller than the others. */
-.galleryWrap > div:nth-of-type(2) { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-.videoTile { border-color: var(--hair-10); }
-.videoWide { grid-column: span 2; grid-row: span 2; }
-/* Below three columns a 2x2 tile cannot be packed without leaving holes. */
-@media (max-width: 1140px) { .videoWide { grid-column: auto; grid-row: auto; } }
-@media (max-width: 620px) {
-  .galleryWrap > div:nth-of-type(2) { grid-template-columns: minmax(0, 1fr); }
-}

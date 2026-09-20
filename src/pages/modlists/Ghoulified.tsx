@@ -1,17 +1,27 @@
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
-import { Callout } from '../../components/ui/Callout'
 import { DiscordBand } from '../../components/ui/DiscordBand'
-import { Gallery, type Shot } from '../../components/ui/Gallery'
+import { Gallery, galleryExtra, shotsFor, type Shot } from '../../components/ui/Gallery'
 import { BookIcon, DownloadIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
+import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav } from '../../components/ui/SectionNav'
 import { SpecCards, SpecToggle } from '../../components/ui/Specs'
-import { StepList, StuckTile, TroubleTile } from '../../components/ui/Steps'
+import { StepList, StuckTile, TroubleTile, type Step } from '../../components/ui/Steps'
+import { Tile } from '../../components/ui/Tile'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
+import {
+  AntivirusTile,
+  DownloadFailedTile,
+  NotWhitelistedTile,
+  SkyrimRequirements,
+  UpdatingTile,
+  step,
+  wabbajackInstall,
+} from '../../content/install'
 import { readmePath } from '../../data/modlists'
-import { pageTitle, site } from '../../data/site'
+import { ext, pageTitle, site } from '../../data/site'
 import styles from './Ghoulified.module.css'
 
 const NAV = [
@@ -28,14 +38,7 @@ const NEXUS = 'https://www.nexusmods.com/skyrimspecialedition/mods/121811'
 const TWEAKS_GUIDES = 'https://sites.google.com/view/3bftweaksrequiem/home'
 const WULF_BUILDS = 'https://docs.google.com/document/d/1cNxdbVA-1_Zdtsb1Bmxv1ffQ5jNCPcVOW-mwgAyIx_A/mobilebasic'
 
-const ext = { target: '_blank', rel: 'noopener' } as const
-
-// Full-size images open in the lightbox; the -thumb variants fill the grid tiles.
-const shot = (name: string, alt: string): Shot => ({
-  src: `assets/shots/ghoulified/${name}.webp`,
-  thumb: `assets/shots/ghoulified/${name}-thumb.webp`,
-  alt,
-})
+const shot = shotsFor('ghoulified')
 
 // The video and the first two shots are 2x2, which packs the ten shots plus the video
 // into five complete rows of the four-column grid.
@@ -52,19 +55,71 @@ const SHOTS: Shot[] = [
   shot('molag-bal-vyrthur', 'Vyrthur in the Forgotten Vale'),
 ]
 
-/** Pre-installation steps; `hot` rows get the gold highlight (Rare Curios). */
-const PRE_INSTALL: { body: ReactNode; hot?: boolean }[] = [
-  { body: <>Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" {...ext}>Visual C++ x64</a> and the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0" {...ext}>.NET desktop runtime x64</a>.</> },
-  { body: <>Stop Skyrim from <a href="https://help.steampowered.com/en/faqs/view/71AB-698D-57EB-178C#disable" {...ext}>auto-updating</a>.</> },
-  { body: <>Fully uninstall Skyrim — the game folder <em>and</em> the Skyrim Special Edition folder in <span className="mono">\Documents\My Games\</span>.</> },
-  { body: <>Disable OneDrive and anything else that hooks into user file areas.</> },
-  { body: <>Reinstall Skyrim outside Program Files — somewhere like <span className="mono">C:\Games</span>.</> },
-  { body: <>Start the game once and let it run the graphics check.</> },
-  { body: <>Launch to the main menu and let the free Creation Club files download. <strong>Do not verify your game files.</strong></> },
-  { body: <>In <span className="mono">…\Skyrim Special Edition\Data</span>, delete <span className="mono">ccbgssse037-curios.bsa</span> and <span className="mono">ccbgssse037-curios.esp</span>.</>, hot: true },
-  { body: <>Relaunch Skyrim, go to the Creation Club and redownload <strong>Rare Curios</strong>. Back to main menu, then close the game.</>, hot: true },
-  { body: <>Download the <a href="https://store.steampowered.com/app/1946180/Skyrim_Special_Edition_Creation_Kit/" {...ext}>Skyrim SE Creation Kit</a> on Steam and run it once.</> },
-  { body: <>Remove or disable third-party antivirus such as MalwareBytes or Webroot.</> },
+/**
+ * The shared pre-installation steps, with the Rare Curios dance spliced in. No other
+ * list needs it, which is why those two steps live here and are flagged `hot`.
+ */
+const PRE_INSTALL: Step[] = [
+  step.runtimes(),
+  step.stopAutoUpdates,
+  step.uninstallSkyrim,
+  step.disableOneDrive,
+  step.reinstallSkyrim,
+  step.graphicsCheck,
+  step.creationClub,
+  {
+    body: <>In <span className="mono">…\Skyrim Special Edition\Data</span>, delete <span className="mono">ccbgssse037-curios.bsa</span> and <span className="mono">ccbgssse037-curios.esp</span>.</>,
+    hot: true,
+  },
+  {
+    body: <>Relaunch Skyrim, go to the Creation Club and redownload <strong>Rare Curios</strong>. Back to main menu, then close the game.</>,
+    hot: true,
+  },
+  step.creationKitLinked,
+  step.antivirus,
+]
+
+const OPTIONAL = [
+  {
+    title: '3BFTweaks',
+    tone: 'plain' as const,
+    body: <>The core of what makes this list what it is. Read the <Link to="#tweaks">3BFTweaks section</Link> below before you start.</>,
+  },
+  {
+    title: 'AD-Mortem perma-death',
+    tone: 'red' as const,
+    body: 'Automatically deletes all your saves when you die. Enable it only if you mean it.',
+  },
+  {
+    title: 'Smart Harvest NG AutoLoot',
+    tone: 'plain' as const,
+    body: 'Can auto-loot anything you walk near. By default it only picks up alchemy ingredients.',
+  },
+  {
+    title: 'Modex — Mod Explorer Menu',
+    tone: 'plain' as const,
+    body: 'Your go-to for testing and potentially fixing bugs mid-playthrough.',
+  },
+  {
+    title: 'SKSE Menu Framework',
+    tone: 'plain' as const,
+    body: <>Controls SKSE mods — hit <span className="mono">F1</span> in game. This is also where you change your FOV.</>,
+  },
+]
+
+const TWEAKS = [
+  {
+    title: 'Difficulty and balance',
+    text: 'Adjusts the difficulty curve so the game stays challenging throughout, reducing your potential to become overwhelmingly powerful.',
+  },
+  {
+    title: 'Integration',
+    text: 'Version 4.3.3 requires Requiem 5.4.5 and patches four free Creation Club mods, keeping popular expansions balanced within Requiem.',
+  },
+  {
+    title: 'Customisation',
+    text: 'Designed for a high level of customisation — adjust most aspects to suit your own preferences.',
+  },
 ]
 
 export function Ghoulified() {
@@ -75,7 +130,7 @@ export function Ghoulified() {
   return (
     <>
       <ModlistHero
-        className={styles.hero}
+        scrimClassName={styles.scrim}
         image="assets/heroes/ghoulified-stones.webp"
         position="center 50%"
         logo="assets/logos/Ghoulified.webp"
@@ -104,13 +159,13 @@ export function Ghoulified() {
       <SectionNav items={NAV} />
 
       <div className="container">
-        <section id="overview" className={styles.overview}>
+        <section id="overview" className="section--intro">
           <div className="grid grid--2">
-            <div>
+            <div className="flow">
               <p className="eyebrow">Overview</p>
-              <h2 className={`h2 ${styles.overviewTitle}`}>Dangerous, but fair</h2>
-              <p className={`lead ${styles.copy}`}>Ghoulified Reality completely overhauls both visuals and gameplay for a more challenging and immersive Skyrim. It forks NGVO — a visual-only list — and layers Requiem on top for a strategic experience, from combat through character progression.</p>
-              <p className={`lead ${styles.copy}`}>What separates it from other Requiem lists is 3BFTweaks and its addons, which make the world more dangerous while maintaining a sense of fairness and balance. Perma-death is available but optional.</p>
+              <h2 className="h2 head--loose">Dangerous, but fair</h2>
+              <p className="lead">Ghoulified Reality completely overhauls both visuals and gameplay for a more challenging and immersive Skyrim. It forks NGVO — a visual-only list — and layers Requiem on top for a strategic experience, from combat through character progression.</p>
+              <p className="lead">What separates it from other Requiem lists is 3BFTweaks and its addons, which make the world more dangerous while maintaining a sense of fairness and balance. Perma-death is available but optional.</p>
             </div>
             <YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified Reality showcase" />
           </div>
@@ -133,54 +188,23 @@ export function Ghoulified() {
               { label: 'GPU', value: hi ? 'RTX 4070 or better' : 'RTX 3070 or better', gold: true },
             ]}
           />
-          <Callout title="Read this before you start">
-            <p>Requires Skyrim updated to the <strong>latest version</strong> and the <strong>AE DLC</strong>. Only English Steam versions are supported — GOG and other languages are not. Around <strong>300 GB</strong> total space.</p>
-            <p>Windows 10 or 11, 21H2 or newer. LTSC and modified variants will not work. AMD RX 580 and older cards are not supported. HDDs and external drives are strongly advised against.</p>
-          </Callout>
+          <SkyrimRequirements name="Ghoulified Reality" space="300 GB" />
         </section>
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className={`h2 ${styles.installTitle}`}>Installation</h2>
-          <p className={`lead ${styles.installIntro}`}>Note steps 8 and 9 — Ghoulified needs Rare Curios deleted and redownloaded, which no other list here asks for. Skipping it breaks the install.</p>
+          <h2 className="h2 head--tight">Installation</h2>
+          <p className="lead section-lead section-lead--roomy">Note steps 8 and 9 — Ghoulified needs Rare Curios deleted and redownloaded, which no other list here asks for. Skipping it breaks the install.</p>
 
-          <Link to={readmePath('ghoulified')} className={styles.readmeCard}>
-            <div className={styles.readmeLead}>
-              <BookIcon size={22} stroke="#F0C070" className={styles.readmeIcon} />
-              <div>
-                <p className={styles.readmeTitle}>Full Ghoulified Reality Read Me</p>
-                <p className={styles.readmeText}>The summary below covers the shape of the install. The Read Me has every step in full, maintained by the modlist author.</p>
-              </div>
-            </div>
-            <span className={styles.readmeCta}>Open Read Me</span>
-          </Link>
+          <ReadMeCard slug="ghoulified" />
 
-          <div className={styles.installGrid}>
-            <div>
-              <div className={styles.stepHead}>
-                <span className={styles.stepBadge}>1</span>
-                <h3 className={styles.stepTitle}>Pre-installation</h3>
-              </div>
-              <ol className={styles.stepList}>
-                {PRE_INSTALL.map((s, i) => (
-                  <li key={i} className={`${styles.stepRow} ${s.hot ? styles.stepRowHot : ''}`}>
-                    <span className={styles.stepNum}>{String(i + 1).padStart(2, '0')}</span>
-                    <span>{s.body}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
+          <div className="grid grid--install">
+            <StepList number={1} title="Pre-installation" steps={PRE_INSTALL} />
             <div>
               <StepList
                 number={2}
                 title="Download and install"
-                steps={[
-                  <>Put <a href={site.wabbajack} {...ext}>Wabbajack</a> in a folder like <span className="mono">C:\Games\Wabbajack</span>. Always the latest version.</>,
-                  <>Open Wabbajack, click <strong>Browse Modlists</strong>, press download on Ghoulified Reality.</>,
-                  <>Set the install folder to something like <span className="mono">C:\Ghoulified Reality</span>.</>,
-                  <>Downloads do not need an SSD, but it is faster if they are on one.</>,
-                  <>Press play and go pet your nearest fluffy animal.</>,
-                ]}
+                steps={wabbajackInstall({ name: 'Ghoulified Reality', folder: 'C:\\Ghoulified Reality' })}
               />
               <StepList
                 number={3}
@@ -198,29 +222,12 @@ export function Ghoulified() {
         </section>
 
         <section id="optional" className="section">
-          <h2 className={`h2 ${styles.optTitle}`}>Optional mods</h2>
-          <p className={`lead ${styles.optIntro}`}>MO2 has two separators labelled optional — one for gameplay, one for combat animations. Everything in them can be toggled at any time, and this is where you enable perma-death.</p>
+          <h2 className="h2 head--tight">Optional mods</h2>
+          <p className="lead section-lead">MO2 has two separators labelled optional — one for gameplay, one for combat animations. Everything in them can be toggled at any time, and this is where you enable perma-death.</p>
           <div className="grid grid--tiles">
-            <div className={styles.optCard}>
-              <h3 className={styles.optCardTitle}>3BFTweaks</h3>
-              <p className={styles.optCardText}>The core of what makes this list what it is. Read the <Link to="#tweaks">3BFTweaks section</Link> below before you start.</p>
-            </div>
-            <div className={`${styles.optCard} ${styles.optCardRed}`}>
-              <h3 className={styles.optCardTitle}>AD-Mortem perma-death</h3>
-              <p className={styles.optCardText}>Automatically deletes all your saves when you die. Enable it only if you mean it.</p>
-            </div>
-            <div className={styles.optCard}>
-              <h3 className={styles.optCardTitle}>Smart Harvest NG AutoLoot</h3>
-              <p className={styles.optCardText}>Can auto-loot anything you walk near. By default it only picks up alchemy ingredients.</p>
-            </div>
-            <div className={styles.optCard}>
-              <h3 className={styles.optCardTitle}>Modex — Mod Explorer Menu</h3>
-              <p className={styles.optCardText}>Your go-to for testing and potentially fixing bugs mid-playthrough.</p>
-            </div>
-            <div className={styles.optCard}>
-              <h3 className={styles.optCardTitle}>SKSE Menu Framework</h3>
-              <p className={styles.optCardText}>Controls SKSE mods — hit <span className="mono">F1</span> in game. This is also where you change your FOV.</p>
-            </div>
+            {OPTIONAL.map((o) => (
+              <Tile key={o.title} title={o.title} tone={o.tone}>{o.body}</Tile>
+            ))}
           </div>
         </section>
 
@@ -230,18 +237,12 @@ export function Ghoulified() {
             <h2 className={`h2 ${styles.tweaksTitle}`}>What is 3BFTweaks?</h2>
             <p className={`lead ${styles.tweaksIntro}`}>Often shortened to 3Tweaks, it is a comprehensive overhaul for Requiem – The Roleplaying Overhaul, created by ANoobInDisguise and the Requiem community. It refines and rebalances an already challenging experience, aimed squarely at veteran players.</p>
             <div className={styles.tweaksGrid}>
-              <div className={styles.tweaksItem}>
-                <h3 className={styles.tweaksItemTitle}>Difficulty and balance</h3>
-                <p className={styles.tweaksItemText}>Adjusts the difficulty curve so the game stays challenging throughout, reducing your potential to become overwhelmingly powerful.</p>
-              </div>
-              <div className={styles.tweaksItem}>
-                <h3 className={styles.tweaksItemTitle}>Integration</h3>
-                <p className={styles.tweaksItemText}>Version 4.3.3 requires Requiem 5.4.5 and patches four free Creation Club mods, keeping popular expansions balanced within Requiem.</p>
-              </div>
-              <div className={styles.tweaksItem}>
-                <h3 className={styles.tweaksItemTitle}>Customisation</h3>
-                <p className={styles.tweaksItemText}>Designed for a high level of customisation — adjust most aspects to suit your own preferences.</p>
-              </div>
+              {TWEAKS.map((t) => (
+                <div key={t.title} className={styles.tweaksItem}>
+                  <h3 className={styles.tweaksItemTitle}>{t.title}</h3>
+                  <p className={styles.tweaksItemText}>{t.text}</p>
+                </div>
+              ))}
             </div>
             <div className={styles.tweaksActions}>
               <a href={TWEAKS_GUIDES} {...ext} className="btn btn--gold btn--sm">Official guides</a>
@@ -251,24 +252,15 @@ export function Ghoulified() {
         </section>
 
         <section id="troubleshooting" className="section">
-          <h2 className={`h2 ${styles.troubleTitle}`}>Troubleshooting</h2>
+          <h2 className="h2 head--gap">Troubleshooting</h2>
           <div className="grid grid--tiles">
-            <TroubleTile title="Could not download x">
-              Large files fail on flaky connections. Rerun Wabbajack, or download manually into the same downloads folder.
+            <DownloadFailedTile />
+            <NotWhitelistedTile />
+            <AntivirusTile />
+            <UpdatingTile />
+            <TroubleTile title="Stock Game &amp; Root Builder" tone="green">
+              A copy of Skyrim lives inside the install folder, so other lists stay compatible. Root Builder manages ENB, ReShade and Engine Fixes.
             </TroubleTile>
-            <TroubleTile title="x is not a whitelisted download">
-              This happens while the list is being updated. Check for a new version or wait for the release ping.
-            </TroubleTile>
-            <TroubleTile title="Antivirus reports a virus">
-              A pre-installation step was skipped. If you did follow them, <a href="https://www.thewindowsclub.com/exclude-a-folder-from-windows-security-scan" {...ext}>add a Defender exclusion</a> for Mod Organizer.
-            </TroubleTile>
-            <TroubleTile title="Updating the list" tone="gold">
-              Check the changelog and back up saves first — some updates need a new game. Keep the same paths and tick <strong>overwrite existing modlist</strong>. Mods you added yourself get deleted.
-            </TroubleTile>
-            <div className={styles.tileGreen}>
-              <p className={styles.tileGreenTitle}>Stock Game &amp; Root Builder</p>
-              <p className={styles.tileGreenBody}>A copy of Skyrim lives inside the install folder, so other lists stay compatible. Root Builder manages ENB, ReShade and Engine Fixes.</p>
-            </div>
             <StuckTile text="Bring your MO2 log to the support channel." href={site.discord} />
           </div>
         </section>
@@ -277,14 +269,14 @@ export function Ghoulified() {
           <Gallery
             shots={SHOTS}
             extraFirst
-            extra={<YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified showcase" radius={12} className={styles.showVideo} />}
+            extra={<YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified showcase" radius={12} className={galleryExtra.feature} />}
           />
         </section>
 
         <DiscordBand
           title="Support and updates in Discord"
           text="Release pings, changelogs and build advice from people playing the same brutal list."
-          credits={<>Credits — <strong className={styles.creditsYou}>you</strong> for reading this, Ghoul smasher Biggie Forn and LaLa for being super helpful, WhisperDealer for the website, Halgari and the Wabbajack team, and every mod author whose work made this list possible.</>}
+          credits={<>Credits — <strong>you</strong> for reading this, Ghoul smasher Biggie Forn and LaLa for being super helpful, WhisperDealer for the website, Halgari and the Wabbajack team, and every mod author whose work made this list possible.</>}
         />
       </div>
     </>
