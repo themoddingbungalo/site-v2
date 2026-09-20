@@ -97,7 +97,6 @@ export function Home() {
         <div className={styles.heroRadial} />
         <div className={styles.heroLinear} />
         <div className={styles.heroInner}>
-          <p data-reveal className={styles.heroEyebrow}>Community-run since 2024</p>
           <h1 data-reveal className={styles.heroTitle}>The Modding<br />Bungalo</h1>
           <p data-reveal className={styles.heroBlurb}>
             Curated Wabbajack modlists, install guides and modding documentation — built and maintained by the community.

@@ -108,10 +108,7 @@ export function Community() {
         eyebrow="Who we are"
         title="The Community"
         lead="The Bungalo is a Discord server full of modders who give their lists away for free. These are the people behind them, the server they came from, and the neighbours next door."
-        stats={[
-          { value: team.length + 1, label: 'People listed' },
-          { value: 2024, label: 'Running since' },
-        ]}
+        stats={[{ value: team.length + 1, label: 'People listed' }]}
       />
 
       <SectionNav items={navItems} />
