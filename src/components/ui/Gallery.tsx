@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { asset } from '../../data/site'
+import { useScrollLock } from './useScrollLock'
 import styles from './Gallery.module.css'
 
 export interface Shot {
@@ -52,20 +53,7 @@ export function Gallery({ shots, extra, extraFirst, eyebrow = 'Showcase', title 
     return () => window.removeEventListener('keydown', onKey)
   }, [index, close, step])
 
-  // Hold the page still behind the overlay. Replacing the scrollbar with padding
-  // keeps the layout from jumping as it disappears.
-  useEffect(() => {
-    if (index === null) return
-    const { body } = document
-    const gap = window.innerWidth - document.documentElement.clientWidth
-    const prev = { overflow: body.style.overflow, padding: body.style.paddingRight }
-    body.style.overflow = 'hidden'
-    if (gap > 0) body.style.paddingRight = `${gap}px`
-    return () => {
-      body.style.overflow = prev.overflow
-      body.style.paddingRight = prev.padding
-    }
-  }, [index])
+  useScrollLock(isOpen)
 
   // Move focus into the overlay so Escape and the arrows work without a click first.
   // preventScroll matters: plain focus() would scroll the page behind the overlay.

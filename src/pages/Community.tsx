@@ -1,7 +1,8 @@
-import { useRef } from 'react'
+import { Fragment, useRef } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../components/layout/ScrollManager'
 import { ContributeButton } from '../components/layout/SiteFooter'
+import { BordelloPanel } from '../components/ui/BordelloPanel'
 import { DiscordBand } from '../components/ui/DiscordBand'
 import { DiscordIcon, GitHubIcon, KofiIcon, NexusIcon, PatreonIcon, YouTubeIcon } from '../components/ui/Icons'
 import { SectionNav } from '../components/ui/SectionNav'
@@ -12,11 +13,12 @@ import { initials, team, teamLinkLabels, teamLinkOrder, type TeamLinkKind, type 
 import styles from './Community.module.css'
 
 const navItems = [
-  { id: 'team', label: 'The team' },
   { id: 'biggie', label: 'Biggie Boss' },
+  { id: 'team', label: 'The team' },
   { id: 'bordello', label: 'The Bordello' },
   { id: 'contribute', label: 'Contribute' },
 ]
+
 
 const linkIcons: Record<TeamLinkKind, React.ReactNode> = {
   youtube: <YouTubeIcon size={15} />,
@@ -26,12 +28,29 @@ const linkIcons: Record<TeamLinkKind, React.ReactNode> = {
   github: <GitHubIcon size={15} />,
 }
 
+/** Handles like Abandoned_By_Arkay carry no natural break point, so the name offers
+ *  one after each underscore. Without it the browser splits mid-syllable to make the
+ *  handle fit the card — "Abandoned_By_Ark" over "ay". */
+function MemberName({ name }: { name: string }) {
+  return (
+    <>
+      {name.split('_').map((part, i) => (
+        <Fragment key={i}>{i > 0 && <>_<wbr /></>}{part}</Fragment>
+      ))}
+    </>
+  )
+}
+
 /** One roster card. Only the profiles a member actually has get a button. */
 function MemberCard({ member }: { member: TeamMember }) {
   const links = teamLinkOrder.filter((k) => member.links[k])
 
   return (
-    <article data-reveal className={styles.member}>
+    <article
+      data-reveal
+      className={`${styles.member} ${member.accent ? styles.accented : ''}`}
+      style={member.accent ? ({ '--accent': member.accent } as React.CSSProperties) : undefined}
+    >
       <div className={styles.memberHead}>
         {member.avatar ? (
           <img src={asset(member.avatar)} alt="" className={styles.avatar} loading="lazy" />
@@ -39,7 +58,7 @@ function MemberCard({ member }: { member: TeamMember }) {
           <span className={styles.monogram} aria-hidden="true">{initials(member.name)}</span>
         )}
         <div className={styles.memberIdent}>
-          <h3 className={styles.memberName}>{member.name}</h3>
+          <h3 className={styles.memberName}><MemberName name={member.name} /></h3>
           <p className={styles.memberRole}>{member.role}</p>
         </div>
       </div>
@@ -106,21 +125,6 @@ export function Community() {
 
       <SectionNav items={navItems} />
 
-      {/* ---- the team ---------------------------------------------------- */}
-      <section id="team" className={`container ${styles.teamSection}`}>
-        <div data-reveal className={styles.sectionHead}>
-          <p className="eyebrow">The roster</p>
-          <h2 className="h2 h2--lg">The Bungalo team</h2>
-          <p className={styles.headText}>
-            List authors, patchers and the people keeping the wiki upright. Bios and links are filling in as everyone
-            sends theirs over &mdash; poke us in Discord if yours is missing or wrong.
-          </p>
-        </div>
-        <div className={styles.teamGrid}>
-          {team.map((m) => <MemberCard key={m.name} member={m} />)}
-        </div>
-      </section>
-
       {/* ---- Biggie Boss ------------------------------------------------- */}
       <section id="biggie" className={`container ${styles.biggieSection}`}>
         <div data-reveal className={`${styles.split} ${styles.biggie}`}>
@@ -147,25 +151,24 @@ export function Community() {
         </div>
       </section>
 
+      {/* ---- the team ---------------------------------------------------- */}
+      <section id="team" className={`container ${styles.teamSection}`}>
+        <div data-reveal className={styles.sectionHead}>
+          <p className="eyebrow">The roster</p>
+          <h2 className="h2 h2--lg">The Bungalo team</h2>
+          <p className={styles.headText}>
+            List authors, patchers and the people keeping the wiki upright. Bios and links are filling in as everyone
+            sends theirs over &mdash; poke us in Discord if yours is missing or wrong.
+          </p>
+        </div>
+        <div className={styles.teamGrid}>
+          {team.map((m) => <MemberCard key={m.name} member={m} />)}
+        </div>
+      </section>
+
       {/* ---- The Modding Bordello ---------------------------------------- */}
       <section id="bordello" className={`container ${styles.bordelloSection}`}>
-        <div data-reveal className={`${styles.split} ${styles.bordello}`}>
-          <div className={`${styles.panelBody} ${styles.bordelloBody}`}>
-            <p className={`${styles.panelEyebrow} ${styles.bordelloEyebrow}`}>Sister server</p>
-            <h2 className={styles.panelTitle}>The Modding Bordello</h2>
-            <p className={`${styles.panelText} ${styles.bordelloText}`}>
-              The Bungalo is rated R, not XXX. Schtevie&rsquo;s server hosts the NSFW modlists so this one stays safe for work &mdash; head there for adult content and support.
-            </p>
-            <div className={styles.panelActions}>
-              <a href={site.bordello.discord} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.bordelloBtn}`}>Join the Bordello</a>
-              <a href={site.bordello.site} target="_blank" rel="noopener" className={`${styles.brandBtn} ${styles.bordelloOutline}`}>Visit their site</a>
-            </div>
-          </div>
-          <div className={`${styles.media} ${styles.bordelloMedia}`}>
-            <img src={asset('assets/themoddingbordello.webp')} alt="The Modding Bordello" className={styles.mediaImg} />
-            <div className={`${styles.mediaScrim} ${styles.bordelloScrim}`} />
-          </div>
-        </div>
+        <BordelloPanel />
       </section>
 
       {/* ---- contribute -------------------------------------------------- */}

@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { Link } from 'react-router'
-import { SiteFooterWide } from '../components/layout/SiteFooter'
 import { useTitle } from '../components/layout/ScrollManager'
-import { DiscordIcon, DownloadIcon, StrokeIcon } from '../components/ui/Icons'
+import { BordelloPanel } from '../components/ui/BordelloPanel'
+import { DiscordIcon, PlayIcon, SteamIcon, StrokeIcon } from '../components/ui/Icons'
 import { useParallax, useReveal } from '../components/ui/useReveal'
 import { guideSections, type GuideSectionId } from '../data/guides'
 import { modlistPath, modlists } from '../data/modlists'
@@ -61,7 +61,7 @@ const guideIcons: Record<GuideSectionId, React.ReactNode> = {
 const startSteps = [
   {
     title: 'Install Wabbajack',
-    icon: <DownloadIcon size={22} stroke="#D9A03C" />,
+    mark: <img src={asset('assets/wabbajack-mark.png')} alt="" />,
     text: (
       <>
         Grab the latest release, drop it in a folder like <span className="mono">C:\Games\Wabbajack</span> — never Program Files or Downloads.
@@ -70,21 +70,12 @@ const startSteps = [
   },
   {
     title: 'Prep your game',
-    icon: (
-      <StrokeIcon size={22}>
-        <polyline points="9 11 12 14 22 4" />
-        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-      </StrokeIcon>
-    ),
+    mark: <SteamIcon size={30} />,
     text: 'Fresh English Steam install outside Program Files, auto-updates off, Creation Kit installed and run once. Do not verify files.',
   },
   {
     title: 'Pick a list and press play',
-    icon: (
-      <StrokeIcon size={22}>
-        <polygon points="5 3 19 12 5 21 5 3" />
-      </StrokeIcon>
-    ),
+    mark: <PlayIcon size={26} fill="currentColor" />,
     text: 'Browse modlists in Wabbajack, set an install folder, hit play. Then go pet your nearest fluffy animal while it downloads.',
   },
 ]
@@ -112,8 +103,16 @@ export function Home() {
             Curated Wabbajack modlists, install guides and modding documentation — built and maintained by the community.
           </p>
           <div data-reveal className={styles.heroActions}>
-            <Link to="/#modlists" className={`btn btn--gold ${styles.heroBtn} ${styles.heroBtnGold}`}>Browse the modlists</Link>
-            <Link to="/#start" className={`btn btn--ghost ${styles.heroBtn}`}>New to modding?</Link>
+            <a
+              href={site.discord}
+              target="_blank"
+              rel="noopener"
+              className={`btn btn--gold ${styles.heroBtn} ${styles.heroBtnGold}`}
+            >
+              <DiscordIcon size={20} />
+              Join the Discord
+            </a>
+            <Link to="/#start" className={`btn btn--ghost ${styles.heroBtn}`}>Learn more</Link>
           </div>
           <div data-reveal className={styles.stats}>
             {stats.map((s) => (
@@ -126,165 +125,140 @@ export function Home() {
         </div>
       </section>
 
-      {/* ---- start here -------------------------------------------------- */}
-      <section id="start" className={`container ${styles.startSection}`}>
-        <div data-reveal className={styles.startHead}>
-          <div className={styles.startHeadText}>
-            <p className="eyebrow">Start here</p>
-            <h2 className="h2 h2--lg">Never modded before?</h2>
-            <p className={styles.headText}>
-              Wabbajack automates the whole thing. Three steps and you are playing a fully modded game — no manual load orders, no guesswork.
-            </p>
-          </div>
-          <Link to="/guides" className="btn btn--gold-line">All guides →</Link>
-        </div>
-        <div className={styles.startGrid}>
-          {startSteps.map((s, i) => (
-            <div key={s.title} data-reveal className={styles.startCard}>
-              <div className={styles.startNum}>{i + 1}</div>
-              <div className={styles.startIcon}>{s.icon}</div>
-              <h3 className={styles.startTitle}>{s.title}</h3>
-              <p className={styles.startText}>{s.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ---- LoreRim spotlight ------------------------------------------- */}
-      <section className={`container ${styles.spotSection}`}>
-        <div data-reveal className={`${styles.split} ${styles.spot}`}>
-          <div className={`${styles.media} ${styles.spotMedia}`}>
-            <img src={asset('assets/logos/LoreRim-cover.webp')} alt="LoreRim" className={styles.mediaImg} />
-            <div className={`${styles.mediaScrim} ${styles.spotScrim}`} />
-          </div>
-          <div className={styles.spotBody}>
-            <div className={styles.spotBadge}>
-              <span className={styles.spotDot} />
-              <span className={styles.spotBadgeText}>Most popular</span>
-            </div>
-            <h2 className={styles.spotTitle}>LoreRim</h2>
-            <p className={styles.spotMeta}>Skyrim SE · by biggie_boss</p>
-            <p className={styles.spotText}>
-              Skyrim as a modern action RPG with roleplaying put back in — EnaiRim, Requiem and hundreds of custom addons and patches. Cities are bigger. Forests are lush. Enemies from previous games return. This is Skyrim in 2026.
-            </p>
-            <div className={styles.actions}>
-              <a href={site.lorerim} target="_blank" rel="noopener" className="btn btn--gold btn--sm">Visit lorerim.com</a>
-              <Link to={`${modlistPath('lorerim')}#trailer`} className="btn btn--outline btn--sm">Watch the trailer</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---- every list we host ------------------------------------------ */}
-      <section id="modlists" className={`container ${styles.modlistsSection}`}>
-        <div data-reveal className={styles.sectionHead}>
-          <p className="eyebrow">Wabbajack lists</p>
-          <h2 className="h2 h2--lg">Every list we host</h2>
-          <p className={`${styles.headText} ${styles.headTextWide}`}>
-            Curated by modders in the Bungalo, installable in a few clicks. Each list has its own read me, FAQ and support channel.
-          </p>
-        </div>
-        <div className={styles.modlistGrid}>
-          {modlists.map((m) => (
-            <Link
-              key={m.slug}
-              data-reveal
-              to={modlistPath(m.slug)}
-              className={`${styles.card} ${m.slug === 'ngvo' ? styles.cardGold : ''}`}
-            >
-              <div className={styles.cardMedia}>
-                <img
-                  src={asset(m.cover)}
-                  alt=""
-                  className={`${styles.cardImg} ${m.coverContain ? styles.cardImgContain : ''}`}
-                  loading="lazy"
-                />
-                <span className={styles.cardChip}>{m.game}</span>
-                {m.badge && <span className={styles.cardBadge}>{m.badge}</span>}
-              </div>
-              <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{m.name}</h3>
-                <p className={styles.cardText}>{m.blurb}</p>
-                <div className={styles.cardFoot}>
-                  <span className={styles.cardAuthor}>by {m.author}</span>
-                  <span className={styles.cardSize}>{m.size}</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ---- build your own list ----------------------------------------- */}
-      <section id="guides" className={styles.guidesSection}>
-        <div className={`container ${styles.guidesInner}`}>
-          <div data-reveal className={styles.sectionHead}>
-            <p className="eyebrow">Documentation</p>
-            <h2 className="h2 h2--lg">Build your own list</h2>
-            <p className={`${styles.headText} ${styles.headTextWide}`}>
-              The perfect list that has exactly what you want is the one you build yourself. Start from NGVO as a base, then follow the guides.
-            </p>
-          </div>
-          <div className={styles.guideGrid}>
-            {guideSections.map((g) => (
-              <Link key={g.id} data-reveal to={`/guides#${g.id}`} className={styles.guideCard}>
-                <div className={styles.guideIcon}>{guideIcons[g.id]}</div>
-                <div>
-                  <h3 className={styles.guideTitle}>{g.label}</h3>
-                  <p className={styles.guideText}>{guideBlurbs[g.id]}</p>
-                </div>
-              </Link>
-            ))}
-            <Link data-reveal to={modlistPath('ngvo')} className={`${styles.guideCard} ${styles.guideCardGold}`}>
-              <div className={`${styles.guideIcon} ${styles.guideIconGold}`}>
-                <StrokeIcon stroke="#F0C070">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 16v-4" />
-                  <path d="M12 8h.01" />
-                </StrokeIcon>
-              </div>
-              <div>
-                <h3 className={styles.guideTitle}>Start from NGVO</h3>
-                <p className={`${styles.guideText} ${styles.guideTextGold}`}>
-                  Read the full NGVO documentation — system specs, install walkthrough and FAQs.
+      {/* The four dark sections share one field of light — see .lit in the stylesheet.
+          It has to be one element spanning all of them: a glow per section would die
+          at every boundary and leave a dark seam between each pair. */}
+      <div className={styles.lit}>
+        {/* ---- start here -------------------------------------------------- */}
+        <section id="start">
+          <div className={`container ${styles.startInner}`}>
+            <div data-reveal className={styles.startHead}>
+              <div className={styles.startHeadText}>
+                <p className="eyebrow">Start here</p>
+                <h2 className="h2 h2--lg">Never modded before?</h2>
+                <p className={styles.headText}>
+                  Wabbajack automates the whole thing. Three steps and you are playing a fully modded game — no manual load orders, no guesswork.
                 </p>
               </div>
-            </Link>
+            </div>
+            <ol role="list" className={styles.startGrid}>
+              {startSteps.map((s, i) => (
+                <li key={s.title} data-reveal className={styles.startStep}>
+                  <div className={styles.startTop}>
+                    <span className={styles.startNum} aria-hidden="true">{i + 1}</span>
+                    <span className={styles.startMark} aria-hidden="true">{s.mark}</span>
+                  </div>
+                  <h3 className={styles.startTitle}>{s.title}</h3>
+                  <p className={styles.startText}>{s.text}</p>
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ---- the community ----------------------------------------------- */}
-      <section id="community" className={`container ${styles.communitySection}`}>
-        <div data-reveal className={styles.startHead}>
-          <div className={styles.startHeadText}>
-            <p className="eyebrow">Community</p>
-            <h2 className="h2 h2--lg">The people behind the lists</h2>
-            <p className={styles.headText}>
-              Every list here is made and supported by someone in the Discord. Meet the team, the founder and the
-              server next door.
-            </p>
+        {/* ---- every list we host ------------------------------------------ */}
+        <section id="modlists">
+          <div className={`container ${styles.modlistsInner}`}>
+            <div data-reveal className={styles.sectionHead}>
+              <p className="eyebrow">Wabbajack lists</p>
+              <h2 className="h2 h2--lg">Every list we host</h2>
+              <p className={`${styles.headText} ${styles.headTextWide}`}>
+                Curated by modders in the Bungalo, installable in a few clicks. Each list has its own read me, FAQ and support channel.
+              </p>
+            </div>
+            <ul role="list" className={styles.modlistGrid}>
+              {modlists.map((m) => (
+                <li key={m.slug} data-reveal>
+                  <Link to={modlistPath(m.slug)} className={styles.plate}>
+                    <div className={styles.plateStage}>
+                      <img src={asset(m.cover)} alt="" className={styles.plateArt} loading="lazy" />
+                      {m.badge && <span className={styles.plateBadge}>{m.badge}</span>}
+                    </div>
+                    <div className={styles.plateBody}>
+                      <div className={styles.plateHead}>
+                        <h3 className={styles.plateTitle}>{m.name}</h3>
+                        <span className={styles.plateSize}>{m.size}</span>
+                      </div>
+                      <p className={styles.plateText}>{m.blurb}</p>
+                      <div className={styles.plateMeta}>
+                        <span>{m.game}</span>
+                        <span>by {m.author}</span>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <Link to="/community" className="btn btn--gold-line">Meet the community →</Link>
-        </div>
-        <div className={styles.communityGrid}>
-          <Link data-reveal to="/community#team" className={styles.communityCard}>
-            <p className={styles.communityEyebrow}>The roster</p>
-            <h3 className={styles.communityTitle}>The Bungalo team</h3>
-            <p className={styles.communityText}>List authors, patchers and the people keeping the wiki upright.</p>
-          </Link>
-          <Link data-reveal to="/community#biggie" className={`${styles.communityCard} ${styles.communityBiggie}`}>
-            <p className={`${styles.communityEyebrow} ${styles.biggieEyebrow}`}>Founder</p>
-            <h3 className={styles.communityTitle}>Biggie Boss</h3>
-            <p className={styles.communityText}>Modder, YouTuber and streamer. Released LoreRim after building it live on stream.</p>
-          </Link>
-          <Link data-reveal to="/community#bordello" className={`${styles.communityCard} ${styles.communityBordello}`}>
-            <p className={`${styles.communityEyebrow} ${styles.bordelloEyebrow}`}>Sister server</p>
-            <h3 className={styles.communityTitle}>The Modding Bordello</h3>
-            <p className={styles.communityText}>The Bungalo is rated R, not XXX. The NSFW lists live over there.</p>
-          </Link>
-        </div>
-      </section>
+        </section>
+
+        {/* ---- build your own list ----------------------------------------- */}
+        <section id="guides">
+          <div className={`container ${styles.guidesInner}`}>
+            <div data-reveal className={styles.sectionHead}>
+              <p className="eyebrow">Documentation</p>
+              <h2 className="h2 h2--lg">Build your own list</h2>
+              <p className={`${styles.headText} ${styles.headTextWide}`}>
+                The perfect list that has exactly what you want is the one you build yourself. Start from NGVO as a base, then follow the guides.
+              </p>
+            </div>
+            <div className={styles.guideGrid}>
+              {guideSections.map((g) => (
+                <Link key={g.id} data-reveal to={`/guides#${g.id}`} className={styles.guideCard}>
+                  <div className={styles.guideIcon}>{guideIcons[g.id]}</div>
+                  <div>
+                    <h3 className={styles.guideTitle}>{g.label}</h3>
+                    <p className={styles.guideText}>{guideBlurbs[g.id]}</p>
+                  </div>
+                </Link>
+              ))}
+              <Link data-reveal to={modlistPath('ngvo')} className={`${styles.guideCard} ${styles.guideCardGold}`}>
+                <div className={`${styles.guideIcon} ${styles.guideIconGold}`}>
+                  <StrokeIcon stroke="#F0C070">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
+                  </StrokeIcon>
+                </div>
+                <div>
+                  <h3 className={styles.guideTitle}>Start from NGVO</h3>
+                  <p className={`${styles.guideText} ${styles.guideTextGold}`}>
+                    Read the full NGVO documentation — system specs, install walkthrough and FAQs.
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ---- the community ----------------------------------------------- */}
+        <section id="community" className={`container ${styles.communitySection}`}>
+          <div data-reveal className={styles.startHead}>
+            <div className={styles.startHeadText}>
+              <p className="eyebrow">Community</p>
+              <h2 className="h2 h2--lg">The people behind the lists</h2>
+              <p className={styles.headText}>
+                Every list here is made and supported by someone in the Discord. Meet the founder, the team and the
+                server next door.
+              </p>
+            </div>
+            <Link to="/community" className="btn btn--gold btn--sm">Meet the community →</Link>
+          </div>
+          <div className={styles.communityGrid}>
+            <Link data-reveal to="/community#biggie" className={`${styles.communityCard} ${styles.communityBiggie}`}>
+              <p className={`${styles.communityEyebrow} ${styles.biggieEyebrow}`}>Founder</p>
+              <h3 className={styles.communityTitle}>Biggie Boss</h3>
+              <p className={styles.communityText}>Modder, YouTuber and streamer. Released LoreRim after building it live on stream.</p>
+            </Link>
+            <Link data-reveal to="/community#team" className={styles.communityCard}>
+              <p className={styles.communityEyebrow}>The roster</p>
+              <h3 className={styles.communityTitle}>The Bungalo team</h3>
+              <p className={styles.communityText}>List authors, patchers and the people keeping the wiki upright.</p>
+            </Link>
+            <BordelloPanel className={styles.communityWide} headingLevel={3} />
+          </div>
+        </section>
+      </div>
 
       {/* ---- join the Bungalo -------------------------------------------- */}
       <section className={styles.cta}>
@@ -304,8 +278,6 @@ export function Home() {
           </a>
         </div>
       </section>
-
-      <SiteFooterWide />
     </div>
   )
 }

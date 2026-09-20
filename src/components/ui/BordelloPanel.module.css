@@ -1,0 +1,32 @@
+/* Lifted wholesale out of Community.module.css so the home teaser and the community
+   page render one panel rather than two copies. The media sits first in the DOM, which
+   puts it on the left without needing the `order` swap the old markup carried. */
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(115deg, #3A1418 0%, #24161A 58%, var(--bg-card) 100%);
+  border: 1px solid rgba(198, 58, 70, .34);
+}
+
+.media { position: relative; min-height: 300px; }
+.mediaImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.scrim { position: absolute; inset: 0; background: linear-gradient(75deg, rgba(58, 20, 24, 0) 40%, rgba(45, 20, 25, .78) 82%, #2A171B 100%); }
+
+.body { padding: clamp(30px, 3.6vw, 52px); display: flex; flex-direction: column; justify-content: center; }
+.eyebrow { margin: 0 0 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #E8737F; }
+.title { margin: 0 0 14px; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.16; color: var(--ink); }
+.text { margin: 0 0 26px; font-size: 17px; line-height: 1.68; color: #D8CBCB; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13.5px; letter-spacing: .05em; text-transform: uppercase; padding: 13px 22px; border-radius: 7px; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.btnSolid { background: #C63A46; color: #FFF4F4; }
+.btnSolid:hover { background: #E0565F; color: #FFF4F4; }
+.btnOutline { font-weight: 600; border: 1px solid rgba(232, 115, 127, .45); color: #F0D8D8; }
+.btnOutline:hover { background: rgba(198, 58, 70, .18); border-color: #E8737F; color: #FFF4F4; }
+
+@media (max-width: 420px) {
+  .panel { grid-template-columns: minmax(0, 1fr); }
+}

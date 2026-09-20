@@ -15,16 +15,6 @@ import { LoreOut } from './pages/modlists/LoreOut'
 import { LoreRim } from './pages/modlists/LoreRim'
 import { Ngvo } from './pages/modlists/Ngvo'
 
-/** Pages that bring their own footer render without the standard one. */
-function WithFooter({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      {children}
-      <SiteFooter />
-    </>
-  )
-}
-
 export default function App() {
   return (
     <>
@@ -32,18 +22,19 @@ export default function App() {
       <SiteHeader />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/modlists/lorerim" element={<WithFooter><LoreRim /></WithFooter>} />
-        <Route path="/modlists/ngvo" element={<WithFooter><Ngvo /></WithFooter>} />
-        <Route path="/modlists/ghoulified" element={<WithFooter><Ghoulified /></WithFooter>} />
-        <Route path="/modlists/loreout" element={<WithFooter><LoreOut /></WithFooter>} />
-        <Route path="/modlists/csvp" element={<WithFooter><Csvp /></WithFooter>} />
-        <Route path="/modlists/dngg" element={<WithFooter><Dngg /></WithFooter>} />
-        <Route path="/modlists/:slug/readme" element={<WithFooter><ReadMePage /></WithFooter>} />
-        <Route path="/guides" element={<WithFooter><Guides /></WithFooter>} />
-        <Route path="/community" element={<WithFooter><Community /></WithFooter>} />
-        <Route path="/guides/:slug" element={<WithFooter><GuidePage /></WithFooter>} />
-        <Route path="*" element={<WithFooter><NotFound /></WithFooter>} />
+        <Route path="/modlists/lorerim" element={<LoreRim />} />
+        <Route path="/modlists/ngvo" element={<Ngvo />} />
+        <Route path="/modlists/ghoulified" element={<Ghoulified />} />
+        <Route path="/modlists/loreout" element={<LoreOut />} />
+        <Route path="/modlists/csvp" element={<Csvp />} />
+        <Route path="/modlists/dngg" element={<Dngg />} />
+        <Route path="/modlists/:slug/readme" element={<ReadMePage />} />
+        <Route path="/guides" element={<Guides />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/guides/:slug" element={<GuidePage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+      <SiteFooter />
     </>
   )
 }

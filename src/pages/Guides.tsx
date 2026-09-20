@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { useTitle } from '../components/layout/ScrollManager'
 import { DiscordIcon, PlayIcon } from '../components/ui/Icons'
 import { SectionNav } from '../components/ui/SectionNav'
+import { useScrollLock } from '../components/ui/useScrollLock'
 import { guideSections, guideVideos, type GuideSectionId, type GuideVideo } from '../data/guides'
 import { modlistPath, readmePath } from '../data/modlists'
 import { asset, pageTitle, site } from '../data/site'
@@ -55,13 +56,9 @@ function Player({ playing, onClose }: { playing: NonNullable<Playing>; onClose: 
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
-    }
+    return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
+  useScrollLock(true)
 
   return (
     <div className={styles.overlay} onClick={onClose} role="dialog" aria-modal="true" aria-label={playing.title}>

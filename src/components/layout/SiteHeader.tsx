@@ -4,7 +4,8 @@ import { guidePath, guideSections, guides } from '../../data/guides'
 import { modlistPath, modlists } from '../../data/modlists'
 import { asset, site } from '../../data/site'
 import { team } from '../../data/team'
-import { DiscordIcon, MenuIcon, SearchIcon } from '../ui/Icons'
+import { ChevronDownIcon, DiscordIcon, MenuIcon, SearchIcon } from '../ui/Icons'
+import { useScrollLock } from '../ui/useScrollLock'
 import styles from './SiteHeader.module.css'
 
 type Menu = 'lists' | 'guides' | 'community' | null
@@ -36,6 +37,11 @@ export function SiteHeader() {
   const location = useLocation()
   const navRef = useRef<HTMLElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const searchBtnRef = useRef<HTMLButtonElement>(null)
+  const wasSearching = useRef(false)
+
+  // The search overlay and the drawer both cover the page; hold it still underneath.
+  useScrollLock(search || drawer)
 
   // Close everything on navigation.
   useEffect(() => { setMenu(null); setDrawer(false); setSearch(false) }, [location.pathname, location.hash])
@@ -66,8 +72,16 @@ export function SiteHeader() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  // Opening the overlay moves focus to the field; closing it hands focus back to the
+  // button that opened it, so a keyboard reader does not land at the top of the page.
   useEffect(() => {
-    if (search) { setQ(''); window.setTimeout(() => inputRef.current?.focus(), 0) }
+    if (search) {
+      setQ('')
+      window.setTimeout(() => inputRef.current?.focus(), 0)
+    } else if (wasSearching.current) {
+      searchBtnRef.current?.focus()
+    }
+    wasSearching.current = search
   }, [search])
 
   const index = useMemo(buildIndex, [])
@@ -89,8 +103,8 @@ export function SiteHeader() {
 
           <nav aria-label="Main" className={styles.desktopNav} ref={navRef}>
             <div data-menu className={styles.menu}>
-              <button type="button" className={styles.menuBtn} aria-expanded={menu === 'lists'} onClick={() => toggle('lists')}>
-                Modlists<span className={styles.caret}>▼</span>
+              <button type="button" className={styles.menuBtn} aria-haspopup="true" aria-expanded={menu === 'lists'} onClick={() => toggle('lists')}>
+                Modlists<ChevronDownIcon size={13} className={`${styles.caret} ${menu === 'lists' ? styles.caretOpen : ''}`} />
               </button>
               {menu === 'lists' && (
                 <div className={styles.dropdown} style={{ minWidth: 258 }}>
@@ -104,8 +118,8 @@ export function SiteHeader() {
             </div>
 
             <div data-menu className={styles.menu}>
-              <button type="button" className={styles.menuBtn} aria-expanded={menu === 'guides'} onClick={() => toggle('guides')}>
-                Guides<span className={styles.caret}>▼</span>
+              <button type="button" className={styles.menuBtn} aria-haspopup="true" aria-expanded={menu === 'guides'} onClick={() => toggle('guides')}>
+                Guides<ChevronDownIcon size={13} className={`${styles.caret} ${menu === 'guides' ? styles.caretOpen : ''}`} />
               </button>
               {menu === 'guides' && (
                 <div className={styles.dropdown} style={{ minWidth: 300, padding: 10 }}>
@@ -125,8 +139,8 @@ export function SiteHeader() {
             </div>
 
             <div data-menu className={styles.menu}>
-              <button type="button" className={styles.menuBtn} aria-expanded={menu === 'community'} onClick={() => toggle('community')}>
-                Community<span className={styles.caret}>▼</span>
+              <button type="button" className={styles.menuBtn} aria-haspopup="true" aria-expanded={menu === 'community'} onClick={() => toggle('community')}>
+                Community<ChevronDownIcon size={13} className={`${styles.caret} ${menu === 'community' ? styles.caretOpen : ''}`} />
               </button>
               {menu === 'community' && (
                 <div className={styles.dropdown} style={{ minWidth: 232 }}>
@@ -143,7 +157,7 @@ export function SiteHeader() {
             <button type="button" aria-label="Menu" aria-expanded={drawer} className={`${styles.iconBtn} ${styles.mobileToggle}`} onClick={() => setDrawer((d) => !d)}>
               <MenuIcon />
             </button>
-            <button type="button" aria-label="Search" className={styles.iconBtn} onClick={() => { setSearch(true); setDrawer(false) }}>
+            <button type="button" aria-label="Search" ref={searchBtnRef} className={styles.iconBtn} onClick={() => { setSearch(true); setDrawer(false) }}>
               <SearchIcon />
             </button>
             <a href={site.discord} target="_blank" rel="noopener" className={styles.cta}>
@@ -183,18 +197,27 @@ export function SiteHeader() {
       </header>
 
       {search && (
-        <div className={styles.searchOverlay} onClick={(e) => { if (e.target === e.currentTarget) setSearch(false) }}>
+        <div
+          className={styles.searchOverlay}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Search the site"
+          onClick={(e) => { if (e.target === e.currentTarget) setSearch(false) }}
+        >
           <div className={styles.searchBox}>
             <div className={styles.searchRow}>
               <SearchIcon size={24} stroke="#D9A03C" />
               <input
                 ref={inputRef}
-                type="text"
+                type="search"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Search guides, modlists, FAQs…"
                 className={styles.searchInput}
                 aria-label="Search the site"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck={false}
               />
               <button type="button" className={styles.esc} onClick={() => setSearch(false)}>ESC</button>
             </div>

@@ -68,6 +68,8 @@
   --gold-50: rgba(217, 160, 60, .5);
   --gold-60: rgba(217, 160, 60, .6);
 
+  --scroll-thumb: #2E3438;
+
   --header-bg: rgba(21, 24, 26, .9);
   --subnav-bg: rgba(24, 28, 30, .94);
   --scrim: rgba(21, 24, 26, .72);

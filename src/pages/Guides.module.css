@@ -1,5 +1,5 @@
 /* ---- hero band ------------------------------------------------------------ */
-.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--hair-08); }
+.hero { position: relative; overflow: hidden; }
 .heroMedia { position: absolute; inset: 0; z-index: 0; }
 .heroMedia img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; display: block; }
 .heroScrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(21, 24, 26, .9) 0%, rgba(21, 24, 26, .8) 40%, rgba(21, 24, 26, .95) 86%, var(--bg) 100%); }

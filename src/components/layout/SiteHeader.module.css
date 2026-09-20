@@ -15,7 +15,10 @@
   padding: 10px 14px; border-radius: 6px; transition: background .15s ease, color .15s ease;
 }
 .menuBtn:hover, .menuBtn[aria-expanded="true"] { background: var(--hair-06); color: var(--ink); }
-.caret { font-size: 9px; opacity: .65; }
+.caret { flex: 0 0 auto; opacity: .6; transition: transform .18s ease, opacity .15s ease; }
+.menuBtn:hover .caret, .menuBtn[aria-expanded="true"] .caret { opacity: 1; }
+.menuBtn[aria-expanded="true"] .caretOpen { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) { .caret { transition: none; } }
 
 .dropdown {
   position: absolute; top: calc(100% + 8px); left: 0;
@@ -55,7 +58,10 @@
 .searchOverlay { position: fixed; inset: 0; z-index: 200; background: rgba(12, 14, 15, .93); backdrop-filter: blur(10px); padding: clamp(60px, 12vh, 140px) 20px 40px; overflow-y: auto; }
 .searchBox { max-width: 760px; margin: 0 auto; }
 .searchRow { display: flex; align-items: center; gap: 14px; border-bottom: 2px solid var(--gold); padding-bottom: 14px; }
-.searchInput { flex: 1; min-width: 0; background: none; border: 0; outline: none; color: var(--ink); font-family: var(--font-body); font-size: clamp(20px, 3vw, 28px); font-weight: 300; }
+/* The field has no chrome of its own — the gold rule under the row is the control,
+   so the caret is themed to match rather than left as the browser's white bar. */
+.searchInput { flex: 1; min-width: 0; background: none; border: 0; outline: none; color: var(--ink); caret-color: var(--gold); font-family: var(--font-body); font-size: clamp(20px, 3vw, 28px); font-weight: 300; }
+.searchInput::-webkit-search-cancel-button { appearance: none; }
 .searchInput::placeholder { color: var(--text-muted); }
 .esc { background: rgba(245, 236, 214, .07); border: 1px solid var(--hair-16); color: #BDB8AE; border-radius: 6px; padding: 6px 11px; font-size: 12px; letter-spacing: .1em; cursor: pointer; }
 .esc:hover { color: var(--ink); border-color: var(--gold-50); }

@@ -18,14 +18,14 @@ export interface Modlist {
   blurb: string
   /** Tagline in the search overlay. */
   tagline: string
+  /** Cover art for the home card. These are the lists' own lockups, in whatever shape
+   *  their authors made them, so the card mounts them whole rather than cropping. */
   cover: string
   logo: string
   /** Markdown file under content/, or null when the list is documented elsewhere. */
   readme: string | null
   /** Highlight badge on the home card. */
   badge?: string
-  /** Cover uses `contain` with padding (logo on dark) instead of `cover`. */
-  coverContain?: boolean
 }
 
 export const modlists: Modlist[] = [
@@ -42,6 +42,7 @@ export const modlists: Modlist[] = [
     cover: 'assets/logos/LoreRim-cover.webp',
     logo: 'assets/logos/LoreRim.webp',
     readme: null,
+    badge: 'Most popular',
   },
   {
     slug: 'ngvo',
@@ -85,7 +86,6 @@ export const modlists: Modlist[] = [
     cover: 'assets/logos/LoreOut.webp',
     logo: 'assets/logos/LoreOut.webp',
     readme: 'readmes/loreout.md',
-    coverContain: true,
   },
   {
     slug: 'csvp',

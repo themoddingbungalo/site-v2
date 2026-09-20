@@ -9,8 +9,21 @@
 @import '@fontsource/source-sans-3/700.css';
 @import './tokens.css';
 
-html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 140px;
+  /* Dark form controls and a dark scrollbar; without it the browser paints both for a
+     light page. The thumb sits one step above the card surface so it reads as part of
+     the page rather than as a system bar laid over it. */
+  color-scheme: dark;
+  scrollbar-color: var(--scroll-thumb) var(--bg);
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Keyboard focus is themed: the browser default is a near-invisible ring on this
+   background. Gold at a 3px offset, matching the lightbox controls. */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+:focus:not(:focus-visible) { outline: none; }
 
 body {
   margin: 0;

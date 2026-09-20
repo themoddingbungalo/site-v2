@@ -1,0 +1,10 @@
+.section { padding: clamp(80px, 12vw, 160px) var(--gutter); text-align: center; }
+.title { margin-bottom: 18px; }
+.lead { max-width: 520px; margin: 0 auto 30px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+/* Stacked, the two buttons would sit at two different widths. */
+@media (max-width: 560px) {
+  .actions { flex-direction: column; align-items: stretch; }
+  .actions > * { justify-content: center; }
+}
