@@ -215,197 +215,198 @@ export function Csvp() {
 
       <SectionNav items={nav} />
 
-      <div className="container">
-        {/* ---- Overview ---------------------------------------------------- */}
-        <section id="overview" className="section--intro">
-          <div className="grid grid--2">
-            <div className="flow">
-              <p className="eyebrow">Overview</p>
-              <h2 className="h2 head--loose">That 2011 feeling, with 2026 visuals</h2>
-              <p className="lead">A true homebrewed vanilla experience — it was important that this list feels like something anyone can make. Many of NGVO's systems and requirements were taken out to streamline everything: no Creation Kit, no BodySlide Studio.</p>
-              <p className="lead">Colloquy is a proud vanilla apologist, so the only goal was a fresh coat of paint. No custom followers, no new lands, no sweeping changes to combat or world scaling. Everything present has simply been enhanced.</p>
-              <div className={s.quote}>
-                <p className="label label--gold">From the author</p>
-                <p className={s.quoteText}>“This isn't an ongoing project or anything, it is simply my personal Modlist that I wanted to make accessible for the people close to me. Please don't expect the work of an expert — I am only a passionate fan.”</p>
+      <div className="lit">
+        <div className="container">
+          {/* ---- Overview ---------------------------------------------------- */}
+          <section id="overview" className="section--intro">
+            <div className="grid grid--2">
+              <div className="flow">
+                <p className="eyebrow">Overview</p>
+                <h2 className="h2 head--loose">That 2011 feeling, with 2026 visuals</h2>
+                <p className="lead">A true homebrewed vanilla experience — it was important that this list feels like something anyone can make. Many of NGVO's systems and requirements were taken out to streamline everything: no Creation Kit, no BodySlide Studio.</p>
+                <p className="lead">Colloquy is a proud vanilla apologist, so the only goal was a fresh coat of paint. No custom followers, no new lands, no sweeping changes to combat or world scaling. Everything present has simply been enhanced.</p>
+                <div className={s.quote}>
+                  <p className="label label--gold">From the author</p>
+                  <p className={s.quoteText}>“This isn't an ongoing project or anything, it is simply my personal Modlist that I wanted to make accessible for the people close to me. Please don't expect the work of an expert — I am only a passionate fan.”</p>
+                </div>
               </div>
+              <YouTubeEmbed id="asuwknZghMU" title="CSVP trailer" />
             </div>
-            <YouTubeEmbed id="asuwknZghMU" title="CSVP trailer" />
-          </div>
-        </section>
+          </section>
 
-        {/* ---- How it plays ------------------------------------------------ */}
-        <section id="philosophy" className="section--tight">
-          <p className="eyebrow">How it plays</p>
-          <h2 className="h2 head--tight">CSVP is about taking your time</h2>
-          <p className="lead section-lead">Questlines are stretched out, fast travel is limited in an immersive way, and you can trip on a rug if you move haphazardly. Everything about this list asks you to slow down.</p>
-          <div className="grid grid--cards">
-            <FeatureCard
-              title="Survival, softened"
-              icon={<StrokeIcon><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15.5 14" /></StrokeIcon>}
-            >
-              Custom scaled Master difficulty with Survival Mode on — but hunger, warmth and rest are toned right down. They exist to give you an excuse to relax at an inn, not to punish you.
-            </FeatureCard>
-            <FeatureCard
-              title="Exploration pays"
-              icon={<StrokeIcon><path d="m2 20 5-14 5 8 3-4 7 10H2Z" /><circle cx="17" cy="5" r="2" /></StrokeIcon>}
-            >
-              Fast travel is limited, but exploring levels your character. Carriages, horseback, ferries and the landscape itself all work together to make Skyrim the most explorable it has ever been.
-            </FeatureCard>
-            <FeatureCard
-              title="Combat that rewards skill"
-              icon={<StrokeIcon><path d="M14.5 17.5 3 6V3h3l11.5 11.5" /><path d="m13 19 6-6" /><path d="m16 16 4 4" /><path d="m19 21 2-2" /></StrokeIcon>}
-            >
-              Hard at the start, incentivising preparation, eventually building into a late-game power fantasy. A custom level curve keeps things from stagnating as a playthrough goes on.
-            </FeatureCard>
-            <FeatureCard
-              title="AE content, curated"
-              icon={<StrokeIcon><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" /></StrokeIcon>}
-            >
-              Built on AE, but a lot of its content was cut or reworked for lore reasons and personal taste. Everything that remains has been integrated into the world properly.
-              <span className={s.disabled}>Disabled: Sunder &amp; Wraithguard, Umbra, Staff of Sheogorath, Divine Crusader, Arms of Chaos, Bow of Shadows, Plague of the Dead, Dawnfang &amp; Duskfang, Saturalia, Shadowfoot Sanctum, Bloodchill Manor, Hendraheim, Civil War Champions.</span>
-            </FeatureCard>
-          </div>
-        </section>
-
-        {/* ---- Requirements ------------------------------------------------ */}
-        <section id="specs" className="section">
-          <div className="section-head">
-            <div>
-              <h2 className="h2 head--sub">System requirements</h2>
-              <p className="sub">Two profiles, identical gameplay. The difference is strictly visual and performance.</p>
+          {/* ---- How it plays ------------------------------------------------ */}
+          <section id="philosophy" className="section--tight">
+            <p className="eyebrow">How it plays</p>
+            <h2 className="h2 head--tight">CSVP is about taking your time</h2>
+            <p className="lead section-lead">Questlines are stretched out, fast travel is limited in an immersive way, and you can trip on a rug if you move haphazardly. Everything about this list asks you to slow down.</p>
+            <div className="grid grid--cards">
+              <FeatureCard
+                title="Survival, softened"
+                icon={<StrokeIcon><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15.5 14" /></StrokeIcon>}
+              >
+                Custom scaled Master difficulty with Survival Mode on — but hunger, warmth and rest are toned right down. They exist to give you an excuse to relax at an inn, not to punish you.
+              </FeatureCard>
+              <FeatureCard
+                title="Exploration pays"
+                icon={<StrokeIcon><path d="m2 20 5-14 5 8 3-4 7 10H2Z" /><circle cx="17" cy="5" r="2" /></StrokeIcon>}
+              >
+                Fast travel is limited, but exploring levels your character. Carriages, horseback, ferries and the landscape itself all work together to make Skyrim the most explorable it has ever been.
+              </FeatureCard>
+              <FeatureCard
+                title="Combat that rewards skill"
+                icon={<StrokeIcon><path d="M14.5 17.5 3 6V3h3l11.5 11.5" /><path d="m13 19 6-6" /><path d="m16 16 4 4" /><path d="m19 21 2-2" /></StrokeIcon>}
+              >
+                Hard at the start, incentivising preparation, eventually building into a late-game power fantasy. A custom level curve keeps things from stagnating as a playthrough goes on.
+              </FeatureCard>
+              <FeatureCard
+                title="AE content, curated"
+                icon={<StrokeIcon><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" /></StrokeIcon>}
+              >
+                Built on AE, but a lot of its content was cut or reworked for lore reasons and personal taste. Everything that remains has been integrated into the world properly.
+              </FeatureCard>
             </div>
-            <SpecToggle<Profile>
-              options={[{ key: 'main', label: 'Main' }, { key: 'perf', label: 'Performance' }]}
-              value={profile}
-              onChange={setProfile}
+          </section>
+
+          {/* ---- Requirements ------------------------------------------------ */}
+          <section id="specs" className="section">
+            <div className="section-head">
+              <div>
+                <h2 className="h2 head--sub">System requirements</h2>
+                <p className="sub">Two profiles, identical gameplay. The difference is strictly visual and performance.</p>
+              </div>
+              <SpecToggle<Profile>
+                options={[{ key: 'main', label: 'Main' }, { key: 'perf', label: 'Performance' }]}
+                value={profile}
+                onChange={setProfile}
+              />
+            </div>
+
+            <SpecCards
+              cards={[
+                { label: 'CPU', value: p.cpu },
+                { label: 'RAM', value: '16 GB' },
+                { label: 'GPU', value: p.gpu, gold: true },
+                { label: 'Peak VRAM use', value: p.vram },
+              ]}
             />
-          </div>
-
-          <SpecCards
-            cards={[
-              { label: 'CPU', value: p.cpu },
-              { label: 'RAM', value: '16 GB' },
-              { label: 'GPU', value: p.gpu, gold: true },
-              { label: 'Peak VRAM use', value: p.vram },
-            ]}
-          />
-          <SizeCards
-            sizes={[
-              { label: 'Download', value: p.download },
-              { label: 'Install', value: p.install },
-              { label: 'Total', value: p.total },
-              { label: 'Contents', value: <span className={s.countValue}>{p.count}</span> },
-            ]}
-          />
-
-          <SkyrimRequirements
-            name="CSVP"
-            amd={false}
-            storageNote=" — though you can move or delete the Downloads folder after install if space is tight"
-          />
-        </section>
-
-        {/* ---- Installation ------------------------------------------------ */}
-        <section id="install" className="section">
-          <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--gap">Installation</h2>
-          <ReadMeCard slug="csvp" />
-        </section>
-
-        {/* ---- Guides ------------------------------------------------------ */}
-        <section id="guides" className="section">
-          <p className="eyebrow">Guides</p>
-          <h2 className="h2 head--tight">Written by Colloquy</h2>
-          <p className="lead section-lead">One guide for playing the list, one for taking it apart. Both live as markdown, so the author can edit them whenever the list changes.</p>
-          <div className={s.guideGrid}>
-            {GUIDE_CARDS.map((g) => (
-              <Link key={g.slug} to={guidePath(g.slug)} className={s.guideCard}>
-                <StrokeIcon size={26} className={s.guideIcon}>{g.icon}</StrokeIcon>
-                <h3 className={s.guideTitle}>{g.title}</h3>
-                <p className={s.guideText}>{g.text}</p>
-                <div className={s.tags}>
-                  {g.tags.map((t) => <span key={t} className={s.tag}>{t}</span>)}
-                </div>
-                <span className={s.guideCta}>{g.cta}</span>
-              </Link>
-            ))}
-          </div>
-
-          <Callout kind="warning" icon={false} compact label="Before you modify" className={s.warn}>
-            <p>Do not file official bug reports if you have changed anything in the list. Ask in the chats instead — help is happily given either way.</p>
-          </Callout>
-        </section>
-
-        {/* ---- Troubleshooting --------------------------------------------- */}
-        <section id="troubleshooting" className="section">
-          <h2 className="h2 head--tight">Troubleshooting</h2>
-          <p className="lead section-lead">Rule of thumb: a browser window on failure means you are missing files from Skyrim itself. No browser means a Wabbajack issue — rerunning usually solves it. A system error usually means antivirus, and Windows Defender counts.</p>
-          <div className="grid grid--tiles">
-            <DownloadFailedTile>Make sure you own all the paid AE content.</DownloadFailedTile>
-            <NotWhitelistedTile />
-            <AntivirusTile />
-            <TroubleTile title="Head skin tone bugs out on a new game" tone="gold">
-              Almost always happens. Open the console, type <span className="mono">showracemenu</span>, confirm your character once more and it will not recur this playthrough.
-            </TroubleTile>
-            <DynDolodCrashTile />
-            <TroubleTile title="Optional post-game tidying" tone="green">
-              SKSE, ShaderCache and MCM files from Overwrite can go into <strong>CSVP - MCM &amp; INI Settings</strong>; KiLoader files into <strong>KiLoader Output</strong>. The <span className="mono">textures</span> folder is PhotoMode output and always regenerates.
-            </TroubleTile>
-            <StuckTile
-              text="Post your Wabbajack or MO2 log in the CSVP channel and someone will take a look."
-              href={site.discord}
+            <SizeCards
+              sizes={[
+                { label: 'Download', value: p.download },
+                { label: 'Install', value: p.install },
+                { label: 'Total', value: p.total },
+                { label: 'Contents', value: <span className={s.countValue}>{p.count}</span> },
+              ]}
             />
-          </div>
-        </section>
 
-        {/* ---- Hotkeys ----------------------------------------------------- */}
-        <section id="hotkeys" className="section">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">Reference</p>
-              <h2 className="h2">Hotkeys</h2>
-            </div>
-            <p className="sub">Press <span className={s.kbd}>F11</span> in game for a reminder</p>
-          </div>
-          <div className={s.hotkeyWrap}>
-            <div className={s.hotkeys} role="table" aria-label="CSVP hotkeys">
-              {hotkeys.map(([label, key]) => (
-                <div key={label} className={s.hotkeyRow} role="row">
-                  <span className={s.hotkeyLabel} role="cell">{label}</span>
-                  <span className={s.keycap} role="cell">{key}</span>
-                </div>
+            <SkyrimRequirements
+              name="CSVP"
+              amd={false}
+              storageNote=" — though you can move or delete the Downloads folder after install if space is tight"
+            />
+          </section>
+
+          {/* ---- Installation ------------------------------------------------ */}
+          <section id="install" className="section">
+            <p className="eyebrow">Read me</p>
+            <h2 className="h2 head--gap">Installation</h2>
+            <ReadMeCard slug="csvp" />
+          </section>
+
+          {/* ---- Guides ------------------------------------------------------ */}
+          <section id="guides" className="section">
+            <p className="eyebrow">Guides</p>
+            <h2 className="h2 head--tight">Written by Colloquy</h2>
+            <p className="lead section-lead">One guide for playing the list, one for taking it apart. Both live as markdown, so the author can edit them whenever the list changes.</p>
+            <div className={s.guideGrid}>
+              {GUIDE_CARDS.map((g) => (
+                <Link key={g.slug} to={guidePath(g.slug)} className={s.guideCard}>
+                  <StrokeIcon size={26} className={s.guideIcon}>{g.icon}</StrokeIcon>
+                  <h3 className={s.guideTitle}>{g.title}</h3>
+                  <p className={s.guideText}>{g.text}</p>
+                  <div className={s.tags}>
+                    {g.tags.map((t) => <span key={t} className={s.tag}>{t}</span>)}
+                  </div>
+                  <span className={s.guideCta}>{g.cta}</span>
+                </Link>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* ---- FAQs -------------------------------------------------------- */}
-        <section id="faqs" className="section">
-          <FaqAccordion items={faqs} />
-        </section>
+            <Callout kind="warning" icon={false} compact label="Before you modify" className={s.warn}>
+              <p>Do not file official bug reports if you have changed anything in the list. Ask in the chats instead — help is happily given either way.</p>
+            </Callout>
+          </section>
 
-        {/* ---- Showcase ---------------------------------------------------- */}
-        <section id="gallery" className="section">
-          <Gallery
-            shots={shots}
-            minTile={340}
-            title="See it in motion"
-            extraFirst
-            extra={
-              <>
-                <YouTubeEmbed id="CClrbI8RK7k" title="CSVP showcase" radius={12} className={galleryExtra.feature} />
-                <YouTubeEmbed id="VxIci4aqVpg" title="CSVP gamepad setup" radius={12} className={galleryExtra.tile} />
-              </>
-            }
+          {/* ---- Troubleshooting --------------------------------------------- */}
+          <section id="troubleshooting" className="section">
+            <h2 className="h2 head--tight">Troubleshooting</h2>
+            <p className="lead section-lead">Rule of thumb: a browser window on failure means you are missing files from Skyrim itself. No browser means a Wabbajack issue — rerunning usually solves it. A system error usually means antivirus, and Windows Defender counts.</p>
+            <div className="grid grid--tiles">
+              <DownloadFailedTile>Make sure you own all the paid AE content.</DownloadFailedTile>
+              <NotWhitelistedTile />
+              <AntivirusTile />
+              <TroubleTile title="Head skin tone bugs out on a new game" tone="gold">
+                Almost always happens. Open the console, type <span className="mono">showracemenu</span>, confirm your character once more and it will not recur this playthrough.
+              </TroubleTile>
+              <DynDolodCrashTile />
+              <TroubleTile title="Optional post-game tidying" tone="green">
+                SKSE, ShaderCache and MCM files from Overwrite can go into <strong>CSVP - MCM &amp; INI Settings</strong>; KiLoader files into <strong>KiLoader Output</strong>. The <span className="mono">textures</span> folder is PhotoMode output and always regenerates.
+              </TroubleTile>
+              <StuckTile
+                text="Post your Wabbajack or MO2 log in the CSVP channel and someone will take a look."
+                href={site.discord}
+              />
+            </div>
+          </section>
+
+          {/* ---- Hotkeys ----------------------------------------------------- */}
+          <section id="hotkeys" className="section">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Reference</p>
+                <h2 className="h2">Hotkeys</h2>
+              </div>
+              <p className="sub">Press <span className={s.kbd}>F11</span> in game for a reminder</p>
+            </div>
+            <div className={s.hotkeyWrap}>
+              <div className={s.hotkeys} role="table" aria-label="CSVP hotkeys">
+                {hotkeys.map(([label, key]) => (
+                  <div key={label} className={s.hotkeyRow} role="row">
+                    <span className={s.hotkeyLabel} role="cell">{label}</span>
+                    <span className={s.keycap} role="cell">{key}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ---- FAQs -------------------------------------------------------- */}
+          <section id="faqs" className="section">
+            <FaqAccordion items={faqs} />
+          </section>
+
+          {/* ---- Showcase ---------------------------------------------------- */}
+          <section id="gallery" className="section">
+            <Gallery
+              shots={shots}
+              minTile={340}
+              title="See it in motion"
+              extraFirst
+              extra={
+                <>
+                  <YouTubeEmbed id="CClrbI8RK7k" title="CSVP showcase" radius={12} className={galleryExtra.feature} />
+                  <YouTubeEmbed id="VxIci4aqVpg" title="CSVP gamepad setup" radius={12} className={galleryExtra.tile} />
+                </>
+              }
+            />
+          </section>
+
+          <DiscordBand
+            title="Our Discord is the hub for all things CSVP"
+            text="“I would love to have you join! I'm always open to hearing suggestions and additions you made to your personal list that could be thrown in here.”"
+            secondary={[{ href: NEXUS, label: 'Nexus page' }]}
+            credits={<>Credits — <strong>you</strong> for reading this, Biggie_Boss for NGVO, JaySerpa for GTS, Halgari and the Wabbajack team, every mod author whose work made this list possible, and everyone in the Modding Bungalo Discord.</>}
           />
-        </section>
-
-        <DiscordBand
-          title="Our Discord is the hub for all things CSVP"
-          text="“I would love to have you join! I'm always open to hearing suggestions and additions you made to your personal list that could be thrown in here.”"
-          secondary={[{ href: NEXUS, label: 'Nexus page' }]}
-          credits={<>Credits — <strong>you</strong> for reading this, Biggie_Boss for NGVO, JaySerpa for GTS, Halgari and the Wabbajack team, every mod author whose work made this list possible, and everyone in the Modding Bungalo Discord.</>}
-        />
+        </div>
       </div>
     </>
   )

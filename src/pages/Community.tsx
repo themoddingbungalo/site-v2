@@ -114,76 +114,78 @@ export function Community() {
       <SectionNav items={navItems} />
 
       {/* ---- Biggie Boss ------------------------------------------------- */}
-      <section id="biggie" className={`container ${styles.biggieSection}`}>
-        <div data-reveal className={`${styles.split} ${styles.biggie}`}>
-          <div className={styles.media}>
-            <img src={asset('assets/biggie-boss.png')} alt="Biggie Boss" className={styles.mediaImg} />
-            <div className={`${styles.mediaScrim} ${styles.biggieScrim}`} />
-          </div>
-          <div className={styles.panelBody}>
-            <p className={`${styles.panelEyebrow} ${styles.biggieEyebrow}`}>Founder</p>
-            <h2 className={styles.panelTitle}>Biggie Boss</h2>
-            <p className={`${styles.panelText} ${styles.biggieText}`}>
-              Modder, YouTuber and streamer. &ldquo;The #1 Modlist Enthusiast. I hate vanilla.&rdquo; Released LoreRim in early 2024 after building it live on stream.
-            </p>
-            <div className={styles.panelActions}>
-              <a href={site.biggie.youtube} {...ext} className={`${styles.brandBtn} ${styles.ytBtn}`}>
-                <YouTubeIcon size={17} />YouTube
-              </a>
-              <a href={site.biggie.kofi} {...ext} className={`${styles.brandBtn} ${styles.kofiBtn}`}>
-                <KofiIcon size={17} />Ko-fi
-              </a>
-              <Link to={modlistPath('lorerim')} className={`${styles.brandBtn} ${styles.biggieOutline}`}>LoreRim</Link>
+      <div className="lit">
+        <section id="biggie" className={`container ${styles.biggieSection}`}>
+          <div data-reveal className={`${styles.split} ${styles.biggie}`}>
+            <div className={styles.media}>
+              <img src={asset('assets/biggie-boss.png')} alt="Biggie Boss" className={styles.mediaImg} />
+              <div className={`${styles.mediaScrim} ${styles.biggieScrim}`} />
+            </div>
+            <div className={styles.panelBody}>
+              <p className={`${styles.panelEyebrow} ${styles.biggieEyebrow}`}>Founder</p>
+              <h2 className={styles.panelTitle}>Biggie Boss</h2>
+              <p className={`${styles.panelText} ${styles.biggieText}`}>
+                Modder, YouTuber and streamer. &ldquo;The #1 Modlist Enthusiast. I hate vanilla.&rdquo; Released LoreRim in early 2024 after building it live on stream.
+              </p>
+              <div className={styles.panelActions}>
+                <a href={site.biggie.youtube} {...ext} className={`${styles.brandBtn} ${styles.ytBtn}`}>
+                  <YouTubeIcon size={17} />YouTube
+                </a>
+                <a href={site.biggie.kofi} {...ext} className={`${styles.brandBtn} ${styles.kofiBtn}`}>
+                  <KofiIcon size={17} />Ko-fi
+                </a>
+                <Link to={modlistPath('lorerim')} className={`${styles.brandBtn} ${styles.biggieOutline}`}>LoreRim</Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ---- the team ---------------------------------------------------- */}
-      <section id="team" className={`container ${styles.teamSection}`}>
-        <div data-reveal className={styles.sectionHead}>
-          <p className="eyebrow">The roster</p>
-          <h2 className="h2 h2--lg">The Bungalo team</h2>
-          <p className={styles.headText}>
-            List authors, patchers and the people keeping the wiki upright. Bios and links are filling in as everyone
-            sends theirs over &mdash; poke us in Discord if yours is missing or wrong.
-          </p>
-        </div>
-        <div className={styles.teamGrid}>
-          {team.map((m) => <MemberCard key={m.name} member={m} />)}
-        </div>
-      </section>
-
-      {/* ---- The Modding Bordello ---------------------------------------- */}
-      <section id="bordello" className={`container ${styles.bordelloSection}`}>
-        <BordelloPanel />
-      </section>
-
-      {/* ---- contribute -------------------------------------------------- */}
-      <section id="contribute" className={`container ${styles.contributeSection}`}>
-        <div data-reveal className={styles.contribute}>
-          <div>
-            <p className="eyebrow">Pitch in</p>
-            <h2 className={`h2 ${styles.contributeTitle}`}>Anyone can edit the wiki</h2>
-            <p className={styles.contributeText}>
-              The read mes and guides on this site are markdown files on GitHub. Spot a wrong version number or a step
-              that no longer works? Press the pencil, fix it, commit &mdash; the site redeploys itself.
+        {/* ---- the team ---------------------------------------------------- */}
+        <section id="team" className={`container ${styles.teamSection}`}>
+          <div data-reveal className={styles.sectionHead}>
+            <p className="eyebrow">The roster</p>
+            <h2 className="h2 h2--lg">The Bungalo team</h2>
+            <p className={styles.headText}>
+              List authors, patchers and the people keeping the wiki upright. Bios and links are filling in as everyone
+              sends theirs over &mdash; poke us in Discord if yours is missing or wrong.
             </p>
           </div>
-          <div className={styles.contributeActions}>
-            <ContributeButton />
-            <a href={site.discord} {...ext} className="btn btn--outline btn--xs">
-              <DiscordIcon size={16} />Ask first in Discord
-            </a>
+          <div className={styles.teamGrid}>
+            {team.map((m) => <MemberCard key={m.name} member={m} />)}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="container">
-        <DiscordBand
-          title="Everything happens in the Discord"
-          text="Support channels for every list, modding help from the people who built them, and a community that keeps modding free."
-        />
+        {/* ---- The Modding Bordello ---------------------------------------- */}
+        <section id="bordello" className={`container ${styles.bordelloSection}`}>
+          <BordelloPanel />
+        </section>
+
+        {/* ---- contribute -------------------------------------------------- */}
+        <section id="contribute" className={`container ${styles.contributeSection}`}>
+          <div data-reveal className={styles.contribute}>
+            <div>
+              <p className="eyebrow">Pitch in</p>
+              <h2 className={`h2 ${styles.contributeTitle}`}>Anyone can edit the wiki</h2>
+              <p className={styles.contributeText}>
+                The read mes and guides on this site are markdown files on GitHub. Spot a wrong version number or a step
+                that no longer works? Press the pencil, fix it, commit &mdash; the site redeploys itself.
+              </p>
+            </div>
+            <div className={styles.contributeActions}>
+              <ContributeButton />
+              <a href={site.discord} {...ext} className="btn btn--outline btn--xs">
+                <DiscordIcon size={16} />Ask first in Discord
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <div className="container">
+          <DiscordBand
+            title="Everything happens in the Discord"
+            text="Support channels for every list, modding help from the people who built them, and a community that keeps modding free."
+          />
+        </div>
       </div>
     </div>
   )

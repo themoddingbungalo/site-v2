@@ -63,9 +63,10 @@ export function LoreRim() {
 
       <SectionNav items={NAV} />
 
-      {/* The body sections share one field of light — the same wash the home page runs
-          behind its dark run. It stops before the documentation band, which carries its
-          own art and needs no help from it. */}
+      {/* The body shares one field of light — `.lit` in global.css, the same wash every
+          assembled page runs behind its sections. It spans the documentation band as
+          well as the flat sections: the band's own art paints over the light there, and
+          ending the run early would strand the support band below it in the dark. */}
       <div className="lit">
         <div className="container">
           <section id="overview" className="section--intro">
@@ -95,40 +96,40 @@ export function LoreRim() {
             <YouTubeEmbed id="9T50lRVFAmE" title="LoreRim trailer" />
           </section>
         </div>
-      </div>
 
-      {/* Full-bleed rather than a card: the docs live somewhere else, and the band is
-          the page handing the reader over. Same construction as the home page's join
-          band, but left-aligned like the hero so the copy clears the moon. */}
-      <section id="docs" className={styles.docs}>
-        <div className={styles.docsBg}>
-          <img src={asset('assets/heroes/alduin.webp')} alt="" loading="lazy" className={styles.docsImg} />
-        </div>
-        <div className={styles.docsScrim} />
-        <div className={`container ${styles.docsInner}`}>
-          <div className={styles.docsCopy}>
-            <p className="eyebrow">Documentation</p>
-            <h2 className="h2 head--tight">LoreRim has its own site</h2>
-            <p className={styles.docsText}>
-              Install instructions, system requirements, mechanics documentation and the changelog all live on
-              lorerim.com — it is the authoritative source and is kept current with each release.
-            </p>
-            <div className={styles.docsActions}>
-              <a href={site.lorerim} {...ext} className="btn btn--gold">Read the docs</a>
-              <a href={site.biggie.youtube} {...ext} className="btn btn--ghost">Dev streams</a>
+        {/* Full-bleed rather than a card: the docs live somewhere else, and the band is
+            the page handing the reader over. Same construction as the home page's join
+            band, but left-aligned like the hero so the copy clears the moon. */}
+        <section id="docs" className={styles.docs}>
+          <div className={styles.docsBg}>
+            <img src={asset('assets/heroes/alduin.webp')} alt="" loading="lazy" className={styles.docsImg} />
+          </div>
+          <div className={styles.docsScrim} />
+          <div className={`container ${styles.docsInner}`}>
+            <div className={styles.docsCopy}>
+              <p className="eyebrow">Documentation</p>
+              <h2 className="h2 head--tight">LoreRim has its own site</h2>
+              <p className={styles.docsText}>
+                Install instructions, system requirements, mechanics documentation and the changelog all live on
+                lorerim.com — it is the authoritative source and is kept current with each release.
+              </p>
+              <div className={styles.docsActions}>
+                <a href={site.lorerim} {...ext} className="btn btn--gold">Read the docs</a>
+                <a href={site.biggie.youtube} {...ext} className="btn btn--ghost">Dev streams</a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="container">
-        <div id="support">
-          <DiscordBand
-            title="Support lives in the Bungalo"
-            text="Install help, release pings and build advice from the people who made it — plus everyone else playing the same list."
-            primary={{ label: 'Join the Discord', icon: <DiscordIcon size={19} /> }}
-            secondary={[{ href: site.biggie.kofi, label: 'Support on Ko-fi' }]}
-          />
+        <div className="container">
+          <div id="support">
+            <DiscordBand
+              title="Support lives in the Bungalo"
+              text="Install help, release pings and build advice from the people who made it — plus everyone else playing the same list."
+              primary={{ label: 'Join the Discord', icon: <DiscordIcon size={19} /> }}
+              secondary={[{ href: site.biggie.kofi, label: 'Support on Ko-fi' }]}
+            />
+          </div>
         </div>
       </div>
     </>

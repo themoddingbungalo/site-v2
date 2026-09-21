@@ -135,123 +135,125 @@ export function Dngg() {
 
       <SectionNav items={NAV} />
 
-      <div className="container">
-        <section id="overview" className="section--intro">
-          <div className="grid grid--2">
-            <div className="flow">
-              <p className="eyebrow">Overview</p>
-              <h2 className="h2 head--loose">Requiem, without the misery</h2>
-              <p className="lead">Designed as a Requiem list with Bruma, Wyrmstooth, VIGILANT and lots of other additions to extend the life of your character's playthrough. It is lighter than notable high-end lists like Elysium or Aldrnari.</p>
-              <p className="lead">Notable mods: Alternate Start – LAL, Precision, TDM, One Click Power Attack, Pit Fighter, VIGILANT, Bruma, Wyrmstooth, Leaps of Faith, College of Winterhold Quest Expansion, Pilgrim, Honed Metal, More Carriages, Wait Carriage in Towns, and Just Sleep.</p>
-              <Callout kind="warning" icon={false} compact label="Requires paid AE">
-                <p>This list requires the AE content upgrade to be purchased and installed. <strong>It will not run without all of the Creation Club content.</strong></p>
-              </Callout>
+      <div className="lit">
+        <div className="container">
+          <section id="overview" className="section--intro">
+            <div className="grid grid--2">
+              <div className="flow">
+                <p className="eyebrow">Overview</p>
+                <h2 className="h2 head--loose">Requiem, without the misery</h2>
+                <p className="lead">Designed as a Requiem list with Bruma, Wyrmstooth, VIGILANT and lots of other additions to extend the life of your character's playthrough. It is lighter than notable high-end lists like Elysium or Aldrnari.</p>
+                <p className="lead">Notable mods: Alternate Start – LAL, Precision, TDM, One Click Power Attack, Pit Fighter, VIGILANT, Bruma, Wyrmstooth, Leaps of Faith, College of Winterhold Quest Expansion, Pilgrim, Honed Metal, More Carriages, Wait Carriage in Towns, and Just Sleep.</p>
+                <Callout kind="warning" icon={false} compact label="Requires paid AE">
+                  <p>This list requires the AE content upgrade to be purchased and installed. <strong>It will not run without all of the Creation Club content.</strong></p>
+                </Callout>
+              </div>
+              <YouTubeEmbed id="fP1B2WA8GmQ" title="Do Not Go Gentle gameplay" />
             </div>
-            <YouTubeEmbed id="fP1B2WA8GmQ" title="Do Not Go Gentle gameplay" />
-          </div>
-        </section>
+          </section>
 
-        <section id="specs" className="section">
-          <div className="section-head">
-            <div>
-              <h2 className="h2 head--sub">System requirements</h2>
-              <p className="sub">If you have run Serenity, AVO or something similar, you should be fine here.</p>
+          <section id="specs" className="section">
+            <div className="section-head">
+              <div>
+                <h2 className="h2 head--sub">System requirements</h2>
+                <p className="sub">If you have run Serenity, AVO or something similar, you should be fine here.</p>
+              </div>
+              <SpecToggle options={SPEC_OPTIONS} value={spec} onChange={setSpec} />
             </div>
-            <SpecToggle options={SPEC_OPTIONS} value={spec} onChange={setSpec} />
-          </div>
-          <SpecCards
-            cards={[
-              { label: 'CPU', value: s.cpu },
-              { label: 'GPU', value: s.gpu, gold: true },
-              { label: 'RAM', value: s.ram },
-              { label: 'Storage', value: s.storage },
-              { label: 'Pagefile', value: s.pagefile },
-            ]}
-          />
-          <SizeCards
-            sizes={[
-              { label: 'Space required', value: <>~400 GB<span className={styles.sizeNote}>Check the card in the Wabbajack gallery for a more accurate figure.</span></> },
-              { label: 'Shader cache', value: <>10 GB<span className={styles.sizeNote}>Nvidia only — set it in the driver control panel.</span></> },
-              { label: "Author's framerate", value: <>100+ at 2K<span className={styles.sizeNote}>Rarely below 55 at 4K, except around Riverwood, Falkreath and Riften.</span></> },
-            ]}
-          />
-        </section>
+            <SpecCards
+              cards={[
+                { label: 'CPU', value: s.cpu },
+                { label: 'GPU', value: s.gpu, gold: true },
+                { label: 'RAM', value: s.ram },
+                { label: 'Storage', value: s.storage },
+                { label: 'Pagefile', value: s.pagefile },
+              ]}
+            />
+            <SizeCards
+              sizes={[
+                { label: 'Space required', value: <>~400 GB<span className={styles.sizeNote}>Check the card in the Wabbajack gallery for a more accurate figure.</span></> },
+                { label: 'Shader cache', value: <>10 GB<span className={styles.sizeNote}>Nvidia only — set it in the driver control panel.</span></> },
+                { label: "Author's framerate", value: <>100+ at 2K<span className={styles.sizeNote}>Rarely below 55 at 4K, except around Riverwood, Falkreath and Riften.</span></> },
+              ]}
+            />
+          </section>
 
-        <section id="install" className="section">
-          <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--gap">Installation</h2>
-          <ReadMeCard slug="dngg" />
-        </section>
+          <section id="install" className="section">
+            <p className="eyebrow">Read me</p>
+            <h2 className="h2 head--gap">Installation</h2>
+            <ReadMeCard slug="dngg" />
+          </section>
 
-        <section id="firstplay" className="section">
-          <h2 className="h2 head--tight">Starting out</h2>
-          <p className="lead section-lead">Set the MO2 dropdown to <strong>SKSE</strong> and press Run. DNGG uses Alternate Start – Live Another Life, so you begin in an abandoned prison.</p>
-          <div className="grid grid--tiles">
-            <Tile title="Initialise Requiem first" tone="gold">
-              After naming your character, wait about 30 seconds for MCM Recorder to finish. When the message to initialise Requiem appears, <strong>open your inventory and close it before leaving the starting cell.</strong>
-            </Tile>
-            <Tile title="Spend your three perks">
-              Requiem gives you three to start. Take one in light or heavy armour if you plan to wear it — armour without its first perk drains stamina, which can kill you. Weapons get far more effective with the first perk, and spells are nearly impossible without one.
-            </Tile>
-            <Tile title="Choose your destiny">
-              Use the “Choose your Destiny!” scroll in your inventory for a class-specific loadout, and the power in your powers list to pick a birthsign. Both optional.
-            </Tile>
-            <Tile title="Controls and controllers">
-              One Click Power Attack defaults to <strong>M3</strong> (middle mouse) — you need it to power attack. For a controller, enable the 8-Hotkey Controller Map for OCPA in the Optional separator, then set the power attack key to RB in both the OCPA and Dual Wield Parrying MCMs.
-            </Tile>
-            <Tile title="Game folder">
-              Stock Game keeps your Skyrim install clean — everything needed lives in <span className="mono">Game Root</span>. You do not need to copy anything.
-            </Tile>
-            <Tile title="Adding your own mods">
-              Support is limited if you do. Weapons, armour, spells and followers are harder to add than you would think — random gear will probably get you killed. Do not put plugins below the paper maps; keep them above DynDOLOD.esp.
-            </Tile>
-          </div>
-        </section>
-
-        <section id="visuals" className="section">
-          <h2 className="h2 head--tight">ENB and Community Shaders</h2>
-          <p className="lead section-lead">DNGG ships with Rudy ENB Obsidian active, plus PiCho and Amon included. Switch freely, or drop ENB entirely for frames.</p>
-          <div className={styles.visualsGrid}>
-            <div>
-              <p className="label label--gold">Performance order, worst to best</p>
-              <KeyRows rows={ENB_PERFORMANCE} variant="note" />
-              <p className={styles.perfAfter}>To use Community Shaders, disable the <strong>ENB Binaries</strong> mod and the active ENB preset. Amethyst ReShade and its KreatE preset are optional on top. Expect some loss in visual fidelity for the frames.</p>
-            </div>
-            <div>
-              <p className="label label--gold">Common ENB tweaks</p>
-              <Tile title="Removing the letterbox" small className={styles.tileStack}>
-                Press <span className="mono">Ctrl + Shift</span>, open Shader Parameters → <span className="mono">ENBPOSTPASS.FX</span>, scroll to letterbox and untick it, save configuration, then <span className="mono">Ctrl + Shift</span> back to the game.
+          <section id="firstplay" className="section">
+            <h2 className="h2 head--tight">Starting out</h2>
+            <p className="lead section-lead">Set the MO2 dropdown to <strong>SKSE</strong> and press Run. DNGG uses Alternate Start – Live Another Life, so you begin in an abandoned prison.</p>
+            <div className="grid grid--tiles">
+              <Tile title="Initialise Requiem first" tone="gold">
+                After naming your character, wait about 30 seconds for MCM Recorder to finish. When the message to initialise Requiem appears, <strong>open your inventory and close it before leaving the starting cell.</strong>
               </Tile>
-              <Tile title="Buying frames back" small>
-                <p>Keep the colour correction but turn off: DetailedShadows, ComplexParticleLights (disable big range), Reflection, Complex Grass Collision, Complex Grass, and Complex Parallax.</p>
-                <p>Complex Parallax must be disabled out of game in <span className="mono">enbseries.ini</span> inside Game Root, then clear the enbcache there. <span className="mono">Page Down</span> toggles the ENB in game.</p>
+              <Tile title="Spend your three perks">
+                Requiem gives you three to start. Take one in light or heavy armour if you plan to wear it — armour without its first perk drains stamina, which can kill you. Weapons get far more effective with the first perk, and spells are nearly impossible without one.
+              </Tile>
+              <Tile title="Choose your destiny">
+                Use the “Choose your Destiny!” scroll in your inventory for a class-specific loadout, and the power in your powers list to pick a birthsign. Both optional.
+              </Tile>
+              <Tile title="Controls and controllers">
+                One Click Power Attack defaults to <strong>M3</strong> (middle mouse) — you need it to power attack. For a controller, enable the 8-Hotkey Controller Map for OCPA in the Optional separator, then set the power attack key to RB in both the OCPA and Dual Wield Parrying MCMs.
+              </Tile>
+              <Tile title="Game folder">
+                Stock Game keeps your Skyrim install clean — everything needed lives in <span className="mono">Game Root</span>. You do not need to copy anything.
+              </Tile>
+              <Tile title="Adding your own mods">
+                Support is limited if you do. Weapons, armour, spells and followers are harder to add than you would think — random gear will probably get you killed. Do not put plugins below the paper maps; keep them above DynDOLOD.esp.
               </Tile>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="optional" className="section">
-          <h2 className="h2 head--tight">Optional mods</h2>
-          <p className="lead section-lead">Check the optionals tab in MO2 before you launch. Toggle freely — but read up on them first.</p>
-          <div className="grid grid--tiles">
-            {OPTIONAL.map((o) => <Tile key={o.title} title={o.title}>{o.body}</Tile>)}
-          </div>
-        </section>
+          <section id="visuals" className="section">
+            <h2 className="h2 head--tight">ENB and Community Shaders</h2>
+            <p className="lead section-lead">DNGG ships with Rudy ENB Obsidian active, plus PiCho and Amon included. Switch freely, or drop ENB entirely for frames.</p>
+            <div className={styles.visualsGrid}>
+              <div>
+                <p className="label label--gold">Performance order, worst to best</p>
+                <KeyRows rows={ENB_PERFORMANCE} variant="note" />
+                <p className={styles.perfAfter}>To use Community Shaders, disable the <strong>ENB Binaries</strong> mod and the active ENB preset. Amethyst ReShade and its KreatE preset are optional on top. Expect some loss in visual fidelity for the frames.</p>
+              </div>
+              <div>
+                <p className="label label--gold">Common ENB tweaks</p>
+                <Tile title="Removing the letterbox" small className={styles.tileStack}>
+                  Press <span className="mono">Ctrl + Shift</span>, open Shader Parameters → <span className="mono">ENBPOSTPASS.FX</span>, scroll to letterbox and untick it, save configuration, then <span className="mono">Ctrl + Shift</span> back to the game.
+                </Tile>
+                <Tile title="Buying frames back" small>
+                  <p>Keep the colour correction but turn off: DetailedShadows, ComplexParticleLights (disable big range), Reflection, Complex Grass Collision, Complex Grass, and Complex Parallax.</p>
+                  <p>Complex Parallax must be disabled out of game in <span className="mono">enbseries.ini</span> inside Game Root, then clear the enbcache there. <span className="mono">Page Down</span> toggles the ENB in game.</p>
+                </Tile>
+              </div>
+            </div>
+          </section>
 
-        <section id="faqs" className="section">
-          <FaqAccordion eyebrow="FAQs" title="From the author" items={FAQS} />
-        </section>
+          <section id="optional" className="section">
+            <h2 className="h2 head--tight">Optional mods</h2>
+            <p className="lead section-lead">Check the optionals tab in MO2 before you launch. Toggle freely — but read up on them first.</p>
+            <div className="grid grid--tiles">
+              {OPTIONAL.map((o) => <Tile key={o.title} title={o.title}>{o.body}</Tile>)}
+            </div>
+          </section>
 
-        <DiscordBand
-          title="Getting help"
-          text="Arkay is primarily on the Requiem Wabbajack server. Please do not DM — asking in public means the answer helps everyone else too."
-          primary={{ href: REQUIEM_DISCORD, label: 'Requiem WJ server' }}
-          secondary={[
-            { href: `${GITHUB}/blob/main/Changelog.md`, label: 'Changelog' },
-            { href: 'https://www.patreon.com/Abandoned_by_Arkay', label: 'Patreon' },
-          ]}
-          credits={<>Credits — <strong>you</strong> for reading this, the Animonculory team, Zelie (Sovn), Noggog for Mutagen, and Halgari and everyone on the Wabbajack team.</>}
-        />
+          <section id="faqs" className="section">
+            <FaqAccordion eyebrow="FAQs" title="From the author" items={FAQS} />
+          </section>
+
+          <DiscordBand
+            title="Getting help"
+            text="Arkay is primarily on the Requiem Wabbajack server. Please do not DM — asking in public means the answer helps everyone else too."
+            primary={{ href: REQUIEM_DISCORD, label: 'Requiem WJ server' }}
+            secondary={[
+              { href: `${GITHUB}/blob/main/Changelog.md`, label: 'Changelog' },
+              { href: 'https://www.patreon.com/Abandoned_by_Arkay', label: 'Patreon' },
+            ]}
+            credits={<>Credits — <strong>you</strong> for reading this, the Animonculory team, Zelie (Sovn), Noggog for Mutagen, and Halgari and everyone on the Wabbajack team.</>}
+          />
+        </div>
       </div>
     </>
   )

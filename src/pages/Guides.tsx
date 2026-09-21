@@ -122,63 +122,65 @@ export function Guides() {
 
       <SectionNav items={navItems} />
 
-      <div className="container">
-        <section id="wabbajack" className={styles.sectionFirst}>
-          <div className={styles.split}>
-            <div>
-              <p className="eyebrow">Start here</p>
-              <h2 className={`h2 ${styles.title}`}>Wabbajack</h2>
-              <p className={`lead ${styles.intro}`}>Wabbajack automates the installation of large modlists. Set it up correctly once and every list on this site installs in a few clicks.</p>
-              <p className={styles.note}>Install it to a root-level folder like <span className="mono">C:\Games\Wabbajack</span> — never Program Files, your desktop or Downloads.</p>
-              <WrittenUp section="wabbajack" />
+      <div className="lit">
+        <div className="container">
+          <section id="wabbajack" className={styles.sectionFirst}>
+            <div className={styles.split}>
+              <div>
+                <p className="eyebrow">Start here</p>
+                <h2 className={`h2 ${styles.title}`}>Wabbajack</h2>
+                <p className={`lead ${styles.intro}`}>Wabbajack automates the installation of large modlists. Set it up correctly once and every list on this site installs in a few clicks.</p>
+                <p className={styles.note}>Install it to a root-level folder like <span className="mono">C:\Games\Wabbajack</span> — never Program Files, your desktop or Downloads.</p>
+                <WrittenUp section="wabbajack" />
+              </div>
+              {videos('wabbajack').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
             </div>
-            {videos('wabbajack').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
-          </div>
-        </section>
+          </section>
 
-        <section id="create-modlist" className={styles.section}>
-          <div className={styles.split}>
-            {videos('create-modlist').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} className={styles.orderSecond} />)}
-            <div className={styles.orderFirst}>
-              <p className="eyebrow">Go your own way</p>
-              <h2 className={`h2 ${styles.title}`}>Create a Modlist</h2>
-              <p className={`lead ${styles.intro}`}>The perfect list that has exactly what you want is the one you build yourself. Watch a list get made from an empty Mod Organizer profile.</p>
-              <WrittenUp section="create-modlist" />
+          <section id="create-modlist" className={styles.section}>
+            <div className={styles.split}>
+              {videos('create-modlist').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} className={styles.orderSecond} />)}
+              <div className={styles.orderFirst}>
+                <p className="eyebrow">Go your own way</p>
+                <h2 className={`h2 ${styles.title}`}>Create a Modlist</h2>
+                <p className={`lead ${styles.intro}`}>The perfect list that has exactly what you want is the one you build yourself. Watch a list get made from an empty Mod Organizer profile.</p>
+                <WrittenUp section="create-modlist" />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="lodgen" className={styles.section}>
-          <p className="eyebrow">Three tools, one order</p>
-          <h2 className={`h2 ${styles.title}`}>LOD Generation</h2>
-          <p className="lead section-lead">Distant terrain, trees and objects. Run them in this order — xLODGen, then grass cache, then TexGen and DynDOLOD last. Getting the order wrong is the most common cause of broken LODs.</p>
-          <WrittenUp section="lodgen" />
-          <div className={styles.cardGrid}>
-            {videos('lodgen').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
-          </div>
-        </section>
-
-        <section id="xedit" className={styles.section}>
-          <p className="eyebrow">Plugins and patching</p>
-          <h2 className={`h2 ${styles.title}`}>xEdit</h2>
-          <p className="lead section-lead">The tool you will spend the most time in once you start changing a list. Resolve conflicts, write your own patches, and clean up after removed mods.</p>
-          <WrittenUp section="xedit" />
-          <div className={styles.cardGrid}>
-            {videos('xedit').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
-          </div>
-        </section>
-
-        <section id="creation-kit" className={styles.sectionLast}>
-          <div className={styles.split}>
-            <div>
-              <p className="eyebrow">Landscape work</p>
-              <h2 className={`h2 ${styles.title}`}>Creation Kit</h2>
-              <p className={`lead ${styles.intro}`}>Seams are the visible tear where two mods edit the same landscape. This is the fix that works on any of them — including the Northern Roads seams NGVO users run into.</p>
-              <WrittenUp section="creation-kit" />
+          <section id="lodgen" className={styles.section}>
+            <p className="eyebrow">Three tools, one order</p>
+            <h2 className={`h2 ${styles.title}`}>LOD Generation</h2>
+            <p className="lead section-lead">Distant terrain, trees and objects. Run them in this order — xLODGen, then grass cache, then TexGen and DynDOLOD last. Getting the order wrong is the most common cause of broken LODs.</p>
+            <WrittenUp section="lodgen" />
+            <div className={styles.cardGrid}>
+              {videos('lodgen').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
             </div>
-            {videos('creation-kit').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
-          </div>
-        </section>
+          </section>
+
+          <section id="xedit" className={styles.section}>
+            <p className="eyebrow">Plugins and patching</p>
+            <h2 className={`h2 ${styles.title}`}>xEdit</h2>
+            <p className="lead section-lead">The tool you will spend the most time in once you start changing a list. Resolve conflicts, write your own patches, and clean up after removed mods.</p>
+            <WrittenUp section="xedit" />
+            <div className={styles.cardGrid}>
+              {videos('xedit').map((v) => <VideoCard key={v.title} video={v} size="sm" onPlay={play} />)}
+            </div>
+          </section>
+
+          <section id="creation-kit" className={styles.sectionLast}>
+            <div className={styles.split}>
+              <div>
+                <p className="eyebrow">Landscape work</p>
+                <h2 className={`h2 ${styles.title}`}>Creation Kit</h2>
+                <p className={`lead ${styles.intro}`}>Seams are the visible tear where two mods edit the same landscape. This is the fix that works on any of them — including the Northern Roads seams NGVO users run into.</p>
+                <WrittenUp section="creation-kit" />
+              </div>
+              {videos('creation-kit').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
+            </div>
+          </section>
+        </div>
       </div>
 
       {playing && <Player playing={playing} onClose={close} />}

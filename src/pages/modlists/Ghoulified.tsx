@@ -132,102 +132,104 @@ export function Ghoulified() {
 
       <SectionNav items={NAV} />
 
-      <div className="container">
-        <section id="overview" className="section--intro">
-          <div className="grid grid--2">
-            <div className="flow">
-              <p className="eyebrow">Overview</p>
-              <h2 className="h2 head--loose">Dangerous, but fair</h2>
-              <p className="lead">Ghoulified Reality completely overhauls both visuals and gameplay for a more challenging and immersive Skyrim. It forks NGVO — a visual-only list — and layers Requiem on top for a strategic experience, from combat through character progression.</p>
-              <p className="lead">What separates it from other Requiem lists is 3BFTweaks and its addons, which make the world more dangerous while maintaining a sense of fairness and balance. Perma-death is available but optional.</p>
+      <div className="lit">
+        <div className="container">
+          <section id="overview" className="section--intro">
+            <div className="grid grid--2">
+              <div className="flow">
+                <p className="eyebrow">Overview</p>
+                <h2 className="h2 head--loose">Dangerous, but fair</h2>
+                <p className="lead">Ghoulified Reality completely overhauls both visuals and gameplay for a more challenging and immersive Skyrim. It forks NGVO — a visual-only list — and layers Requiem on top for a strategic experience, from combat through character progression.</p>
+                <p className="lead">What separates it from other Requiem lists is 3BFTweaks and its addons, which make the world more dangerous while maintaining a sense of fairness and balance. Perma-death is available but optional.</p>
+              </div>
+              <YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified Reality showcase" />
             </div>
-            <YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified Reality showcase" />
-          </div>
-        </section>
+          </section>
 
-        <section id="specs" className="section">
-          <div className="section-head">
-            <h2 className="h2">System requirements</h2>
-            <SpecToggle
-              options={[{ key: '1080', label: '1080p' }, { key: '1440', label: '1440p' }]}
-              value={res}
-              onChange={setRes}
+          <section id="specs" className="section">
+            <div className="section-head">
+              <h2 className="h2">System requirements</h2>
+              <SpecToggle
+                options={[{ key: '1080', label: '1080p' }, { key: '1440', label: '1440p' }]}
+                value={res}
+                onChange={setRes}
+              />
+            </div>
+            <SpecCards
+              cards={[
+                { label: 'CPU', value: hi ? '12th Gen i7 or better' : '10th Gen i5 or better' },
+                { label: 'RAM', value: hi ? '32 GB DDR4 + 40 GB pagefile' : '16 GB DDR4 + 40 GB pagefile' },
+                { label: 'Storage', value: hi ? 'M.2 SSD' : 'SATA SSD or higher' },
+                { label: 'GPU', value: hi ? 'RTX 4070 or better' : 'RTX 3070 or better', gold: true },
+              ]}
             />
-          </div>
-          <SpecCards
-            cards={[
-              { label: 'CPU', value: hi ? '12th Gen i7 or better' : '10th Gen i5 or better' },
-              { label: 'RAM', value: hi ? '32 GB DDR4 + 40 GB pagefile' : '16 GB DDR4 + 40 GB pagefile' },
-              { label: 'Storage', value: hi ? 'M.2 SSD' : 'SATA SSD or higher' },
-              { label: 'GPU', value: hi ? 'RTX 4070 or better' : 'RTX 3070 or better', gold: true },
-            ]}
-          />
-          <SkyrimRequirements name="Ghoulified Reality" space="300 GB" />
-        </section>
+            <SkyrimRequirements name="Ghoulified Reality" space="300 GB" />
+          </section>
 
-        <section id="install" className="section">
-          <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--gap">Installation</h2>
-          <ReadMeCard slug="ghoulified" />
-        </section>
+          <section id="install" className="section">
+            <p className="eyebrow">Read me</p>
+            <h2 className="h2 head--gap">Installation</h2>
+            <ReadMeCard slug="ghoulified" />
+          </section>
 
-        <section id="optional" className="section">
-          <h2 className="h2 head--tight">Optional mods</h2>
-          <p className="lead section-lead">MO2 has two separators labelled optional — one for gameplay, one for combat animations. Everything in them can be toggled at any time, and this is where you enable perma-death.</p>
-          <div className="grid grid--tiles">
-            {OPTIONAL.map((o) => (
-              <Tile key={o.title} title={o.title} tone={o.tone}>{o.body}</Tile>
-            ))}
-          </div>
-        </section>
-
-        <section id="tweaks" className="section">
-          <div className={styles.tweaksPanel}>
-            <p className="eyebrow">Guide · by WhisperDealer</p>
-            <h2 className={`h2 ${styles.tweaksTitle}`}>What is 3BFTweaks?</h2>
-            <p className={`lead ${styles.tweaksIntro}`}>Often shortened to 3Tweaks, it is a comprehensive overhaul for Requiem – The Roleplaying Overhaul, created by ANoobInDisguise and the Requiem community. It refines and rebalances an already challenging experience, aimed squarely at veteran players.</p>
-            <div className={styles.tweaksGrid}>
-              {TWEAKS.map((t) => (
-                <div key={t.title} className={styles.tweaksItem}>
-                  <h3 className={styles.tweaksItemTitle}>{t.title}</h3>
-                  <p className={styles.tweaksItemText}>{t.text}</p>
-                </div>
+          <section id="optional" className="section">
+            <h2 className="h2 head--tight">Optional mods</h2>
+            <p className="lead section-lead">MO2 has two separators labelled optional — one for gameplay, one for combat animations. Everything in them can be toggled at any time, and this is where you enable perma-death.</p>
+            <div className="grid grid--tiles">
+              {OPTIONAL.map((o) => (
+                <Tile key={o.title} title={o.title} tone={o.tone}>{o.body}</Tile>
               ))}
             </div>
-            <div className={styles.tweaksActions}>
-              <a href={TWEAKS_GUIDES} {...ext} className="btn btn--gold btn--sm">Official guides</a>
-              <a href={WULF_BUILDS} {...ext} className="btn btn--outline btn--sm">Wulf's builds</a>
+          </section>
+
+          <section id="tweaks" className="section">
+            <div className={styles.tweaksPanel}>
+              <p className="eyebrow">Guide · by WhisperDealer</p>
+              <h2 className={`h2 ${styles.tweaksTitle}`}>What is 3BFTweaks?</h2>
+              <p className={`lead ${styles.tweaksIntro}`}>Often shortened to 3Tweaks, it is a comprehensive overhaul for Requiem – The Roleplaying Overhaul, created by ANoobInDisguise and the Requiem community. It refines and rebalances an already challenging experience, aimed squarely at veteran players.</p>
+              <div className={styles.tweaksGrid}>
+                {TWEAKS.map((t) => (
+                  <div key={t.title} className={styles.tweaksItem}>
+                    <h3 className={styles.tweaksItemTitle}>{t.title}</h3>
+                    <p className={styles.tweaksItemText}>{t.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.tweaksActions}>
+                <a href={TWEAKS_GUIDES} {...ext} className="btn btn--gold btn--sm">Official guides</a>
+                <a href={WULF_BUILDS} {...ext} className="btn btn--outline btn--sm">Wulf's builds</a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="troubleshooting" className="section">
-          <h2 className="h2 head--gap">Troubleshooting</h2>
-          <div className="grid grid--tiles">
-            <DownloadFailedTile />
-            <NotWhitelistedTile />
-            <AntivirusTile />
-            <UpdatingTile />
-            <TroubleTile title="Stock Game &amp; Root Builder" tone="green">
-              A copy of Skyrim lives inside the install folder, so other lists stay compatible. Root Builder manages ENB, ReShade and Engine Fixes.
-            </TroubleTile>
-            <StuckTile text="Bring your MO2 log to the support channel." href={site.discord} />
-          </div>
-        </section>
+          <section id="troubleshooting" className="section">
+            <h2 className="h2 head--gap">Troubleshooting</h2>
+            <div className="grid grid--tiles">
+              <DownloadFailedTile />
+              <NotWhitelistedTile />
+              <AntivirusTile />
+              <UpdatingTile />
+              <TroubleTile title="Stock Game &amp; Root Builder" tone="green">
+                A copy of Skyrim lives inside the install folder, so other lists stay compatible. Root Builder manages ENB, ReShade and Engine Fixes.
+              </TroubleTile>
+              <StuckTile text="Bring your MO2 log to the support channel." href={site.discord} />
+            </div>
+          </section>
 
-        <section id="showcase" className="section">
-          <Gallery
-            shots={SHOTS}
-            extraFirst
-            extra={<YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified showcase" radius={12} className={galleryExtra.feature} />}
+          <section id="showcase" className="section">
+            <Gallery
+              shots={SHOTS}
+              extraFirst
+              extra={<YouTubeEmbed id="Lp8-XTgxJoI" title="Ghoulified showcase" radius={12} className={galleryExtra.feature} />}
+            />
+          </section>
+
+          <DiscordBand
+            title="Support and updates in Discord"
+            text="Release pings, changelogs and build advice from people playing the same brutal list."
+            credits={<>Credits — <strong>you</strong> for reading this, Ghoul smasher Biggie Forn and LaLa for being super helpful, WhisperDealer for the website, Halgari and the Wabbajack team, and every mod author whose work made this list possible.</>}
           />
-        </section>
-
-        <DiscordBand
-          title="Support and updates in Discord"
-          text="Release pings, changelogs and build advice from people playing the same brutal list."
-          credits={<>Credits — <strong>you</strong> for reading this, Ghoul smasher Biggie Forn and LaLa for being super helpful, WhisperDealer for the website, Halgari and the Wabbajack team, and every mod author whose work made this list possible.</>}
-        />
+        </div>
       </div>
     </>
   )

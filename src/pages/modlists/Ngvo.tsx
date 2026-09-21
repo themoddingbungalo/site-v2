@@ -144,111 +144,113 @@ export function Ngvo() {
 
       <SectionNav items={NAV} />
 
-      <div className="container">
-        <section id="overview" className="section--intro">
-          <div className="grid grid--2">
-            <div className="flow">
-              <p className="eyebrow">Overview</p>
-              <h2 className="h2 head--loose">A visual baseline, not a straitjacket</h2>
-              <p className="lead">NGVO is built around one philosophy: give you the absolute best visuals available while staying as moddable as possible. Everything is sorted into clear separators so you can pull a piece out, rerun the relevant tools, and keep going.</p>
-              <p className="lead">Play it as vanilla Skyrim with 2026 visuals, or treat it as the foundation for your own list. Requiem, EnaiRim and SimonRim all drop on top cleanly.</p>
+      <div className="lit">
+        <div className="container">
+          <section id="overview" className="section--intro">
+            <div className="grid grid--2">
+              <div className="flow">
+                <p className="eyebrow">Overview</p>
+                <h2 className="h2 head--loose">A visual baseline, not a straitjacket</h2>
+                <p className="lead">NGVO is built around one philosophy: give you the absolute best visuals available while staying as moddable as possible. Everything is sorted into clear separators so you can pull a piece out, rerun the relevant tools, and keep going.</p>
+                <p className="lead">Play it as vanilla Skyrim with 2026 visuals, or treat it as the foundation for your own list. Requiem, EnaiRim and SimonRim all drop on top cleanly.</p>
+              </div>
+              <YouTubeEmbed id="ypRo6a3mTLw" title="NGVO showcase" />
             </div>
-            <YouTubeEmbed id="ypRo6a3mTLw" title="NGVO showcase" />
-          </div>
-        </section>
+          </section>
 
-        <section id="features" className="section--tight">
-          <h2 className="h2 head--gap">Key features</h2>
-          <div className="grid grid--cards">
-            <FeatureCard
-              title="Tools at your disposal"
-              icon={<StrokeIcon><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z" /></StrokeIcon>}
-            >
-              xEdit, Synthesis, ParallaxGen, DynDOLOD and the Creation Kit all pre-configured, so you can start editing on day one.
-            </FeatureCard>
-            <FeatureCard
-              title="Graphical changes"
-              icon={<StrokeIcon><path d="m2 20 5-14 5 8 3-4 7 10H2Z" /><circle cx="17" cy="5" r="2" /></StrokeIcon>}
-            >
-              A more vibrant Skyrim atmosphere via Vanaheimr, Nature of the Wild Lands, Community Shaders and Freaks Floral Meadows.
-            </FeatureCard>
-            <FeatureCard
-              title="Modular by design"
-              icon={<StrokeIcon><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /></StrokeIcon>}
-            >
-              Northern Roads ships on by default. Disable its separator, rerun LODs, and you have Blended Roads instead. Everything works this way.
-            </FeatureCard>
-            <FeatureCard
-              title="Engine enhancement"
-              icon={<StrokeIcon><path d="M12 2v6" /><path d="m4.9 4.9 4.2 4.2" /><path d="M2 12h6" /><circle cx="12" cy="14" r="6" /></StrokeIcon>}
-            >
-              Every current bugfix and performance improvement, with stability and optimization treated as the design constraint — not an afterthought.
-            </FeatureCard>
-          </div>
-        </section>
+          <section id="features" className="section--tight">
+            <h2 className="h2 head--gap">Key features</h2>
+            <div className="grid grid--cards">
+              <FeatureCard
+                title="Tools at your disposal"
+                icon={<StrokeIcon><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z" /></StrokeIcon>}
+              >
+                xEdit, Synthesis, ParallaxGen, DynDOLOD and the Creation Kit all pre-configured, so you can start editing on day one.
+              </FeatureCard>
+              <FeatureCard
+                title="Graphical changes"
+                icon={<StrokeIcon><path d="m2 20 5-14 5 8 3-4 7 10H2Z" /><circle cx="17" cy="5" r="2" /></StrokeIcon>}
+              >
+                A more vibrant Skyrim atmosphere via Vanaheimr, Nature of the Wild Lands, Community Shaders and Freaks Floral Meadows.
+              </FeatureCard>
+              <FeatureCard
+                title="Modular by design"
+                icon={<StrokeIcon><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /></StrokeIcon>}
+              >
+                Northern Roads ships on by default. Disable its separator, rerun LODs, and you have Blended Roads instead. Everything works this way.
+              </FeatureCard>
+              <FeatureCard
+                title="Engine enhancement"
+                icon={<StrokeIcon><path d="M12 2v6" /><path d="m4.9 4.9 4.2 4.2" /><path d="M2 12h6" /><circle cx="12" cy="14" r="6" /></StrokeIcon>}
+              >
+                Every current bugfix and performance improvement, with stability and optimization treated as the design constraint — not an afterthought.
+              </FeatureCard>
+            </div>
+          </section>
 
-        <section id="specs" className="section">
-          <div className="section-head">
-            <h2 className="h2">System requirements</h2>
-            <SpecToggle
-              options={[{ key: '1080', label: '1080p' }, { key: '1440', label: '1440p' }]}
-              value={res}
-              onChange={setRes}
+          <section id="specs" className="section">
+            <div className="section-head">
+              <h2 className="h2">System requirements</h2>
+              <SpecToggle
+                options={[{ key: '1080', label: '1080p' }, { key: '1440', label: '1440p' }]}
+                value={res}
+                onChange={setRes}
+              />
+            </div>
+            <SpecCards
+              cards={[
+                { label: 'CPU', value: '12th Gen i7 or better' },
+                { label: 'RAM', value: '32 GB DDR4 + 40 GB pagefile' },
+                { label: 'Storage', value: hi ? 'M.2 SSD' : 'SATA SSD or higher' },
+                { label: 'GPU', value: hi ? 'RTX 4080 or better' : 'RTX 3060 or better', gold: true },
+              ]}
             />
-          </div>
-          <SpecCards
-            cards={[
-              { label: 'CPU', value: '12th Gen i7 or better' },
-              { label: 'RAM', value: '32 GB DDR4 + 40 GB pagefile' },
-              { label: 'Storage', value: hi ? 'M.2 SSD' : 'SATA SSD or higher' },
-              { label: 'GPU', value: hi ? 'RTX 4080 or better' : 'RTX 3060 or better', gold: true },
-            ]}
+            <SizeCards
+              sizes={[
+                { label: 'Download size', value: '~150 GB' },
+                { label: 'Install size', value: '~100 GB' },
+                { label: 'Total required', value: '~250 GB' },
+              ]}
+            />
+            <SkyrimRequirements name="NGVO" />
+          </section>
+
+          <section id="install" className="section">
+            <p className="eyebrow">Read me</p>
+            <h2 className="h2 head--gap">Installation</h2>
+            <ReadMeCard slug="ngvo" />
+          </section>
+
+          <section id="troubleshooting" className="section">
+            <h2 className="h2 head--gap">Troubleshooting</h2>
+            <div className="grid grid--tiles">
+              <DownloadFailedTile>Make sure you own all the paid AE content and that the Creation Kit is installed.</DownloadFailedTile>
+              <NotWhitelistedTile />
+              <AntivirusTile />
+              <TroubleTile title="Crashing on an AMD GPU" tone="gold">
+                Disable DLAA and enable TAA in <span className="mono">SkyrimPrefs.ini</span> inside the profile folder. Otherwise you <em>will</em> crash.
+              </TroubleTile>
+              <DynDolodCrashTile />
+              <StuckTile text="Check the FAQs below, then bring your MO2 log to the support channel." href={site.discord} />
+            </div>
+          </section>
+
+          <section id="faqs" className="section">
+            <FaqAccordion items={FAQS} />
+          </section>
+
+          <section id="gallery" className="section">
+            <Gallery
+              shots={SHOTS}
+              extraFirst
+              extra={<YouTubeEmbed id="nKkY0H4R3oU" title="NGVO second showcase" radius={12} className={galleryExtra.feature} />}
+            />
+          </section>
+
+          <DiscordBand
+            credits="Credits — Althro & Ylikollikas for answering every question, ShadowSorcery for the NGVO logo, Halgari and the Wabbajack team, and every mod author whose work made this list possible."
           />
-          <SizeCards
-            sizes={[
-              { label: 'Download size', value: '~150 GB' },
-              { label: 'Install size', value: '~100 GB' },
-              { label: 'Total required', value: '~250 GB' },
-            ]}
-          />
-          <SkyrimRequirements name="NGVO" />
-        </section>
-
-        <section id="install" className="section">
-          <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--gap">Installation</h2>
-          <ReadMeCard slug="ngvo" />
-        </section>
-
-        <section id="troubleshooting" className="section">
-          <h2 className="h2 head--gap">Troubleshooting</h2>
-          <div className="grid grid--tiles">
-            <DownloadFailedTile>Make sure you own all the paid AE content and that the Creation Kit is installed.</DownloadFailedTile>
-            <NotWhitelistedTile />
-            <AntivirusTile />
-            <TroubleTile title="Crashing on an AMD GPU" tone="gold">
-              Disable DLAA and enable TAA in <span className="mono">SkyrimPrefs.ini</span> inside the profile folder. Otherwise you <em>will</em> crash.
-            </TroubleTile>
-            <DynDolodCrashTile />
-            <StuckTile text="Check the FAQs below, then bring your MO2 log to the support channel." href={site.discord} />
-          </div>
-        </section>
-
-        <section id="faqs" className="section">
-          <FaqAccordion items={FAQS} />
-        </section>
-
-        <section id="gallery" className="section">
-          <Gallery
-            shots={SHOTS}
-            extraFirst
-            extra={<YouTubeEmbed id="nKkY0H4R3oU" title="NGVO second showcase" radius={12} className={galleryExtra.feature} />}
-          />
-        </section>
-
-        <DiscordBand
-          credits="Credits — Althro & Ylikollikas for answering every question, ShadowSorcery for the NGVO logo, Halgari and the Wabbajack team, and every mod author whose work made this list possible."
-        />
+        </div>
       </div>
     </>
   )

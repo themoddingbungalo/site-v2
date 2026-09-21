@@ -123,9 +123,9 @@ export function Home() {
       </section>
 
       {/* The four dark sections share one field of light — `.lit` in global.css, which
-          the LoreRim page shares. It has to be one element spanning all of them: a glow
-          per section would die at every boundary and leave a dark seam between each
-          pair. */}
+          every assembled page shares. It has to be one element spanning all of them: a
+          glow per section would die at that section's own edges and leave a dark seam
+          between each pair. */}
       <div className="lit">
         {/* ---- start here -------------------------------------------------- */}
         <section id="start">

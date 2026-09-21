@@ -141,9 +141,11 @@ button { font-family: inherit; }
 
 /* ---- the light field ----------------------------------------------------- */
 /* One field of light behind a run of dark sections. Put it on a wrapper around the run
-   you want lit, not on the app shell: lighting every page turned out to read worse than
-   lighting the two that earn it, so this stays opt-in per page — the home page's four
-   dark sections, and LoreRim's body above the documentation band.
+   you want lit, not on the app shell: it has to be an element that knows where the run
+   starts and ends, and the markdown pages deliberately opt out and stay flat. Every
+   assembled page uses it — the home page's dark run, each modlist page's body, and the
+   guides and community pages — always wrapped outside `.container`, since `inset: 0` on
+   a centred container would clip the light to the text column.
    It has to be one element spanning the run rather than a glow per section. A glow per
    section would have to fade out at that section's own edges, and with every section
    lit you would get a dark seam at each boundary — the light cutting off exactly where
