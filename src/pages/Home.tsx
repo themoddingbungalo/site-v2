@@ -122,10 +122,11 @@ export function Home() {
         </div>
       </section>
 
-      {/* The four dark sections share one field of light — see .lit in the stylesheet.
-          It has to be one element spanning all of them: a glow per section would die
-          at every boundary and leave a dark seam between each pair. */}
-      <div className={styles.lit}>
+      {/* The four dark sections share one field of light — `.lit` in global.css, which
+          the LoreRim page shares. It has to be one element spanning all of them: a glow
+          per section would die at every boundary and leave a dark seam between each
+          pair. */}
+      <div className="lit">
         {/* ---- start here -------------------------------------------------- */}
         <section id="start">
           <div className={`container ${styles.startInner}`}>

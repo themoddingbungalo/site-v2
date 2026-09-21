@@ -32,72 +32,8 @@
 
 /* ---- start here ---------------------------------------------------------- */
 /* ---- the light field ----------------------------------------------------- */
-/* One field of light behind all four dark sections. It has to be a single element
-   spanning the run: a glow per section would have to fade out at that section's own
-   edges, and with every section lit you would get a dark seam at each boundary — the
-   light cutting off exactly where two sections meet. Here nothing fades except where
-   the run begins under the hero and ends above the join CTA.
-   Four warm sources sit roughly over the four section centres, alternating left and
-   right so the light swings down the page instead of pooling on one side, and two cold
-   ones sit off-axis between them so the warm pools have somewhere to fall away to. The
-   positions are percentages of the whole run, so adding a modlist shifts the lower
-   sources slightly — which is fine for a wash, and the reason the sizes are absolute
-   rather than proportional.
-   Every stop ends on its own colour at zero alpha rather than on `transparent`, which
-   is transparent *black*: interpolating toward it drags a grey cast through the middle
-   of the falloff.
-   The grain on top is a dither, not decoration. A wash this faint crosses only about
-   ten values of an 8-bit channel, so it lands as 40px-wide plateaus with a 1-unit step
-   between them, which is visible ringing on a dark screen. The noise carries roughly a
-   single unit of deviation, enough to break the steps up. It is a stitched fractal
-   tile, so it repeats without a seam. */
-.lit { position: relative; isolation: isolate; }
-
-.lit::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  /* Radii, so each pool is about twice this across. The vertical one is a percentage
-     of the run on purpose: the run is about 3100px on a desktop and roughly double
-     that on a phone, and a fixed height would leave the four pools stranded as
-     separate blobs with dark voids between them at narrow widths. */
-  --gw: min(86vw, 1080px);
-  --gh: 17%;
-  --warm-0: rgba(217, 160, 60, 0);
-  --cool-0: rgba(122, 162, 200, 0);
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E"),
-    radial-gradient(var(--gw) var(--gh) at 17% 9%, rgba(217, 160, 60, .085), rgba(217, 160, 60, .034) 36%, var(--warm-0) 70%),
-    radial-gradient(var(--gw) var(--gh) at 84% 37%, rgba(217, 160, 60, .075), rgba(217, 160, 60, .03) 36%, var(--warm-0) 70%),
-    radial-gradient(var(--gw) var(--gh) at 15% 68%, rgba(217, 160, 60, .08), rgba(217, 160, 60, .032) 36%, var(--warm-0) 70%),
-    radial-gradient(var(--gw) var(--gh) at 86% 88%, rgba(217, 160, 60, .07), rgba(217, 160, 60, .028) 36%, var(--warm-0) 70%),
-    radial-gradient(var(--gw) var(--gh) at 88% 21%, rgba(122, 162, 200, .05), rgba(122, 162, 200, .018) 40%, var(--cool-0) 72%),
-    radial-gradient(var(--gw) var(--gh) at 12% 53%, rgba(122, 162, 200, .045), rgba(122, 162, 200, .016) 40%, var(--cool-0) 72%);
-  background-size: 160px 160px, auto, auto, auto, auto, auto, auto;
-  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  /* Absolute lengths, not percentages: the run is thousands of pixels tall, so a
-     percentage fade would eat whole sections. Smoothstep rather than a straight ramp —
-     a linear mask reaches full opacity all at once, and that corner shows as a faint
-     horizontal edge even where the alpha either side of it matches. */
-  --fade: linear-gradient(
-    to bottom,
-    transparent 0,
-    rgba(0, 0, 0, .14) 56px,
-    rgba(0, 0, 0, .41) 106px,
-    rgba(0, 0, 0, .71) 155px,
-    rgba(0, 0, 0, .92) 198px,
-    #000 240px,
-    #000 calc(100% - 280px),
-    rgba(0, 0, 0, .92) calc(100% - 231px),
-    rgba(0, 0, 0, .71) calc(100% - 181px),
-    rgba(0, 0, 0, .41) calc(100% - 124px),
-    rgba(0, 0, 0, .14) calc(100% - 65px),
-    transparent 100%
-  );
-  -webkit-mask-image: var(--fade);
-  mask-image: var(--fade);
-}
+/* Moved to global.css as `.lit`: the LoreRim page runs the same wash behind its body
+   sections, and a second copy of it would drift from this one. */
 
 .startInner { padding-top: clamp(64px, 9vw, 108px); padding-bottom: clamp(48px, 6vw, 76px); }
 .startHead { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: clamp(34px, 4.4vw, 52px); }

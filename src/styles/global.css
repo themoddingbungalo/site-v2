@@ -139,6 +139,79 @@ button { font-family: inherit; }
   .grid--2, .grid--cards, .grid--tiles, .grid--specs, .grid--sizes, .grid--install { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* ---- the light field ----------------------------------------------------- */
+/* One field of light behind a run of dark sections. Put it on a wrapper around the run
+   you want lit, not on the app shell: lighting every page turned out to read worse than
+   lighting the two that earn it, so this stays opt-in per page — the home page's four
+   dark sections, and LoreRim's body above the documentation band.
+   It has to be one element spanning the run rather than a glow per section. A glow per
+   section would have to fade out at that section's own edges, and with every section
+   lit you would get a dark seam at each boundary — the light cutting off exactly where
+   two sections meet. Here nothing fades except the two ends of the run, where the mask
+   takes it out.
+   Six sources: four warm, alternating left and right so the light swings down the page
+   instead of pooling on one side, and two cold ones off-axis between them so the warm
+   pools have somewhere to fall away to. The positions are percentages of the run, so
+   adding a section shifts the lower sources slightly — which is fine for a wash, and
+   the reason the sizes are absolute rather than proportional.
+   `--gh` is a percentage on purpose: a run is about 3100px on a desktop and roughly
+   double that on a phone, and a fixed height would leave the pools stranded as separate
+   blobs with dark voids between them at narrow widths.
+   It shows only where the page is flat: `isolation` keeps the ::before at z-index -1
+   inside this element, so every opaque hero, art band and panel paints over it.
+   Every stop ends on its own colour at zero alpha rather than on `transparent`, which
+   is transparent *black*: interpolating toward it drags a grey cast through the middle
+   of the falloff.
+   The grain on top is a dither, not decoration. A wash this faint crosses only about
+   ten values of an 8-bit channel, so it lands as 40px-wide plateaus with a 1-unit step
+   between them, which is visible ringing on a dark screen. The noise carries roughly a
+   single unit of deviation, enough to break the steps up. It is a stitched fractal
+   tile, so it repeats without a seam. */
+.lit { position: relative; isolation: isolate; }
+
+.lit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Radii, so each pool is about twice this across. */
+  --gw: min(86vw, 1080px);
+  --gh: 17%;
+  --warm-0: rgba(217, 160, 60, 0);
+  --cool-0: rgba(122, 162, 200, 0);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E"),
+    radial-gradient(var(--gw) var(--gh) at 17% 9%, rgba(217, 160, 60, .085), rgba(217, 160, 60, .034) 36%, var(--warm-0) 70%),
+    radial-gradient(var(--gw) var(--gh) at 84% 37%, rgba(217, 160, 60, .075), rgba(217, 160, 60, .03) 36%, var(--warm-0) 70%),
+    radial-gradient(var(--gw) var(--gh) at 15% 68%, rgba(217, 160, 60, .08), rgba(217, 160, 60, .032) 36%, var(--warm-0) 70%),
+    radial-gradient(var(--gw) var(--gh) at 86% 88%, rgba(217, 160, 60, .07), rgba(217, 160, 60, .028) 36%, var(--warm-0) 70%),
+    radial-gradient(var(--gw) var(--gh) at 88% 21%, rgba(122, 162, 200, .05), rgba(122, 162, 200, .018) 40%, var(--cool-0) 72%),
+    radial-gradient(var(--gw) var(--gh) at 12% 53%, rgba(122, 162, 200, .045), rgba(122, 162, 200, .016) 40%, var(--cool-0) 72%);
+  background-size: 160px 160px, auto, auto, auto, auto, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  /* Absolute lengths, not percentages: the run is thousands of pixels tall, so a
+     percentage fade would eat whole sections. Smoothstep rather than a straight ramp —
+     a linear mask reaches full opacity all at once, and that corner shows as a faint
+     horizontal edge even where the alpha either side of it matches. */
+  --fade: linear-gradient(
+    to bottom,
+    transparent 0,
+    rgba(0, 0, 0, .14) 56px,
+    rgba(0, 0, 0, .41) 106px,
+    rgba(0, 0, 0, .71) 155px,
+    rgba(0, 0, 0, .92) 198px,
+    #000 240px,
+    #000 calc(100% - 280px),
+    rgba(0, 0, 0, .92) calc(100% - 231px),
+    rgba(0, 0, 0, .71) calc(100% - 181px),
+    rgba(0, 0, 0, .41) calc(100% - 124px),
+    rgba(0, 0, 0, .14) calc(100% - 65px),
+    transparent 100%
+  );
+  -webkit-mask-image: var(--fade);
+  mask-image: var(--fade);
+}
+
 /* ---- video frame --------------------------------------------------------- */
 .video-frame { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--bg-video); border: 1px solid var(--hair-12); border-radius: 14px; overflow: hidden; }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
