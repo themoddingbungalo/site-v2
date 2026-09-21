@@ -124,6 +124,13 @@ black letterbox bars off captures taken on an ultrawide display. The bar detecti
 fires on an obvious symmetric pair, so genuinely dark screenshots are left alone; it
 reports every crop it makes, so check that output when adding a list.
 
+Page and modlist hero art is the same bargain without a script: the raw capture goes in
+`content/screenshots/heroes/` (gitignored with the rest) and the committed file is a
+1920x1080 WebP in `public/assets/heroes/`, which is what every hero there already is.
+A one-off `sharp(src).resize({ width: 1920 }).webp({ quality: 86, effort: 6 })` does it —
+a 5.5 MB PNG lands around 180 KB. Never point a hero at a PNG in `public/`: it ships at
+full size to everyone who opens the page.
+
 The grid is four columns at desktop. A `Shot` marked `feature` (and the `extra` video
 tile, via a page-level class) spans two columns and two rows, which keeps the 16/9
 shape without making its row taller. NGVO uses that for the video plus one shot, so

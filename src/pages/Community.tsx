@@ -102,8 +102,8 @@ export function Community() {
   return (
     <div ref={rootRef}>
       <PageHero
-        image="assets/heroes/whiterun-guards.webp"
-        position="center 38%"
+        image="assets/heroes/legion.webp"
+        position="center 46%"
         scrimClassName={styles.heroScrim}
         eyebrow="Who we are"
         title="The Community"
