@@ -6,7 +6,6 @@ import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
 import { useScrollLock } from '../components/ui/useScrollLock'
 import { guidePath, guideSections, guideVideos, guidesForSection, type GuideSectionId, type GuideVideo } from '../data/guides'
-import { modlistPath } from '../data/modlists'
 import { ext, pageTitle, site } from '../data/site'
 import styles from './Guides.module.css'
 
@@ -144,7 +143,6 @@ export function Guides() {
               <p className="eyebrow">Go your own way</p>
               <h2 className={`h2 ${styles.title}`}>Create a Modlist</h2>
               <p className={`lead ${styles.intro}`}>The perfect list that has exactly what you want is the one you build yourself. Watch a list get made from an empty Mod Organizer profile.</p>
-              <Link to={modlistPath('ngvo')} className="btn btn--gold-line">Or start from NGVO →</Link>
               <WrittenUp section="create-modlist" />
             </div>
           </div>

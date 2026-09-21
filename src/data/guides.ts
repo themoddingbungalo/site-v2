@@ -59,6 +59,14 @@ export const guides: Guide[] = [
     menuLabel: 'Creation Kit · Close a gap, blend a seam',
   },
   {
+    slug: 'create-modlist',
+    section: 'create-modlist',
+    title: 'Building a List From Scratch',
+    blurb: 'An empty folder to a compiled .wabbajack: the folder layout, the meta files that decide whether a list can ever be shared, cleaning the base plugins, and the order to build in.',
+    file: 'guides/create-modlist.md',
+    menuLabel: 'Create · Empty folder to .wabbajack',
+  },
+  {
     slug: 'wabbajack-setup',
     section: 'wabbajack',
     title: 'Setting Up Wabbajack',
@@ -116,6 +124,9 @@ export const guideAssets: Record<string, string> = Object.fromEntries(
     'assets/csvp/maintexgen.webp',
     'assets/csvp/maindyndo.webp',
     // Tool guides — frames from the walkthrough videos, via scripts/video-shot.mjs.
+    'assets/guides/create-modlist/meta-file.webp',
+    'assets/guides/create-modlist/quick-auto-clean.webp',
+    'assets/guides/create-modlist/xedit-executable.webp',
     'assets/guides/creation-kit-seams/cell-view.webp',
     'assets/guides/creation-kit-seams/data-dialog.webp',
     'assets/guides/creation-kit-seams/landscape-edit-settings.webp',
