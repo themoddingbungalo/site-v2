@@ -9,10 +9,8 @@ import { ModlistHero } from '../../components/ui/ModlistHero'
 import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
 import { SizeCards, SpecCards, SpecToggle } from '../../components/ui/Specs'
-import { StepList, type Step } from '../../components/ui/Steps'
 import { KeyRows, Tile } from '../../components/ui/Tile'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
-import { step, wabbajackInstall } from '../../content/install'
 import { readmePath } from '../../data/modlists'
 import { ext, pageTitle, site } from '../../data/site'
 import styles from './Dngg.module.css'
@@ -39,22 +37,6 @@ const SPECS: Record<SpecKey, { cpu: string; gpu: string; ram: string; storage: s
 
 const REQUIEM_DISCORD = 'https://discord.gg/JycmyqzZz7'
 const GITHUB = 'https://github.com/Arkay-1248/Do-Not-Go-Gentle'
-
-/**
- * The shared opening steps, minus the two this list does not ask for, with a harder
- * line on the uninstall — Arkay's most common support ticket is a leftover game folder.
- */
-const PRE_INSTALL: Step[] = [
-  step.runtimes(true),
-  step.stopAutoUpdates,
-  {
-    body: <>Fully uninstall Skyrim — delete the folder, the Skyrim Special Edition folder in <span className="mono">\Documents\My Games\</span>, and uninstall from Steam. <strong>Seriously, make sure nothing is left.</strong></>,
-    hot: true,
-  },
-  step.reinstallSkyrim,
-  step.graphicsCheck,
-  <>Launch to the main menu to download all the creations — <strong>without this you will not have the right version of the four free CC mods.</strong></>,
-]
 
 const FAQS: FaqItem[] = [
   {
@@ -197,25 +179,8 @@ export function Dngg() {
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--tight">Installation</h2>
-          <p className="lead section-lead section-lead--roomy">Be thorough with step 3 — make sure there is genuinely nothing left in the Skyrim Special Edition folder in your Steam location.</p>
-
+          <h2 className="h2 head--gap">Installation</h2>
           <ReadMeCard slug="dngg" />
-
-          <div className="grid grid--install">
-            <StepList number={1} title="Pre-installation" steps={PRE_INSTALL} />
-            <div className="grid grid--stack">
-              <StepList
-                number={2}
-                title="Download and install"
-                steps={wabbajackInstall({ name: 'DNGG', folder: 'C:\\DNGG' })}
-              />
-              <Callout kind="warning" icon={false} compact title="Commonly failing downloads">
-                <p>Lord Nicholas Armor, Slow Sprint Equip Bug Fix and xLODGen.99 tend to fail. Mirrors are pinned in the <span className="mono mono--light">#dngg-install-help</span> channel.</p>
-                <p>Also confirm you have downloaded <strong>all</strong> the Creation Club content — the list will not run without it.</p>
-              </Callout>
-            </div>
-          </div>
         </section>
 
         <section id="firstplay" className="section">

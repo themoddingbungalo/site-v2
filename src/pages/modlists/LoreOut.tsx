@@ -8,7 +8,7 @@ import { ModlistHero } from '../../components/ui/ModlistHero'
 import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
 import { SpecCards } from '../../components/ui/Specs'
-import { FeatureCard, StepList } from '../../components/ui/Steps'
+import { FeatureCard } from '../../components/ui/Steps'
 import { Tile } from '../../components/ui/Tile'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import { readmePath } from '../../data/modlists'
@@ -166,40 +166,8 @@ export function LoreOut() {
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--tight">Installation</h2>
-          <p className="lead section-lead section-lead--roomy">Install LoreOut to the same drive as Fallout 4, and keep both out of <span className={`mono ${styles.mono15}`}>\Program Files\</span>.</p>
-
+          <h2 className="h2 head--gap">Installation</h2>
           <ReadMeCard slug="loreout" />
-
-          <div className="grid grid--install">
-            <StepList
-              number={1}
-              title="Pre-installation"
-              steps={[
-                <>Add <span className="mono">f4se.exe</span> and <span className="mono">ModOrganizer.exe</span> as antivirus / Defender exceptions.</>,
-                <>Install the <a href="https://aka.ms/vs/16/release/vc_redist.x64.exe" {...ext}>Visual C++ x64 redistributable</a> — required by MO2.</>,
-                <>In Steam properties → Updates, set automatic updates to <strong>only update on launch</strong>. Turn off Steam Overlay, Medal and other overlays.</>,
-                <>Disable your GPU's own upscaling and frame generation in the Nvidia settings — LoreOut provides its own.</>,
-                <>Clean Fallout 4: uninstall through Steam, delete the game folder, the <span className="mono">Fallout4</span> folder in Documents/My Games, and everything in <span className="mono">%LocalAppData%/Fallout 4</span>. <strong>Back up saves first.</strong></>,
-                <>Reinstall, run the Launcher once for the graphics check — then never launch through it again or it reverts your INIs.</>,
-              ]}
-            />
-            <div className="grid grid--stack">
-              <StepList
-                number={2}
-                title="Wabbajack"
-                steps={[
-                  <>Put <a href={site.wabbajack} {...ext}>Wabbajack.exe</a> in a root-level folder like <span className="mono">C:\Wabbajack</span> — never Desktop, Downloads or Program Files.</>,
-                  <>Click <strong>Browse Lists</strong>, tick <strong>Non-featured</strong> below the search bar, then pick LoreOut.</>,
-                  <>Use a blank folder at the root of a drive, ideally not C — e.g. <span className="mono">D:\LoreOut</span>. Then hit Install.</>,
-                  <>If downloads fail, rerun before asking in Discord — it resumes. Otherwise sign out of Nexus via the gear icon, restart Wabbajack, sign back in.</>,
-                ]}
-              />
-              <Callout kind="important" icon={false} compact title="Missing Nexus files">
-                <p>Two mods were removed from Nexus and must be fetched externally. Start the install; if it fails, close Wabbajack, drop the zips into <span className="mono mono--light">LoreOut/Downloads</span>, and rerun — it resumes. Grab MiscHairstyle 1.6 and MoreHairstyles-MoreBeards from <a href="https://fo4-mischairstyle.tumblr.com/post/139169515871/mischairstyle16-download-47-new-hairs-for-male" {...ext}>fo4-mischairstyle.tumblr.com</a>.</p>
-              </Callout>
-            </div>
-          </div>
         </section>
 
         <section id="setup" className="section">

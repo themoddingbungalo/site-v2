@@ -10,7 +10,7 @@ import { ModlistHero } from '../../components/ui/ModlistHero'
 import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
 import { SizeCards, SpecCards, SpecToggle } from '../../components/ui/Specs'
-import { FeatureCard, StepList, StuckTile, TroubleTile } from '../../components/ui/Steps'
+import { FeatureCard, StuckTile, TroubleTile } from '../../components/ui/Steps'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import {
   AntivirusTile,
@@ -18,7 +18,6 @@ import {
   DynDolodCrashTile,
   NotWhitelistedTile,
   SkyrimRequirements,
-  skyrimPreInstall,
 } from '../../content/install'
 import { guidePath } from '../../data/guides'
 import { readmePath } from '../../data/modlists'
@@ -309,38 +308,8 @@ export function Csvp() {
         {/* ---- Installation ------------------------------------------------ */}
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--tight">Installation</h2>
-          <p className="lead section-lead section-lead--roomy">Only the Main version appears in the Wabbajack UI — enable “Non Featured” lists when searching. Performance is a separate download from the Nexus page. Both install the same way.</p>
-
+          <h2 className="h2 head--gap">Installation</h2>
           <ReadMeCard slug="csvp" />
-
-          <div className="grid grid--install">
-            <StepList number={1} title="Pre-installation" steps={skyrimPreInstall} />
-            <div className="grid grid--stack">
-              <StepList
-                number={2}
-                title="Install from disk"
-                steps={[
-                  <>Put <a href={site.wabbajack} {...ext}>Wabbajack</a> in a folder like <span className="mono">C:\Games\Wabbajack</span>. CSVP always needs the latest version.</>,
-                  <>Download the CSVP Wabbajack file from Main Files on the <a href={NEXUS} {...ext}>Nexus page</a>. That is the only thing you need from Nexus.</>,
-                  <>In Wabbajack go to <strong>Browse Lists</strong>, then <strong>Install from Disk</strong>, and select that file.</>,
-                  <>Set the install folder to something like <span className="mono">C:\CSVP</span> — not desktop, downloads or Program Files.</>,
-                  <>Download and install locations can differ if storage is a concern. Press play and go pet your nearest fluffy animal.</>,
-                  <>These same steps are how you update an already-installed list.</>,
-                ]}
-              />
-              <StepList
-                number={3}
-                title="First launch"
-                steps={[
-                  <>Run <span className="mono">ModOrganizer.exe</span> from the install folder.</>,
-                  <>Widescreen users: check the noted separators and mods before loading in.</>,
-                  <>Set the dropdown on the right to <strong>CSVP - A NGVO Fork</strong> and press Run.</>,
-                  <>Screenshots save to <span className="mono">CSVP\overwrite</span>.</>,
-                ]}
-              />
-            </div>
-          </div>
         </section>
 
         {/* ---- Guides ------------------------------------------------------ */}

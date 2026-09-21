@@ -8,7 +8,7 @@ import { ModlistHero } from '../../components/ui/ModlistHero'
 import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav } from '../../components/ui/SectionNav'
 import { SpecCards, SpecToggle } from '../../components/ui/Specs'
-import { StepList, StuckTile, TroubleTile, type Step } from '../../components/ui/Steps'
+import { StuckTile, TroubleTile } from '../../components/ui/Steps'
 import { Tile } from '../../components/ui/Tile'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import {
@@ -17,8 +17,6 @@ import {
   NotWhitelistedTile,
   SkyrimRequirements,
   UpdatingTile,
-  step,
-  wabbajackInstall,
 } from '../../content/install'
 import { readmePath } from '../../data/modlists'
 import { ext, pageTitle, site } from '../../data/site'
@@ -53,30 +51,6 @@ const SHOTS: Shot[] = [
   shot('tundra-sunset', 'Sunset over the tundra'),
   shot('woods-rain', 'Rain through the pines'),
   shot('molag-bal-vyrthur', 'Vyrthur in the Forgotten Vale'),
-]
-
-/**
- * The shared pre-installation steps, with the Rare Curios dance spliced in. No other
- * list needs it, which is why those two steps live here and are flagged `hot`.
- */
-const PRE_INSTALL: Step[] = [
-  step.runtimes(),
-  step.stopAutoUpdates,
-  step.uninstallSkyrim,
-  step.disableOneDrive,
-  step.reinstallSkyrim,
-  step.graphicsCheck,
-  step.creationClub,
-  {
-    body: <>In <span className="mono">…\Skyrim Special Edition\Data</span>, delete <span className="mono">ccbgssse037-curios.bsa</span> and <span className="mono">ccbgssse037-curios.esp</span>.</>,
-    hot: true,
-  },
-  {
-    body: <>Relaunch Skyrim, go to the Creation Club and redownload <strong>Rare Curios</strong>. Back to main menu, then close the game.</>,
-    hot: true,
-  },
-  step.creationKitLinked,
-  step.antivirus,
 ]
 
 const OPTIONAL = [
@@ -193,32 +167,8 @@ export function Ghoulified() {
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--tight">Installation</h2>
-          <p className="lead section-lead section-lead--roomy">Note steps 8 and 9 — Ghoulified needs Rare Curios deleted and redownloaded, which no other list here asks for. Skipping it breaks the install.</p>
-
+          <h2 className="h2 head--gap">Installation</h2>
           <ReadMeCard slug="ghoulified" />
-
-          <div className="grid grid--install">
-            <StepList number={1} title="Pre-installation" steps={PRE_INSTALL} />
-            <div>
-              <StepList
-                number={2}
-                title="Download and install"
-                steps={wabbajackInstall({ name: 'Ghoulified Reality', folder: 'C:\\Ghoulified Reality' })}
-              />
-              <StepList
-                number={3}
-                title="First launch"
-                steps={[
-                  <>Run <span className="mono">ModOrganizer.exe</span>. An NXM popup appears on first launch — hit ignore.</>,
-                  <>Set the dropdown on the right to <strong>Ghoulified Reality</strong> and press Run.</>,
-                  <>MCM options run themselves — stand still until the popup says it has finished.</>,
-                  <>Once the MCM is done, open your inventory and close it to start 3BFTweaks.</>,
-                  <>Screenshots save to <span className="mono">Overwrite\Stock Game</span>.</>,
-                ]}
-              />
-            </div>
-          </div>
         </section>
 
         <section id="optional" className="section">

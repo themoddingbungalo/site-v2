@@ -5,6 +5,9 @@
   border: 1px solid var(--gold-38); border-radius: 12px; color: inherit;
   transition: border-color .2s ease, transform .2s ease;
 }
+/* The bottom margin clears whatever the page puts under the card; when it is the last
+   thing in its section, the section's own padding is the gap. */
+.card:last-child { margin-bottom: 0; }
 .card:hover { border-color: var(--gold-75); transform: translateY(-2px); color: inherit; }
 .lead { display: flex; align-items: flex-start; gap: 15px; min-width: 0; }
 .icon { flex: 0 0 auto; margin-top: 3px; }

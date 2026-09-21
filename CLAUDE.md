@@ -76,11 +76,15 @@ whether the thing already exists:
   `ReadMeCard`, `Gallery` (`shotsFor(slug)` builds the `Shot`s, `galleryExtra` classes
   span an extra tile) and `DiscordBand` (`primary` overrides the default Discord button,
   `secondary` takes any number of outlined ones).
-- `src/content/install.tsx` — the prose every Skyrim list repeats: `skyrimPreInstall`
-  and the individual `step.*` fragments, `wabbajackInstall()`, `SkyrimRequirements`,
+- `src/content/install.tsx` — the prose every Skyrim list repeats: `SkyrimRequirements`
   and the Wabbajack failure tiles (`DownloadFailedTile`, `NotWhitelistedTile`,
   `AntivirusTile`, `DynDolodCrashTile`, `UpdatingTile`). Fix a sentence here and it
   lands on every list at once. Only genuinely list-specific copy belongs in a page.
+  `skyrimPreInstall`, the `step.*` fragments and `wabbajackInstall()` are still exported
+  but nothing renders them: a list page's install section is now a heading and a
+  `ReadMeCard`, and the steps live only in the author's read me. Do not reintroduce
+  them into a page — a step written here would sit alongside the read me and drift
+  out of date the moment the author edits theirs.
 - `src/markdown/MarkdownArticle.tsx` — `useMarkdownPage()` plus the article body,
   loading/error states and the "edit on GitHub" footer, shared by the read me and
   guide pages.

@@ -4,9 +4,10 @@ import { BookIcon } from './Icons'
 import styles from './ReadMeCard.module.css'
 
 /**
- * The gold band that sends readers from a modlist page's install summary to the full
- * markdown read me. Every list shows the same promise in the same words, so the words
- * live here rather than in six pages that would drift apart.
+ * The gold band that sends readers from a modlist page's install section to the full
+ * markdown read me. The read me is the whole of the install — the pages carry no steps
+ * of their own — and every list makes that hand-off in the same words, so the words live
+ * here rather than in six pages that would drift apart.
  */
 export function ReadMeCard({ slug, cta = 'Open Read Me' }: { slug: ModlistSlug; cta?: string }) {
   return (
@@ -16,8 +17,7 @@ export function ReadMeCard({ slug, cta = 'Open Read Me' }: { slug: ModlistSlug; 
         <div>
           <p className={styles.title}>Full {modlistBySlug[slug].fullName} Read Me</p>
           <p className={styles.text}>
-            The summary below covers the shape of the install. The Read Me has every step in full,
-            maintained by the modlist author.
+            Every step of the install, in full and kept current by the modlist author.
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ import { ModlistHero } from '../../components/ui/ModlistHero'
 import { ReadMeCard } from '../../components/ui/ReadMeCard'
 import { SectionNav } from '../../components/ui/SectionNav'
 import { SizeCards, SpecCards, SpecToggle } from '../../components/ui/Specs'
-import { FeatureCard, StepList, StuckTile, TroubleTile } from '../../components/ui/Steps'
+import { FeatureCard, StuckTile, TroubleTile } from '../../components/ui/Steps'
 import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import {
   AntivirusTile,
@@ -17,9 +17,6 @@ import {
   DynDolodCrashTile,
   NotWhitelistedTile,
   SkyrimRequirements,
-  skyrimPreInstall,
-  step,
-  wabbajackInstall,
 } from '../../content/install'
 import { readmePath } from '../../data/modlists'
 import { ext, pageTitle, site } from '../../data/site'
@@ -219,31 +216,8 @@ export function Ngvo() {
 
         <section id="install" className="section">
           <p className="eyebrow">Read me</p>
-          <h2 className="h2 head--tight">Installation</h2>
-          <p className="lead section-lead section-lead--roomy">With Nexus Premium this is mostly a waiting game. Work through pre-installation properly — almost every support ticket traces back to a skipped step here.</p>
-
+          <h2 className="h2 head--gap">Installation</h2>
           <ReadMeCard slug="ngvo" />
-
-          <div className="grid grid--install">
-            <StepList number={1} title="Pre-installation" steps={[...skyrimPreInstall, step.creationKit]} />
-            <div>
-              <StepList
-                number={2}
-                title="Download and install"
-                steps={wabbajackInstall({ name: 'NGVO', folder: 'C:\\NGVO' })}
-              />
-              <StepList
-                number={3}
-                title="Post-installation"
-                steps={[
-                  <>Open the install folder and run <span className="mono">ModOrganizer.exe</span>.</>,
-                  <>Set the dropdown on the right to <strong>NGVO</strong> and press Run.</>,
-                  <>No MCM options are required. Load the SmoothCam preset if you want it.</>,
-                  <>Screenshots save to <span className="mono">Overwrite\Stock Game</span>.</>,
-                ]}
-              />
-            </div>
-          </div>
         </section>
 
         <section id="troubleshooting" className="section">
