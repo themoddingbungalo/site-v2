@@ -1,11 +1,11 @@
 import { Link } from 'react-router'
-import { asset, ext, site } from '../../data/site'
+import { asset, ext, issuesUrl, site } from '../../data/site'
 import { PencilIcon } from '../ui/Icons'
 import styles from './SiteFooter.module.css'
 
 export function ContributeButton({ className = '' }: { className?: string }) {
   return (
-    <a href={site.repo} {...ext} className={`btn btn--gold-tint ${className}`}>
+    <a href={issuesUrl} {...ext} className={`btn btn--gold-tint ${className}`}>
       <PencilIcon size={16} />
       Contribute to the Wiki
     </a>

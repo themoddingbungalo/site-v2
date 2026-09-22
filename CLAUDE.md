@@ -93,6 +93,18 @@ A page's own CSS module should hold only what is unique to that list. If you fin
 yourself writing a rule that already exists in another module, it belongs in
 `global.css` or in the component instead.
 
+## Contributions
+
+"Contribute to the Wiki" (header menu, drawer, search, footer, community page) points at
+`issuesUrl` from `src/data/site.ts`, not the repo root: it lands on the issues tab. The
+community page also links the three forms directly with `issueUrl('bug-report' |
+'documentation-change' | 'documentation-addition')`, whose argument is the filename in
+`.github/ISSUE_TEMPLATE/`. Rename a form there and the link 404s, so change both together.
+Blank issues are disabled; `config.yml` sends install and crash questions to the Discord.
+A form may only apply labels the repo already has — the three in use (`bug`,
+`documentation`, `enhancement`) are GitHub's defaults, and naming a missing one makes the
+form fail on submit.
+
 ## Registries
 
 `src/data/modlists.ts` and `src/data/guides.ts` drive the header menus, search index,

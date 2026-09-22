@@ -49,6 +49,13 @@ up next to its video walkthrough on the Guides page.
 The site rebuilds itself and your change is live in about two minutes. If it does not
 show up, do a hard refresh (Ctrl+F5).
 
+**If you would rather not edit it yourself**, open an issue instead: the **Contribute to
+the Wiki** button anywhere on the site goes to the
+[issues tab](https://github.com/themoddingbungalo/site-v2/issues), where **New issue**
+offers three forms — report a bug in the site, report wrong information or a typo in a
+page, or offer a guide you have written. Fill the form in and the person who owns that
+page picks it up. Install problems and crashes are not issues: those go to the Discord.
+
 To add a guide to a list, put the `.md` file in that list's `guides/` folder (create
 the folder if it is the first one) and ask the site maintainer to wire it up — it is
 one entry in `src/data/guides.ts`, which sets the title, the blurb and the page

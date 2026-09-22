@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import { guideContext, guidePath, guideSections, guides } from '../../data/guides'
 import { modlistPath, modlists, readmePath } from '../../data/modlists'
-import { asset, ext, site } from '../../data/site'
+import { asset, ext, issuesUrl, site } from '../../data/site'
 import { team } from '../../data/team'
 import { ChevronDownIcon, DiscordIcon, MenuIcon, SearchIcon } from '../ui/Icons'
 import { useScrollLock } from '../ui/useScrollLock'
@@ -24,7 +24,7 @@ function buildIndex(): SearchEntry[] {
   out.push({ label: 'Biggie Boss', tag: 'Community', to: '/community#biggie' })
   out.push({ label: 'The Modding Bordello', tag: 'Community', to: '/community#bordello' })
   for (const m of team) out.push({ label: m.name, tag: 'Team', to: '/community#team' })
-  out.push({ label: 'Contribute to the Wiki', tag: 'GitHub', to: site.repo, external: true })
+  out.push({ label: 'Contribute to the Wiki', tag: 'GitHub', to: issuesUrl, external: true })
   out.push({ label: 'Join the Discord', tag: 'Discord', to: site.discord, external: true })
   return out
 }
@@ -151,7 +151,7 @@ export function SiteHeader() {
                   <Link to="/community" className={styles.plainItem}>The Bungalo team</Link>
                   <Link to="/community#biggie" className={styles.plainItem}>Biggie Boss</Link>
                   <Link to="/community#bordello" className={styles.plainItem}>The Modding Bordello</Link>
-                  <a href={site.repo} {...ext} className={styles.plainItem}>Contribute to the Wiki</a>
+                  <a href={issuesUrl} {...ext} className={styles.plainItem}>Contribute to the Wiki</a>
                 </div>
               )}
             </div>
@@ -191,7 +191,7 @@ export function SiteHeader() {
               <Link to="/community" className={styles.drawerLink}>The Bungalo team</Link>
               <Link to="/community#biggie" className={styles.drawerLink}>Biggie Boss</Link>
               <Link to="/community#bordello" className={styles.drawerLink}>The Modding Bordello</Link>
-              <a href={site.repo} {...ext} className={styles.drawerLink}>Contribute to the Wiki</a>
+              <a href={issuesUrl} {...ext} className={styles.drawerLink}>Contribute to the Wiki</a>
             </div>
           </div>
         )}

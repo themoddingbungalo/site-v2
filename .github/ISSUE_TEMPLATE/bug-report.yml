@@ -1,0 +1,57 @@
+name: Bug report
+description: Something on the wiki is broken — a page, a link, an image, the layout.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is for problems with **the website**. If a modlist will not install or the
+        game crashes, that is support — ask in [the Discord](https://discord.gg/bungalo).
+
+  - type: input
+    id: page
+    attributes:
+      label: Where
+      description: The address of the page, or its name if you cannot copy the address.
+      placeholder: https://themoddingbungalo.github.io/site-v2/lists/ngvo/read-me
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What sort of problem
+      options:
+        - The page does not load
+        - A link goes nowhere or to the wrong place
+        - An image is missing or broken
+        - The layout is wrong or unreadable
+        - Search or the menus
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: What you did and what the page did. Screenshots help — drag them straight in.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: false
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      description: Only if it might matter.
+      placeholder: Firefox on Windows 11 / Safari on an iPhone
+    validations:
+      required: false

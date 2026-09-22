@@ -1,0 +1,71 @@
+name: Documentation fix
+description: Something in a read me or guide is wrong, out of date, or a typo.
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If you already know the right answer, you can just fix it: every read me and guide
+        page has an **Edit this page on GitHub** link at the bottom. Press the pencil, edit,
+        commit — the site redeploys itself. Open this form instead when you would rather the
+        author made the call.
+
+  - type: dropdown
+    id: where
+    attributes:
+      label: Which page
+      options:
+        - LoreRim
+        - NGVO
+        - Ghoulified
+        - LoreOut
+        - CSVP
+        - Do Not Go Gentle
+        - A tool guide (Wabbajack, xEdit, xLODGen, DynDOLOD, Creation Kit)
+        - Somewhere else on the site
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Page address
+      placeholder: https://themoddingbungalo.github.io/site-v2/lists/csvp/read-me
+    validations:
+      required: true
+
+  - type: input
+    id: section
+    attributes:
+      label: Which section
+      description: The heading it sits under, so it can be found quickly.
+      placeholder: Installation → Step 4
+    validations:
+      required: false
+
+  - type: textarea
+    id: current
+    attributes:
+      label: What it says now
+      description: Paste the sentence or step as it is written.
+    validations:
+      required: true
+
+  - type: textarea
+    id: correction
+    attributes:
+      label: What it should say
+      description: The corrected wording, as close to final as you can make it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How you know
+      description: >-
+        A version number, a changelog, a Discord message, a screenshot — anything that
+        shows the current text is wrong. Skip this for a plain typo.
+    validations:
+      required: false

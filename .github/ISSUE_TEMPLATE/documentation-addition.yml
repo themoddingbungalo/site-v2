@@ -1,0 +1,75 @@
+name: New guide or section
+description: Offer a guide of your own, or ask for one that is missing.
+title: "[New guide] "
+labels: ["documentation", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Guides on this wiki are plain markdown — see
+        [content/README.md](https://github.com/themoddingbungalo/site-v2/blob/main/content/README.md)
+        for what you can write. A new guide needs one line of wiring from a maintainer, which
+        is what this issue is for.
+
+  - type: dropdown
+    id: belongs
+    attributes:
+      label: Where it belongs
+      options:
+        - LoreRim
+        - NGVO
+        - Ghoulified
+        - LoreOut
+        - CSVP
+        - Do Not Go Gentle
+        - No single list — a tool guide (Wabbajack, xEdit, xLODGen, DynDOLOD, Creation Kit)
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Working title
+      placeholder: Rebuilding grass cache after adding a grass mod
+    validations:
+      required: true
+
+  - type: textarea
+    id: covers
+    attributes:
+      label: What it covers
+      description: A few lines on the problem it solves and who needs it.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: How far along is it
+      options:
+        - Written — pasted below or linked
+        - Half written, happy to finish it
+        - An idea — I am asking someone else to write it
+    validations:
+      required: true
+
+  - type: textarea
+    id: draft
+    attributes:
+      label: The draft
+      description: >-
+        Paste the markdown, or link a gist or a pull request. Leave empty if you are only
+        suggesting the topic.
+      render: markdown
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before you post
+      options:
+        - label: This is my own work, or I have the author's permission to put it here.
+          required: true
+        - label: I understand a maintainer may edit it to match the rest of the wiki.
+          required: true

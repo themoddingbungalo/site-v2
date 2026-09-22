@@ -19,6 +19,15 @@ export const site = {
 /** Spread onto any outbound `<a>`: `<a href={url} {...ext}>`. */
 export const ext = { target: '_blank', rel: 'noopener' } as const
 
+/** The issues tab — where "Contribute to the Wiki" sends people. */
+export const issuesUrl = `${site.repo}/issues`
+
+/** One of the forms in .github/ISSUE_TEMPLATE/, prefilled and ready to write. */
+export type IssueForm = 'bug-report' | 'documentation-change' | 'documentation-addition'
+export function issueUrl(form: IssueForm): string {
+  return `${site.repo}/issues/new?template=${form}.yml`
+}
+
 /** GitHub web-editor URL for a file under content/ (e.g. "lists/csvp/readme.md"). */
 export function editUrl(contentPath: string): string {
   return `${site.repo}/edit/main/content/${contentPath}`

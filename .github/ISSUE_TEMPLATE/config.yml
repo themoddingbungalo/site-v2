@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Install help and modlist support
+    url: https://discord.gg/bungalo
+    about: Wabbajack errors, crashes, load order questions — ask in the Discord, not here. Issues here are for the wiki itself.
+  - name: Edit a read me or guide yourself
+    url: https://github.com/themoddingbungalo/site-v2/tree/main/content
+    about: Every page is a markdown file. Press the pencil, fix it, commit — no issue needed.

@@ -14,6 +14,24 @@ GitHub, press the pencil, commit to `main`. The site redeploys itself in a coupl
 minutes. Every read me and guide page has an "Edit this page on GitHub" link at the
 bottom.
 
+## Reporting something instead
+
+Not everything needs an edit. "Contribute to the Wiki" in the header, the footer and on
+the community page now opens the [issues tab](https://github.com/themoddingbungalo/site-v2/issues),
+and the three forms in [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) cover what
+people actually send:
+
+| Form | For |
+| :-- | :-- |
+| `bug-report.yml` | The site itself is broken — a page, a link, an image, the layout |
+| `documentation-change.yml` | A read me or guide is wrong, out of date, or has a typo |
+| `documentation-addition.yml` | Someone has written a guide, or wants one that is missing |
+
+Blank issues are off, and `config.yml` points install and crash questions at the Discord
+before they get filed here. The labels the forms apply (`bug`, `documentation`,
+`enhancement`) are GitHub's defaults — a form that names a label the repo does not have
+fails on submit, so add the label first if you add one here.
+
 ## Running it locally
 
 Requires Node 24 (or any current LTS).
@@ -37,6 +55,7 @@ npm run preview   # serve the production build locally
 | `src/content/` | Requirements and troubleshooting prose the modlist pages share word for word |
 | `src/markdown/` | The markdown pipeline (react-markdown plus the kramdown extras) |
 | `src/styles/` | Design tokens, global utilities and markdown typography |
+| `.github/ISSUE_TEMPLATE/` | The three issue forms behind "Contribute to the Wiki" |
 | `.github/workflows/pages.yml` | Build and deploy on every push to `main` |
 
 ### Adding a modlist

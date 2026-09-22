@@ -4,12 +4,12 @@ import { useTitle } from '../components/layout/ScrollManager'
 import { ContributeButton } from '../components/layout/SiteFooter'
 import { BordelloPanel } from '../components/ui/BordelloPanel'
 import { DiscordBand } from '../components/ui/DiscordBand'
-import { DiscordIcon, GitHubIcon, KofiIcon, NexusIcon, PatreonIcon, YouTubeIcon } from '../components/ui/Icons'
+import { BookIcon, DiscordIcon, GitHubIcon, InfoIcon, KofiIcon, NexusIcon, PatreonIcon, PencilIcon, YouTubeIcon } from '../components/ui/Icons'
 import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
 import { useReveal } from '../components/ui/useReveal'
 import { modlistBySlug, modlistPath } from '../data/modlists'
-import { asset, ext, pageTitle, site } from '../data/site'
+import { asset, ext, issueUrl, pageTitle, site } from '../data/site'
 import { initials, team, teamLinkLabels, teamLinkOrder, type TeamLinkKind, type TeamMember } from '../data/team'
 import styles from './Community.module.css'
 
@@ -168,8 +168,20 @@ export function Community() {
               <h2 className={`h2 ${styles.contributeTitle}`}>Anyone can edit the wiki</h2>
               <p className={styles.contributeText}>
                 The read mes and guides on this site are markdown files on GitHub. Spot a wrong version number or a step
-                that no longer works? Press the pencil, fix it, commit &mdash; the site redeploys itself.
+                that no longer works? Press the pencil, fix it, commit &mdash; the site redeploys itself. Would you rather
+                the author made the call, or have you found something broken? Open an issue and pick the form that fits.
               </p>
+              <div className={styles.contributeForms}>
+                <a href={issueUrl('bug-report')} {...ext} className="btn btn--outline btn--xs">
+                  <InfoIcon size={15} stroke="currentColor" />Report a bug
+                </a>
+                <a href={issueUrl('documentation-change')} {...ext} className="btn btn--outline btn--xs">
+                  <PencilIcon size={15} />Wrong info or a typo
+                </a>
+                <a href={issueUrl('documentation-addition')} {...ext} className="btn btn--outline btn--xs">
+                  <BookIcon size={15} />Add a guide
+                </a>
+              </div>
             </div>
             <div className={styles.contributeActions}>
               <ContributeButton />
