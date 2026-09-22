@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { useTitle } from '../components/layout/ScrollManager'
+import { DiscordBand } from '../components/ui/DiscordBand'
 import { DiscordIcon, PlayIcon } from '../components/ui/Icons'
 import { PageHero } from '../components/ui/PageHero'
 import { SectionNav } from '../components/ui/SectionNav'
@@ -180,6 +181,8 @@ export function Guides() {
               {videos('creation-kit').map((v) => <VideoCard key={v.title} video={v} size="lg" onPlay={play} />)}
             </div>
           </section>
+
+          <DiscordBand />
         </div>
       </div>
 

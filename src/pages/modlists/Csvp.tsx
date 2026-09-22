@@ -401,9 +401,6 @@ export function Csvp() {
           </section>
 
           <DiscordBand
-            title="Our Discord is the hub for all things CSVP"
-            text="“I would love to have you join! I'm always open to hearing suggestions and additions you made to your personal list that could be thrown in here.”"
-            secondary={[{ href: NEXUS, label: 'Nexus page' }]}
             credits={<>Credits — <strong>you</strong> for reading this, Biggie_Boss for NGVO, JaySerpa for GTS, Halgari and the Wabbajack team, every mod author whose work made this list possible, and everyone in the Modding Bungalo Discord.</>}
           />
         </div>

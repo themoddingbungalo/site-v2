@@ -217,9 +217,6 @@ export function LoreOut() {
           </section>
 
           <DiscordBand
-            title="Hosted in the Bungalo"
-            text="LoreOut's support, install help and changelogs all live in the Discord."
-            primary={{ label: 'Join the Discord' }}
             credits={<>Credits — <strong>you</strong> for reading and playing, Biggie_Boss for the collab, Alexerator, RetroPaladin, Micalov, DegenerateDak, CSEPteam, ShimSham, Grilledturkey, VishVadeva and the F4NV, Project Mojave and F4CW teams, Ungeziefi for The Midnight Ride, and A Raven of Many Hats.</>}
           />
         </div>

@@ -107,6 +107,10 @@ button { font-family: inherit; }
 .btn--sm { font-size: 14px; padding: 14px 24px; border-radius: 8px; }
 .btn--xs { font-size: 13.5px; padding: 12px 20px; border-radius: 7px; }
 .btn--lg { font-size: 16px; padding: 18px 36px; border-radius: 10px; }
+/* A bordered button at the exact box of a solid .btn: the border comes off the padding,
+   so a gold-tint button standing next to a gold one is the same height rather than 2px
+   taller. Declared after the size variants, which is what lets it override them. */
+.btn--flush { font-size: 15px; letter-spacing: .05em; padding: 14px 25px; border-radius: 9px; }
 
 .pill { display: inline-flex; align-items: center; gap: 9px; padding: 11px 20px; border-radius: 100px; font-size: 14.5px; font-weight: 700; letter-spacing: .03em; border: 1px solid var(--hair-18); color: var(--text-2); transition: border-color .18s ease, color .18s ease, background .18s ease; }
 .pill:hover { border-color: var(--gold-50); color: var(--ink); }

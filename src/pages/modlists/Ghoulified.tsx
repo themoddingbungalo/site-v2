@@ -225,8 +225,6 @@ export function Ghoulified() {
           </section>
 
           <DiscordBand
-            title="Support and updates in Discord"
-            text="Release pings, changelogs and build advice from people playing the same brutal list."
             credits={<>Credits — <strong>you</strong> for reading this, Ghoul smasher Biggie Forn and LaLa for being super helpful, WhisperDealer for the website, Halgari and the Wabbajack team, and every mod author whose work made this list possible.</>}
           />
         </div>

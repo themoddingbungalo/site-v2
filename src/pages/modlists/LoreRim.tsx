@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { useTitle } from '../../components/layout/ScrollManager'
 import { DiscordBand } from '../../components/ui/DiscordBand'
-import { DiscordIcon, StrokeIcon } from '../../components/ui/Icons'
+import { StrokeIcon } from '../../components/ui/Icons'
 import { ModlistHero } from '../../components/ui/ModlistHero'
 import { SectionNav } from '../../components/ui/SectionNav'
 import { KeyRows, type KeyRow } from '../../components/ui/Tile'
@@ -116,6 +116,7 @@ export function LoreRim() {
               <div className={styles.docsActions}>
                 <a href={site.lorerim} {...ext} className="btn btn--gold">Read the docs</a>
                 <a href={site.biggie.youtube} {...ext} className="btn btn--ghost">Dev streams</a>
+                <a href={site.biggie.kofi} {...ext} className="btn btn--ghost">Support on Ko-fi</a>
               </div>
             </div>
           </div>
@@ -123,12 +124,7 @@ export function LoreRim() {
 
         <div className="container">
           <div id="support">
-            <DiscordBand
-              title="Support lives in the Bungalo"
-              text="Install help, release pings and build advice from the people who made it — plus everyone else playing the same list."
-              primary={{ label: 'Join the Discord', icon: <DiscordIcon size={19} /> }}
-              secondary={[{ href: site.biggie.kofi, label: 'Support on Ko-fi' }]}
-            />
+            <DiscordBand />
           </div>
         </div>
       </div>

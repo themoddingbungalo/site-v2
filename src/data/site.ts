@@ -19,8 +19,8 @@ export const site = {
 /** Spread onto any outbound `<a>`: `<a href={url} {...ext}>`. */
 export const ext = { target: '_blank', rel: 'noopener' } as const
 
-/** The issues tab — where "Contribute to the Wiki" sends people. */
-export const issuesUrl = `${site.repo}/issues`
+/** The issue chooser — where "Contribute to the Wiki" sends people. */
+export const contributeUrl = `${site.repo}/issues/new/choose`
 
 /** One of the forms in .github/ISSUE_TEMPLATE/, prefilled and ready to write. */
 export type IssueForm = 'bug-report' | 'documentation-change' | 'documentation-addition'

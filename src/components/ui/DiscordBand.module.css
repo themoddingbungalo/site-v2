@@ -107,10 +107,11 @@
 }
 .text { margin: 0; max-width: 54ch; font-size: 17.5px; line-height: 1.68; color: var(--text-2); text-wrap: pretty; }
 
-.actions { display: grid; gap: 12px; min-width: 232px; }
-/* Every button takes the width of the widest, so the column is sized by its own copy
-   rather than by a number, and reads as one block whether it holds one or three. */
-.actions a { width: 100%; justify-content: center; }
+.actions { display: grid; gap: 12px; min-width: 248px; }
+/* Both doors take the width of the wider, so the column is sized by its own copy rather
+   than by a number. The menu's wrapper is a grid item like the link, so the trigger
+   inside it has to be told to fill it. */
+.actions a, .actions button { width: 100%; justify-content: center; }
 
 /* A colophon under the plate's own rule, not a fourth paragraph: the page ends on the
    invitation, with the thanks set beneath it. */

@@ -23,6 +23,7 @@ const NAV: SectionNavItem[] = [
   { id: 'visuals', label: 'ENB & shaders' },
   { id: 'optional', label: 'Optional mods' },
   { id: 'faqs', label: 'FAQs' },
+  { id: 'help', label: 'Getting help' },
 ]
 
 type SpecKey = 'rec' | 'author'
@@ -243,14 +244,24 @@ export function Dngg() {
             <FaqAccordion eyebrow="FAQs" title="From the author" items={FAQS} />
           </section>
 
+          {/* Arkay answers on the Requiem server rather than in the Bungalo, so this
+              cannot live in the band: that one says the same thing on every page. */}
+          <section id="help" className="section">
+            <h2 className="h2 head--tight">Getting help</h2>
+            <Callout kind="important" title="Ask in public, not in DMs">
+              <p>
+                Arkay is primarily on the Requiem Wabbajack server. Please do not DM &mdash; asking in public means
+                the answer helps everyone else who hits the same thing.
+              </p>
+              <div className={styles.helpActions}>
+                <a href={REQUIEM_DISCORD} {...ext} className="btn btn--gold btn--sm">Requiem WJ server</a>
+                <a href={`${GITHUB}/blob/main/Changelog.md`} {...ext} className="btn btn--outline btn--sm">Changelog</a>
+                <a href="https://www.patreon.com/Abandoned_by_Arkay" {...ext} className="btn btn--outline btn--sm">Patreon</a>
+              </div>
+            </Callout>
+          </section>
+
           <DiscordBand
-            title="Getting help"
-            text="Arkay is primarily on the Requiem Wabbajack server. Please do not DM — asking in public means the answer helps everyone else too."
-            primary={{ href: REQUIEM_DISCORD, label: 'Requiem WJ server' }}
-            secondary={[
-              { href: `${GITHUB}/blob/main/Changelog.md`, label: 'Changelog' },
-              { href: 'https://www.patreon.com/Abandoned_by_Arkay', label: 'Patreon' },
-            ]}
             credits={<>Credits — <strong>you</strong> for reading this, the Animonculory team, Zelie (Sovn), Noggog for Mutagen, and Halgari and everyone on the Wabbajack team.</>}
           />
         </div>

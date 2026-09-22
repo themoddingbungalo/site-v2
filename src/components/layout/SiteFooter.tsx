@@ -1,16 +1,7 @@
 import { Link } from 'react-router'
-import { asset, ext, issuesUrl, site } from '../../data/site'
-import { PencilIcon } from '../ui/Icons'
+import { asset, ext, site } from '../../data/site'
+import { ContributeButton } from '../ui/ContributeButton'
 import styles from './SiteFooter.module.css'
-
-export function ContributeButton({ className = '' }: { className?: string }) {
-  return (
-    <a href={issuesUrl} {...ext} className={`btn btn--gold-tint ${className}`}>
-      <PencilIcon size={16} />
-      Contribute to the Wiki
-    </a>
-  )
-}
 
 function Legal() {
   return (

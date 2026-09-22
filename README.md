@@ -16,10 +16,11 @@ bottom.
 
 ## Reporting something instead
 
-Not everything needs an edit. "Contribute to the Wiki" in the header, the footer and on
-the community page now opens the [issues tab](https://github.com/themoddingbungalo/site-v2/issues),
-and the three forms in [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) cover what
-people actually send:
+Not everything needs an edit. "Contribute to the Wiki" — in the header, in the footer and
+at the end of every page — opens GitHub's
+[issue chooser](https://github.com/themoddingbungalo/site-v2/issues/new/choose), and the
+three forms in [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) cover what people
+actually send:
 
 | Form | For |
 | :-- | :-- |
@@ -27,8 +28,10 @@ people actually send:
 | `documentation-change.yml` | A read me or guide is wrong, out of date, or has a typo |
 | `documentation-addition.yml` | Someone has written a guide, or wants one that is missing |
 
-Blank issues are off, and `config.yml` points install and crash questions at the Discord
-before they get filed here. The labels the forms apply (`bug`, `documentation`,
+The closing band on every page carries the same two buttons — Join the Bungalo, and a
+Contribute to the Wiki menu holding the three forms — so the invitation lands where
+someone has just finished reading. Blank issues are off, and
+`config.yml` points install and crash questions at the Discord before they get filed here. The labels the forms apply (`bug`, `documentation`,
 `enhancement`) are GitHub's defaults — a form that names a label the repo does not have
 fails on submit, so add the label first if you add one here.
 

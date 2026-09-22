@@ -95,15 +95,27 @@ yourself writing a rule that already exists in another module, it belongs in
 
 ## Contributions
 
-"Contribute to the Wiki" (header menu, drawer, search, footer, community page) points at
-`issuesUrl` from `src/data/site.ts`, not the repo root: it lands on the issues tab. The
-community page also links the three forms directly with `issueUrl('bug-report' |
-'documentation-change' | 'documentation-addition')`, whose argument is the filename in
-`.github/ISSUE_TEMPLATE/`. Rename a form there and the link 404s, so change both together.
+"Contribute to the Wiki" comes in two shapes, both in `src/components/ui/ContributeButton.tsx`:
+`ContributeButton`, a plain link to `contributeUrl` (GitHub's issue chooser, not the repo
+root) for the footer, and `ContributeMenu`, the same button as a dropdown of the three
+forms, which is what the closing band uses. The menu opens upward and hangs from the
+trigger's right edge, because the band is the last thing on the page. Its items come from
+`issueUrl('bug-report' | 'documentation-change' | 'documentation-addition')`, whose
+argument is the filename in `.github/ISSUE_TEMPLATE/`. Rename a form there and the link
+404s, so change both together.
 Blank issues are disabled; `config.yml` sends install and crash questions to the Discord.
 A form may only apply labels the repo already has — the three in use (`bug`,
 `documentation`, `enhancement`) are GitHub's defaults, and naming a missing one makes the
 form fail on submit.
+
+`DiscordBand` closes every page with those two doors and nothing else: Join the Bungalo,
+then the contribute menu. Its heading, its copy and both buttons are fixed — the only
+props are `credits` (a list's own thanks, under the plate's rule) and `id` (an anchor, so
+the community page's section nav can point "Contribute" at it). Do not add a `title` or
+`text` prop back: a closing call to action worded six ways is six things to keep current,
+and anything one list needs to say belongs in a section above the band, the way DNGG's
+"Getting help" callout carries Arkay's Requiem server. The one page without the band is
+the home page, which closes on its own full-bleed Join the Bungalo art.
 
 ## Registries
 
