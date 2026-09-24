@@ -15,6 +15,7 @@ import { Ghoulified } from './pages/modlists/Ghoulified'
 import { LoreOut } from './pages/modlists/LoreOut'
 import { LoreRim } from './pages/modlists/LoreRim'
 import { Ngvo } from './pages/modlists/Ngvo'
+import { readmePath } from './data/modlists'
 
 /** The read mes moved to /lists/<slug>/read-me; keep the interim v2 path working. */
 function LegacyReadMeRedirect() {
@@ -40,6 +41,7 @@ export default function App() {
               <Route path="/modlists/dngg" element={<Dngg />} />
               <Route path="/lists/:slug/read-me" element={<ReadMePage />} />
               <Route path="/modlists/:slug/readme" element={<LegacyReadMeRedirect />} />
+              <Route path="/ngvo/read-me" element={<Navigate to={readmePath('ngvo')} replace />} />
               <Route path="/guides" element={<Guides />} />
               <Route path="/community" element={<Community />} />
               <Route path="/guides/:slug" element={<GuidePage />} />

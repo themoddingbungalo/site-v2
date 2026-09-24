@@ -10,7 +10,6 @@ import { SectionNav, type SectionNavItem } from '../../components/ui/SectionNav'
 import { SpecCards } from '../../components/ui/Specs'
 import { FeatureCard } from '../../components/ui/Steps'
 import { Tile } from '../../components/ui/Tile'
-import { YouTubeEmbed } from '../../components/ui/YouTubeEmbed'
 import { readmePath } from '../../data/modlists'
 import { ext, pageTitle, site } from '../../data/site'
 import styles from './LoreOut.module.css'
@@ -28,7 +27,7 @@ const NAV: SectionNavItem[] = [
 const shot = shotsFor('loreout')
 
 // The first two shots are 2x2, which packs the ten into four complete rows of the
-// four-column grid. There is no video tile here; the trailer sits in the overview.
+// four-column grid. There is no video tile here.
 const SHOTS: Shot[] = [
   { ...shot('immense', 'A long walk through overgrown woodland'), feature: true },
   { ...shot('aura-farming-nuke', 'Watching a distant blast from the treeline'), feature: true },
@@ -105,16 +104,13 @@ export function LoreOut() {
       <div className="lit">
         <div className="container">
           <section id="overview" className="section--intro">
-            <div className="grid grid--2">
-              <div className="flow">
-                <p className="eyebrow">Overview</p>
-                <h2 className="h2 head--loose">A full redesign of Fallout 4</h2>
-                <p className="lead">Every aspect has been shaped to enhance gameplay, visuals and roleplayability. An auto-installing Wabbajack list filled with some of the best mods the community has to offer, designed for replayability so no two playthroughs are the same.</p>
-                <Callout kind="warning" icon={false} compact label="A note about difficulty">
-                  <p>LoreOut is built around a custom tweaked <strong>Survival</strong> setting — the only staff-supported difficulty. Read up on what the overhauls do, especially the perks and skills in You Are Exceptional. Difficulty is adjustable, but it is tuned for a more involved experience out of the box. Don't get discouraged.</p>
-                </Callout>
-              </div>
-              <YouTubeEmbed id="NccDkn4NZFU" title="LoreOut installation" />
+            <div className={`flow ${styles.overview}`}>
+              <p className="eyebrow">Overview</p>
+              <h2 className="h2 head--loose">A full redesign of Fallout 4</h2>
+              <p className="lead">Every aspect has been shaped to enhance gameplay, visuals and roleplayability. An auto-installing Wabbajack list filled with some of the best mods the community has to offer, designed for replayability so no two playthroughs are the same.</p>
+              <Callout kind="warning" icon={false} compact label="A note about difficulty">
+                <p>LoreOut is built around a custom tweaked <strong>Survival</strong> setting — the only staff-supported difficulty. Read up on what the overhauls do, especially the perks and skills in You Are Exceptional. Difficulty is adjustable, but it is tuned for a more involved experience out of the box. Don't get discouraged.</p>
+              </Callout>
             </div>
           </section>
 

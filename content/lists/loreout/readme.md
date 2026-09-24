@@ -50,17 +50,6 @@ Linux is not officially supported by LoreOut staff.
 
 ## Installation
 
-<div class="youtube-container">
-  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-    src="https://www.youtube.com/embed/NccDkn4NZFU" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    allowfullscreen>
-  </iframe>
-</div>
-
 ### Pre-Installation
 
 {: .warning}

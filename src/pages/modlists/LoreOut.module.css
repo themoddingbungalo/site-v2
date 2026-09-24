@@ -1,8 +1,11 @@
-/* LoreOut — the hero scrim and the key-mods link columns. Everything else is a
+/* LoreOut — the hero scrim, the overview measure and the key-mods link columns. Everything else is a
    shared component or a global utility. */
 
 /* Heavier top scrim than the shared default so the logo reads over the screenshot. */
 .scrim { background: linear-gradient(to bottom, rgba(21, 24, 26, .88) 0%, rgba(21, 24, 26, .74) 40%, rgba(21, 24, 26, .94) 86%, var(--bg) 100%); }
+
+/* The overview stands alone now the install video is gone; keep its lines readable. */
+.overview { max-width: 880px; }
 
 /* ---- specs ------------------------------------------------------------- */
 .specSub { margin-bottom: clamp(22px, 2.6vw, 28px); }
