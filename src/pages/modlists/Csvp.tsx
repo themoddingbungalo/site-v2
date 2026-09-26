@@ -90,7 +90,7 @@ const faqs: FaqItem[] = [
     a: (
       <>
         <p>An immersive, vanilla-focused modlist built on the visuals in Next Generation Visual Overhaul. It is a packaged experience you can play immediately after download, but sparing enough in sweeping overhauls to allow customisation.</p>
-        <p>Skyrim Anniversary Edition with the full $20 upgrade is required, and CSVP requires your Steam copy of Skyrim to be updated to the latest version.</p>
+        <p>Skyrim Anniversary Edition with the full $20 upgrade is required, and your Steam copy of Skyrim must be updated to 1.7.104 so Wabbajack can downgrade it to 1.6.1170, the version CSVP runs on.</p>
       </>
     ),
   },
@@ -194,7 +194,7 @@ export function Csvp() {
         title="Colloquy's Skyrim Vanilla Plus"
         blurb="NGVO's visuals with hundreds of gameplay mods layered on — a packaged Vanilla Plus experience you can play immediately, sparing enough in sweeping overhauls that you can still make it yours."
         chips={[
-          { label: 'Latest Skyrim AE' },
+          { label: 'Skyrim AE 1.6.1170' },
           { label: 'by TheConversation' },
           { label: '1881 mods', gold: true },
           { label: 'An NGVO fork' },
